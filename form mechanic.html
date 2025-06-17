@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-translate="mechanicRegisterTitle">Mechanic Registration - Fix My Car</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    
+    <style>/* CSS Variables for consistent color palette */
+:root {
+    --primary-light: #87cefa; /* Sky Blue */
+    --primary-dark: #42a5f5;  /* Deeper Sky Blue */
+    --accent-light: #f0f4c3;  /* Very Light Yellow */
+    --accent-dark: #d4e157;   /* Light Yellow-Green */
+    --text-color-dark: #333;       /* Dark Grey for Text */
+    --text-color-light: #4a5568; /* Tailwind's text-gray-700 */
+    --text-color-medium: #6b7280; /* Tailwind's text-gray-600 */
+    --bg-light: #f8f8f8;      /* Light Grey Background */
+    --bg-body: #f3f4f6; /* Tailwind's bg-gray-100 */
+    --bg-card: #ffffff; /* Tailwind's bg-white */
+    --border-color: #d1d5db; /* Tailwind's border-gray-300 */
+    --ring-color: #3b82f6; /* Tailwind's ring-blue-500 */
+    --blue-700: #1d4ed8; /* Specific blue for headings */
+    --blue-600: #2563eb; /* Specific blue for checkboxes */
+    --blue-200: #bfdbfe; /* Specific blue for selected tags background */
+    --blue-800: #1e40af; /* Specific blue for selected tags text */
+    --red-600: #dc2626; /* Specific red for security notes */
+    --gray-50: #f9fafb; /* Specific gray for selected brands background */
+    --white: #ffffff;
+    --black: #000000;
+}
+
+/* Base styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-body); /* Equivalent to bg-gray-100 */
+    color: var(--text-color-dark); /* Equivalent to text-gray-800 */
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Global box-sizing for consistent padding/border handling */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Container for centralizing content */
+.container {
+    max-width: 960px; /* max-w-4xl (approx.) or custom width */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem; /* p-4 */
+}
+
+/* Responsive padding for container */
+@media (min-width: 768px) { /* md:p-8 */
+    .container {
+        padding: 2rem;
+    }
+}
+
+/* Heading styles */
+h1, h2 {
+    font-family: 'Poppins', sans-serif;
+    color: var(--primary-dark);
+    margin-top: 0;
+    margin-bottom: 0.5rem; /* Equivalent to mb-2 for h1 */
+}
+
+h1 {
+    font-size: 2.25rem; /* text-4xl */
+    line-height: 2.5rem; /* leading-10 */
+    font-weight: 800; /* font-extrabold */
+    color: var(--blue-700); /* text-blue-700 */
+    margin-bottom: 0.5rem; /* mb-2 */
+}
+
+@media (min-width: 768px) { /* md:text-5xl */
+    h1 {
+        font-size: 3rem;
+        line-height: 1;
+    }
+}
+
+h2 {
+    font-size: 1.5rem; /* text-2xl */
+    line-height: 2rem; /* leading-8 */
+    font-weight: 600; /* font-semibold */
+    color: var(--text-color-dark); /* text-gray-800 */
+    margin-bottom: 1rem; /* mb-4 */
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+p.text-xl { /* for subheading */
+    font-size: 1.25rem; /* text-xl */
+    line-height: 1.75rem; /* leading-7 */
+    color: var(--text-color-medium); /* text-gray-600 */
+}
+
+p.text-sm { /* for notes */
+    font-size: 0.875rem; /* text-sm */
+    line-height: 1.25rem; /* leading-5 */
+    color: #6b7280; /* text-gray-500 */
+}
+
+/* Form styling */
+form {
+    background-color: var(--bg-card); /* bg-white */
+    padding: 1.5rem; /* p-6 */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* shadow-xl */
+}
+
+/* Styles for individual form steps */
+.form-step {
+    display: none; /* Hidden by default */
+}
+
+.form-step.active {
+    display: block; /* Shown when active */
+}
+
+.form-step > div { /* For the main section divs inside each step */
+    margin-bottom: 1.5rem; /* mb-6 */
+    background-color: var(--bg-card); /* bg-white */
+    padding: 1.5rem; /* p-6 */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* shadow-md */
+    margin-bottom: 1.5rem; /* Space between sections within a step */
+}
+
+
+/* Form labels */
+label {
+    display: block;
+    color: var(--text-color-light); /* text-gray-700 */
+    font-weight: 500; /* font-medium */
+    margin-bottom: 0.5rem; /* mb-2 */
+}
+
+/* Form inputs (text, email, tel, date, number, textarea) */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 0.5rem 1rem; /* px-4 py-2 */
+    border: 1px solid var(--border-color); /* border border-gray-300 */
+    border-radius: 0.5rem; /* rounded-lg */
+    outline: none; /* focus:outline-none */
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="date"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+    border-color: var(--ring-color); /* focus:ring-2 focus:ring-blue-500 */
+    box-shadow: 0 0 0 2px var(--ring-color);
+}
+
+textarea {
+    resize: vertical; /* Allow vertical resizing */
+}
+
+/* Grid layout for form fields */
+.grid {
+    display: grid;
+}
+.grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+.gap-4 {
+    gap: 1rem; /* gap-4 */
+}
+.mb-4 {
+    margin-bottom: 1rem; /* mb-4 */
+}
+
+/* Responsive grid columns */
+@media (min-width: 768px) { /* md:grid-cols-2 */
+    .md\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (min-width: 640px) { /* sm:grid-cols-2 */
+    .sm\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (min-width: 1024px) { /* lg:grid-cols-3, lg:grid-cols-4 */
+    .lg\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .lg\:grid-cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+/* Flexbox for radio buttons and selected brands */
+.flex {
+    display: flex;
+}
+.items-center {
+    align-items: center;
+}
+.mr-4 {
+    margin-right: 1rem; /* mr-4 */
+}
+.flex-wrap {
+    flex-wrap: wrap;
+}
+.gap-2 {
+    gap: 0.5rem; /* gap-2 */
+}
+
+/* Checkbox and Radio button custom styles */
+.form-checkbox, .form-radio {
+    accent-color: var(--blue-600); /* Uses primary-dark or a similar blue for consistency */
+    width: 1.25rem; /* h-5 w-5 */
+    height: 1.25rem; /* h-5 w-5 */
+    margin-right: 0.5rem; /* ml-2 equivalent if directly after a label */
+}
+.inline-flex {
+    display: inline-flex;
+    align-items: center;
+}
+.ml-2 {
+    margin-left: 0.5rem; /* ml-2 */
+}
+
+/* Button primary */
+.btn-primary {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* transition duration-300 ease-in-out transform */
+    width: 100%; /* w-full */
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 600; /* font-semibold */
+    border: none;
+    cursor: pointer;
+    text-align: center; /* Ensure text is centered for anchors */
+    display: block; /* Ensure button takes full width */
+    text-decoration: none; /* Remove underline for anchor buttons */
+    margin-top: 1rem; /* Space above buttons */
+}
+
+.btn-primary:hover {
+    background-color: #3f90e0; /* Slightly darker blue on hover */
+    transform: scale(1.02); /* Slightly less aggressive scale than 1.05 */
+}
+
+/* Secondary button for previous step */
+.btn-secondary {
+    background-color: var(--bg-light); /* Lighter background for secondary */
+    color: var(--text-color-dark);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+    font-size: 1.25rem;
+    font-weight: 600;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    margin-top: 1rem; /* Add some space above */
+}
+
+.btn-secondary:hover {
+    background-color: #e0e0e0; /* Darker light background on hover */
+    transform: scale(1.02); /* Slightly less aggressive scale than 1.05 */
+}
+
+
+/* Link styles */
+a {
+    color: var(--blue-600); /* text-blue-600 */
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* Car Company Search and Dropdown */
+.relative {
+    position: relative;
+}
+#carCompanyDropdown {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    background-color: var(--bg-card); /* bg-white */
+    border: 1px solid var(--border-color); /* border border-gray-300 */
+    border-radius: 0.5rem; /* rounded-lg */
+    margin-top: 0.25rem; /* mt-1 */
+    max-height: 12rem; /* max-h-48 */
+    overflow-y: auto;
+    list-style: none; /* remove bullet points */
+    padding: 0;
+    margin-left: 0; /* reset default ul margin */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* shadow-md */
+}
+#carCompanyDropdown.hidden {
+    display: none;
+}
+#carCompanyDropdown li {
+    padding: 0.5rem; /* p-2 */
+    cursor: pointer;
+}
+#carCompanyDropdown li:hover {
+    background-color: #e0f2fe; /* hover:bg-blue-100 */
+}
+
+/* Selected Car Brands Container */
+#selectedCarBrands {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem; /* gap-2 */
+    padding: 0.5rem; /* p-2 */
+    border: 1px solid var(--border-color); /* border border-gray-300 */
+    border-radius: 0.5rem; /* rounded-lg */
+    background-color: var(--gray-50); /* bg-gray-50 */
+    min-height: 2.5rem; /* min-h-[40px] */
+    align-items: center; /* for vertical centering */
+}
+
+#selectedCarBrands .selected-tag {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--blue-200); /* bg-blue-200 */
+    color: var(--blue-800); /* text-blue-800 */
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 500; /* font-medium */
+    padding: 0.125rem 0.625rem; /* px-2.5 py-0.5 */
+    border-radius: 9999px; /* rounded-full */
+    white-space: nowrap; /* prevent wrapping */
+}
+
+#selectedCarBrands .selected-tag .remove-tag-btn {
+    margin-left: 0.25rem; /* ml-1 */
+    color: var(--blue-800); /* text-blue-800 */
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem; /* Adjust icon size if necessary */
+    line-height: 1; /* Ensure icon is aligned */
+}
+#selectedCarBrands .selected-tag .remove-tag-btn:hover {
+    color: #1c3682; /* hover:text-blue-900 */
+}
+#selectedCarBrands .selected-tag .remove-tag-btn:focus {
+    outline: none; /* focus:outline-none */
+}
+
+/* Specific note styling */
+p.text-red-600 {
+    color: var(--red-600); /* text-red-600 */
+}
+
+/* Header text alignment */
+.text-center {
+    text-align: center;
+}
+
+/* Margin bottom for header and form sections */
+.mb-8 {
+    margin-bottom: 2rem;
+}
+.mt-1 {
+    margin-top: 0.25rem;
+}
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+
+/* Progress Bar Styles */
+.progress-container {
+    width: 100%;
+    background-color: var(--border-color); /* Light grey background */
+    border-radius: 0.5rem; /* Rounded corners */
+    overflow: hidden; /* Ensures the bar stays within bounds */
+    margin-bottom: 1rem; /* Space below the progress bar */
+    height: 1.5rem; /* Height of the progress bar */
+    position: relative; /* For positioning the text */
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%; /* Initial width */
+    background-color: var(--primary-dark); /* Blue progress */
+    border-radius: 0.5rem; /* Rounded corners */
+    transition: width 0.4s ease-in-out; /* Smooth transition for width changes */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--text-color-dark); /* Text color over the bar */
+    font-weight: 600;
+    font-size: 0.875rem; /* text-sm */
+    z-index: 1; /* Ensure text is above the bar */
+}
+
+/* Custom Message Box Styles */
+.message-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top of everything */
+}
+
+.message-box-content {
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+.message-box-content p {
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color-dark);
+}
+
+.message-box-content .btn-primary {
+    width: auto; /* Override w-full for the button inside the message box */
+    padding: 0.75rem 2rem;
+    display: inline-block; /* Make it inline-block for better centering */
+}
+
+/* Utility classes for hiding elements */
+.hidden {
+    display: none !important;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <header class="text-center mb-8">
+            <h1 data-translate="mechanicRegisterHeading">Mechanic Registration</h1>
+            <p class="text-xl" id="formSubheading"></p>
+        </header>
+
+        <div class="progress-container mb-6">
+            <div class="progress-bar" id="progressBar"></div>
+            <div class="progress-text" id="progressText">Step 1 of 5</div>
+        </div>
+
+        <form id="mechanicRegistrationForm">
+            <div id="step1" class="form-step">
+                <div>
+                    <h2 data-translate="personalDetails">Personal Details</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="firstName" data-translate="firstName">First Name:</label>
+                            <input type="text" id="firstName" name="firstName" required placeholder="John">
+                        </div>
+                        <div>
+                            <label for="lastName" data-translate="lastName">Last Name:</label>
+                            <input type="text" id="lastName" name="lastName" required placeholder="Doe">
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="address" data-translate="address">Address:</label>
+                        <input type="text" id="address" name="address" required placeholder="123 Main St, Anytown">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="city" data-translate="city">City:</label>
+                            <input type="text" id="city" name="city" required placeholder="Indore">
+                        </div>
+                        <div>
+                            <label for="zipCode" data-translate="zipCode">Zip Code:</label>
+                            <input type="text" id="zipCode" name="zipCode" required placeholder="452001">
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn-primary next-step-btn" data-translate="nextStep">Proceed to Next Step</button>
+            </div>
+
+            <div id="step2" class="form-step hidden">
+                <div>
+                    <h2 data-translate="contactVerification">Contact Information & Verification</h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="email" data-translate="emailAddress">Email Address:</label>
+                            <input type="email" id="email" name="email" required placeholder="mechanic@example.com">
+                        </div>
+                        <div>
+                            <label for="mobileNumber" data-translate="mobileNumber">Phone Number (Mobile):</label>
+                            <input type="tel" id="mobileNumber" name="mobileNumber" required pattern="[0-9]{10}" title="Please enter a 10-digit phone number" placeholder="e.g., 9876543210">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="altContactNumber" data-translate="altContactNumber">Alternative Contact Number (Optional):</label>
+                            <input type="tel" id="altContactNumber" name="altContactNumber" pattern="[0-9]{10}" title="Please enter a 10-digit phone number" placeholder="Optional">
+                        </div>
+                        <div>
+                            <label for="emergencyContactName" data-translate="emergencyContactName">Emergency Contact Person:</label>
+                            <input type="text" id="emergencyContactName" name="emergencyContactName" required placeholder="Name">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="emergencyContactNumber" data-translate="emergencyContactNumber">Emergency Contact Number:</label>
+                            <input type="tel" id="emergencyContactNumber" name="emergencyContactNumber" required pattern="[0-9]{10}" title="Please enter a 10-digit phone number" placeholder="e.g., 9876543210">
+                        </div>
+                        <div>
+                            <label for="aadhaarPan" data-translate="aadhaarPan">Aadhar/PAN Card Number (for verification):</label>
+                            <input type="text" id="aadhaarPan" name="aadhaarPan" placeholder="Will be verified offline">
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="idProofUpload" data-translate="uploadIdProof">Upload Photo/ID Proof (Aadhar, Driving License, PAN):</label>
+                        <input type="file" id="idProofUpload" name="idProofUpload" accept="image/*,.pdf">
+                        <p class="text-sm mt-1" data-translate="idProofNote">Note: File upload requires backend processing and secure storage.</p>
+                    </div>
+                </div>
+                <button type="button" class="btn-primary next-step-btn" data-translate="nextStep">Proceed to Next Step</button>
+                <button type="button" class="btn-secondary prev-step-btn" data-translate="previousStep">Previous Step</button>
+            </div>
+
+            <div id="step3" class="form-step hidden">
+                <div>
+                    <h2 data-translate="serviceCapabilities">Service Capabilities & Specialization</h2>
+
+                    <div class="mb-4">
+                        <label class="block" data-translate="typesOfVehicles">Types of Vehicles Serviced (Multi-select):</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" name="vehicleType" value="2-Wheelers" class="form-checkbox">
+                                <span class="ml-2" data-translate="twoWheelers">2-Wheelers (Motorcycles, Scooters)</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" name="vehicleType" value="3-Wheelers" class="form-checkbox">
+                                <span class="ml-2" data-translate="threeWheelers">3-Wheelers (Auto-rickshaws)</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" name="vehicleType" value="4-Wheelers" class="form-checkbox">
+                                <span class="ml-2" data-translate="fourWheelers">4-Wheelers (Cars, SUVs, Vans)</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" name="vehicleType" value="Commercial Vehicles" class="form-checkbox">
+                                <span class="ml-2" data-translate="commercialVehicles">Commercial Vehicles (Light, Medium, Heavy)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block" data-translate="specializedServices">Specialized Services Offered (Multi-select):</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                            <label class="inline-flex items-center"><input type="checkbox" name="specializedService" value="AC Repair & Service" class="form-checkbox"><span class="ml-2" data-translate="acRepair">AC Repair & Service</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="specializedService" value="Engine Overhaul/Repair" class="form-checkbox"><span class="ml-2" data-translate="engineRepair">Engine Overhaul/Repair</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="specializedService" value="Transmission Repair" class="form-checkbox"><span class="ml-2" data-translate="transmissionRepair">Transmission Repair</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="specializedService" value="Brake System Repair" class="form-checkbox"><span class="ml-2" data-translate="brakeRepair">Brake System Repair</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="specializedService" value="Suspension & Steering" class="form-checkbox"><span class="ml-2" data-translate="suspensionSteering">Suspension & Steering</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="specializedService" value="Electrical & Diagnostics" class="form-checkbox"><span class="ml-2" data-translate="electricalDiagnostics">Electrical & Diagnostics</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="specializedService" value="Battery Services" class="form-checkbox"><span class="ml-2" data-translate="batteryServices">Battery Services</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="specializedService" value="Denting & Painting" class="form-checkbox"><span class="ml-2" data-translate="dentingPainting">Denting & Painting</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="specializedService" value="Tire Services" class="form-checkbox"><span class="ml-2" data-translate="tireServices">Tire Services (Puncture repair, replacement)</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="specializedService" value="Key & Locksmith Services" class="form-checkbox"><span class="ml-2" data-translate="keyLocksmith">Key & Locksmith Services</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="specializedService" value="Hybrid/EV Expertise" class="form-checkbox"><span class="ml-2" data-translate="hybridEV">Hybrid/EV Expertise (if applicable)</span></label>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="toolsOwned" data-translate="toolsEquipment">Tools & Equipment Owned:</label>
+                        <textarea id="toolsOwned" name="toolsOwned" rows="3" placeholder="e.g., Jump starter, Tire inflator, Diagnostic scanner, Basic toolkit"></textarea>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 data-translate="workingHours">Preferred Working Hours/Availability</h2>
+
+                    <div class="mb-4">
+                        <label class="block" data-translate="daysOfWeek">Days of the week:</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+                            <label class="inline-flex items-center"><input type="checkbox" name="availableDays" value="Mon-Fri" class="form-checkbox"><span class="ml-2">Mon-Fri</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="availableDays" value="Weekends only" class="form-checkbox"><span class="ml-2" data-translate="weekendsOnly">Weekends only</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="availableDays" value="All days" class="form-checkbox"><span class="ml-2" data-translate="allDays">All days</span></label>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="timeSlots" data-translate="timeSlots">Time slots:</label>
+                        <input type="text" id="timeSlots" name="timeSlots" placeholder="e.g., 9 AM - 6 PM, Flexible, On-call">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block" data-translate="emergencyCalls">Are you available for emergency calls (24/7)?</label>
+                        <div class="flex items-center">
+                            <label class="inline-flex items-center mr-4">
+                                <input type="radio" name="emergencyAvailable" value="Yes" class="form-radio">
+                                <span class="ml-2" data-translate="yes">Yes</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="emergencyAvailable" value="No" class="form-radio">
+                                <span class="ml-2" data-translate="no">No</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn-primary next-step-btn" data-translate="nextStep">Proceed to Next Step</button>
+                <button type="button" class="btn-secondary prev-step-btn" data-translate="previousStep">Previous Step</button>
+            </div>
+
+            <div id="step4" class="form-step hidden">
+                <div>
+                    <h2 data-translate="professionalLegalDetails">Professional & Legal Details</h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="drivingLicenseNumber" data-translate="drivingLicenseNumber">Driving License Number:</label>
+                            <input type="text" id="drivingLicenseNumber" name="drivingLicenseNumber">
+                        </div>
+                        <div>
+                            <label for="drivingLicenseExpiry" data-translate="drivingLicenseExpiry">Driving License Expiry Date:</label>
+                            <input type="date" id="drivingLicenseExpiry" name="drivingLicenseExpiry">
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="serviceVehicle" data-translate="serviceVehicle">Vehicle Owned for Service:</label>
+                        <input type="text" id="serviceVehicle" name="serviceVehicle" placeholder="e.g., Motorcycle, Scooter, Car, Van">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block" data-translate="bankAccountDetails">Bank Account Details (for payment processing):</label>
+                        <p class="text-sm text-red-600 mb-2" data-translate="bankAccountSecurityNote">Note: This sensitive information should be handled with extreme care and security (ideally via a separate secure portal or after initial verification).</p>
+                        <input type="text" id="bankAccountHolder" name="bankAccountHolder" placeholder="Account Holder Name" class="mb-2">
+                        <input type="text" id="bankAccountNumber" name="bankAccountNumber" placeholder="Account Number" class="mb-2">
+                        <input type="text" id="ifscCode" name="ifscCode" placeholder="IFSC Code">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block" data-translate="policeVerification">Police Verification Status/Consent:</label>
+                        <div class="flex items-center">
+                            <label class="inline-flex items-center mr-4">
+                                <input type="radio" name="policeVerification" value="Undergone" class="form-radio">
+                                <span class="ml-2" data-translate="undergone">Undergone</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="policeVerification" value="Consent to undergo" class="form-radio">
+                                <span class="ml-2" data-translate="consentToUndergo">Consent to undergo</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="policeVerification" value="Not undergone" class="form-radio">
+                                <span class="ml-2" data-translate="notUndergone">Not undergone</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="references" data-translate="references">References (Optional):</label>
+                        <textarea id="references" name="references" rows="2" placeholder="Names and contact details of previous employers or professional references"></textarea>
+                    </div>
+                </div>
+                <button type="button" class="btn-primary next-step-btn" data-translate="nextStep">Proceed to Next Step</button>
+                <button type="button" class="btn-secondary prev-step-btn" data-translate="previousStep">Previous Step</button>
+            </div>
+
+            <div id="step5" class="form-step hidden">
+                <div>
+                    <h2 data-translate="skillsAssessment">Skills & Soft Skills Assessment</h2>
+
+                    <div class="mb-4">
+                        <label for="communicationSkills" data-translate="communicationSkills">Communication Skills (Self-assessment):</label>
+                        <input type="text" id="communicationSkills" name="communicationSkills" placeholder="e.g., Excellent, Good, Fair">
+                    </div>
+                    <div class="mb-4">
+                        <label for="problemSolvingSkills" data-translate="problemSolvingSkills">Problem-Solving Skills (Self-assessment):</label>
+                        <input type="text" id="problemSolvingSkills" name="problemSolvingSkills" placeholder="e.g., Excellent, Good, Fair">
+                    </div>
+                    <div class="mb-4">
+                        <label for="customerServiceOrientation" data-translate="customerServiceOrientation">Customer Service Orientation (Self-assessment):</label>
+                        <input type="text" id="customerServiceOrientation" name="customerServiceOrientation" placeholder="e.g., Excellent, Good, Fair">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block" data-translate="languageFluency">Language Fluency (Multi-select):</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+                            <label class="inline-flex items-center"><input type="checkbox" name="languageFluency" value="English" class="form-checkbox"><span class="ml-2">English</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="languageFluency" value="Hindi" class="form-checkbox"><span class="ml-2">Hindi</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="languageFluency" value="Marathi" class="form-checkbox"><span class="ml-2">Marathi</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="languageFluency" value="Gujarati" class="form-checkbox"><span class="ml-2">Gujarati</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="languageFluency" value="Bengali" class="form-checkbox"><span class="ml-2">Bengali</span></label>
+                            </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 data-translate="experienceDetails">Experience Details</h2>
+                    <div class="mb-4">
+                        <label for="yearsExperience" data-translate="yearsExperience">Years of Experience:</label>
+                        <input type="number" id="yearsExperience" name="yearsExperience" min="0" required placeholder="e.g., 5">
+                    </div>
+                    <div class="mb-4">
+                        <label for="specialization" data-translate="specialization">Specialization (e.g., Engine, Electrical, Brakes):</label>
+                        <input type="text" id="specialization" name="specialization" placeholder="e.g., Engine Repair, Electrical Diagnostics">
+                    </div>
+                </div>
+
+                <div>
+                    <h2 data-translate="servicesOffered">Services Offered</h2>
+                    <p class="mb-4" data-translate="selectServices">Select all services you provide:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" name="service" value="Oil Change" class="form-checkbox">
+                            <span class="ml-2" data-translate="oilChange">Oil Change</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" name="service" value="Tire Rotation" class="form-checkbox">
+                            <span class="ml-2" data-translate="tireRotation">Tire Rotation</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" name="service" value="Brake Inspection" class="form-checkbox">
+                            <span class="ml-2" data-translate="brakeInspection">Brake Inspection</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" name="service" value="Engine Diagnostics" class="form-checkbox">
+                            <span class="ml-2" data-translate="engineDiagnostics">Engine Diagnostics</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" name="service" value="Battery Replacement" class="form-checkbox">
+                            <span class="ml-2" data-translate="batteryReplacement">Battery Replacement</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" name="service" value="AC Repair" class="form-checkbox">
+                            <span class="ml-2" data-translate="acRepairService">AC Repair</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 data-translate="carCompaniesServiced">Car Companies Serviced</h2>
+                    <div class="mb-4">
+                        <label for="carCompanySearch" class="block" data-translate="searchCarCompanies">Search and Add Car Companies:</label>
+                        <div class="relative">
+                            <input type="text" id="carCompanySearch" placeholder="Type to search e.g., Maruti, Honda">
+                            <ul id="carCompanyDropdown" class="hidden">
+                                </ul>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block" data-translate="selectedCompanies">Selected Companies:</label>
+                        <div id="selectedCarBrands">
+                            </div>
+                        <input type="hidden" id="hiddenCarCompanies" name="selectedCarCompanies">
+                    </div>
+                </div>
+
+                <div>
+                    <h2 data-translate="termsConditions">Terms & Conditions</h2>
+
+                    <div class="mb-4">
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" id="agreeTerms" name="agreeTerms" required class="form-checkbox">
+                            <span class="ml-2" data-translate="agreeToTerms">I agree to the <a href="#" data-translate="termsOfService">Terms of Service</a> and <a href="#" data-translate="privacyPolicy">Privacy Policy</a>.</span>
+                        </label>
+                    </div>
+                    <div class="mb-4">
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" id="confirmAccuracy" name="confirmAccuracy" required class="form-checkbox">
+                            <span class="ml-2" data-translate="confirmAccuracy">I confirm that all information provided is accurate and truthful.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary" data-translate="registerButton">Register</button>
+                <button type="button" class="btn-secondary prev-step-btn" data-translate="previousStep">Previous Step</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="messageBox" class="message-box hidden">
+        <div class="message-box-content">
+            <p id="messageBoxText"></p>
+            <button id="messageBoxClose" class="btn-primary">OK</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    // DOM Elements
+    const form = document.getElementById('mechanicRegistrationForm');
+    const formSteps = document.querySelectorAll('.form-step');
+    const nextButtons = document.querySelectorAll('.next-step-btn');
+    const prevButtons = document.querySelectorAll('.prev-step-btn');
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    const formSubheading = document.getElementById('formSubheading');
+
+    // Car Company Selection Elements (from original page 5)
+    const carCompanySearchInput = document.getElementById('carCompanySearch');
+    const carCompanyDropdown = document.getElementById('carCompanyDropdown');
+    const selectedCarBrandsContainer = document.getElementById('selectedCarBrands');
+    const hiddenCarCompaniesInput = document.getElementById('hiddenCarCompanies');
+
+    // Custom Message Box Elements
+    const messageBox = document.getElementById('messageBox');
+    const messageBoxText = document.getElementById('messageBoxText');
+    const messageBoxCloseButton = document.getElementById('messageBoxClose');
+
+    // Form State Variables
+    let currentStep = 0; // Start at the first step (index 0)
+    const totalSteps = formSteps.length;
+    let allFormData = {}; // Object to store all form data
+
+    // Car Company Data (from original page 5)
+    const allCarCompanies = [
+        'Maruti Suzuki', 'Hyundai', 'Tata Motors', 'Mahindra', 'Honda', 'Toyota', 'Kia',
+        'MG Motor', 'Renault', 'Skoda', 'Volkswagen', 'Nissan', 'Ford', 'Jeep',
+        'Citroen', 'Audi', 'BMW', 'Mercedes-Benz', 'Volvo', 'Land Rover', 'Porsche',
+        'Ferrari', 'Lamborghini', 'Rolls-Royce', 'Bentley', 'Aston Martin', 'Maserati',
+        'Jaguar', 'Lexus', 'Mini', 'Datsun', 'Fiat', 'Mitsubishi', 'Chevrolet'
+    ].sort();
+    let selectedCarCompanies = new Set(); // Use a Set for efficient tracking of unique selected companies
+
+    // **IMPORTANT**: Replace this with your deployed Google Apps Script Web App URL
+    // This URL will be generated after you complete Part 3.
+    const GOOGLE_SHEET_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyUlTSpyVoYK8v1Lb67mdC7e7HEn3k5ACdcoDCo8ycTM-oJQxZ2NnuyGmB2fRh2qh9f/exec'; 
+
+    // --- Helper Functions ---
+
+    /**
+     * Displays a custom message box instead of alert().
+     * @param {string} message - The message to display.
+     * @param {function} [callback] - Optional callback function to execute when 'OK' is clicked.
+     */
+    function showMessageBox(message, callback = null) {
+        messageBoxText.textContent = message;
+        messageBox.classList.remove('hidden');
+
+        // Clear previous event listener to prevent multiple triggers
+        messageBoxCloseButton.onclick = null;
+
+        messageBoxCloseButton.onclick = () => {
+            messageBox.classList.add('hidden');
+            if (callback) {
+                callback();
+            }
+        };
+    }
+
+    /**
+     * Updates the progress bar and text.
+     */
+    function updateProgress() {
+        // Calculate progress percentage. For 5 steps, 0% at step 1, 100% at step 5.
+        // (currentStep / (totalSteps - 1)) * 100 ensures 0% for first step, 100% for last.
+        const progressPercentage = (currentStep / (totalSteps - 1)) * 100;
+        progressBar.style.width = `${progressPercentage}%`;
+        progressText.textContent = `Step ${currentStep + 1} of ${totalSteps}`;
+
+        // Update subheading based on current step for better user guidance
+        const subheadings = [
+            'Step 1: Personal Details',
+            'Step 2: Contact Information & Verification',
+            'Step 3: Service Capabilities & Availability',
+            'Step 4: Professional & Legal Details',
+            'Step 5: Final Details & Terms'
+        ];
+        formSubheading.textContent = subheadings[currentStep];
+    }
+
+    /**
+     * Shows a specific form step and hides all others.
+     * @param {number} stepIndex - The index of the step to show (0-based).
+     */
+    function showStep(stepIndex) {
+        formSteps.forEach((step, index) => {
+            if (index === stepIndex) {
+                step.classList.add('active'); // Add 'active' class to show
+                step.classList.remove('hidden'); // Ensure it's visible
+            } else {
+                step.classList.remove('active'); // Remove 'active' class
+                step.classList.add('hidden'); // Hide other steps
+            }
+        });
+        currentStep = stepIndex; // Update global current step
+        updateProgress(); // Update progress bar and text
+        loadFormDataForCurrentStep(); // Load any previously saved data for the newly active step
+    }
+
+    /**
+     * Saves data from the currently active step's fields into the global allFormData object
+     * and then stores it in localStorage.
+     */
+    function saveFormData() {
+        const currentFormStepElement = formSteps[currentStep];
+        // Select all relevant input types within the current step
+        const inputs = currentFormStepElement.querySelectorAll('input:not([type="file"]), select, textarea');
+        const stepData = {};
+
+        inputs.forEach(input => {
+            const name = input.name;
+            if (!name) return; // Skip inputs without a 'name' attribute
+
+            if (input.type === 'checkbox') {
+                // For checkboxes with the same 'name', collect all checked values into an array
+                if (!stepData[name]) {
+                    stepData[name] = [];
+                }
+                if (input.checked) {
+                    stepData[name].push(input.value);
+                }
+            } else if (input.type === 'radio') {
+                // For radio buttons, only save the value of the checked one
+                if (input.checked) {
+                    stepData[name] = input.value;
+                }
+            } else {
+                // For other input types (text, email, number, date, tel, textarea, select)
+                stepData[name] = input.value;
+            }
+        });
+
+        // Special handling for selectedCarCompanies from Step 5 (index 4)
+        if (currentStep === 4) {
+            stepData.selectedCarCompanies = Array.from(selectedCarCompanies); // Convert Set to Array for storage
+        }
+
+        // Merge the current step's data into the overall form data object
+        Object.assign(allFormData, stepData);
+        // Save the entire form data object to localStorage
+        localStorage.setItem('mechanicRegistrationData', JSON.stringify(allFormData));
+    }
+
+    /**
+     * Loads saved data from localStorage into the fields of the currently active step.
+     */
+    function loadFormDataForCurrentStep() {
+        const savedData = localStorage.getItem('mechanicRegistrationData');
+        if (savedData) {
+            allFormData = JSON.parse(savedData); // Parse the saved JSON back into an object
+            const currentFormStepElement = formSteps[currentStep];
+            // Select all relevant input types within the current step
+            const inputs = currentFormStepElement.querySelectorAll('input:not([type="file"]), select, textarea');
+
+            inputs.forEach(input => {
+                const name = input.name;
+                // Check if data for this input exists in the loaded form data
+                if (!name || !allFormData.hasOwnProperty(name)) return;
+
+                const value = allFormData[name]; // Get the saved value
+
+                if (input.type === 'checkbox') {
+                    // If the saved value is an array (for multi-select checkboxes), check if the input's value is in it
+                    if (Array.isArray(value)) {
+                        input.checked = value.includes(input.value);
+                    }
+                } else if (input.type === 'radio') {
+                    // For radio buttons, check if the input's value matches the saved value
+                    input.checked = (value === input.value);
+                } else {
+                    // For other input types, simply assign the value
+                    input.value = value;
+                }
+            });
+
+            // Special handling for selectedCarCompanies on Step 5 (index 4)
+            if (currentStep === 4 && allFormData.selectedCarCompanies) {
+                selectedCarCompanies = new Set(allFormData.selectedCarCompanies); // Restore Set from Array
+                renderSelectedBrands(); // Re-render the display of selected brands
+            }
+        }
+    }
+
+    /**
+     * Validates all required inputs within the current form step.
+     * @returns {boolean} - True if all required fields are valid, false otherwise.
+     */
+    function validateCurrentStep() {
+        const currentFormStepElement = formSteps[currentStep];
+        // Select all elements that have the 'required' attribute
+        const requiredInputs = currentFormStepElement.querySelectorAll('[required]');
+        let isValid = true;
+
+        requiredInputs.forEach(input => {
+            // checkValidity() is a native HTML5 validation method
+            if (!input.checkValidity()) {
+                isValid = false;
+                // The browser will typically show a default validation message.
+                // You could add custom visual feedback here if needed (e.g., add a red border).
+            }
+        });
+
+        // Custom validation for terms & conditions checkboxes on the final step
+        if (currentStep === 4) { // Assuming Step 5 is index 4
+            const agreeTerms = document.getElementById('agreeTerms');
+            const confirmAccuracy = document.getElementById('confirmAccuracy');
+            if (!agreeTerms.checked || !confirmAccuracy.checked) {
+                isValid = false;
+            }
+        }
+
+        return isValid;
+    }
+
+    /**
+     * Attempts to move to the next step. Performs validation first.
+     */
+    function nextStep() {
+        if (!validateCurrentStep()) {
+            // If validation fails, show a custom message box.
+            showMessageBox('Please fill in all required fields correctly before proceeding.');
+            return; // Stop execution if validation fails
+        }
+
+        saveFormData(); // Save data before moving to the next step
+
+        // Move to the next step if not on the last step
+        if (currentStep < totalSteps - 1) {
+            showStep(currentStep + 1);
+        }
+    }
+
+    /**
+     * Moves to the previous step.
+     */
+    function prevStep() {
+        saveFormData(); // Save current data before navigating back
+        // Move to the previous step if not on the first step
+        if (currentStep > 0) {
+            showStep(currentStep - 1);
+        }
+    }
+
+    // --- Event Listeners for Navigation Buttons ---
+    nextButtons.forEach(button => {
+        button.addEventListener('click', nextStep);
+    });
+
+    prevButtons.forEach(button => {
+        button.addEventListener('click', prevStep);
+    });
+
+    // --- Car Company Search and Selection Logic (Specific to Step 5) ---
+
+    /**
+     * Renders the dropdown list of car companies based on search term and selected companies.
+     * @param {string} searchTerm - The text entered in the search input.
+     */
+    const renderDropdown = (searchTerm = '') => {
+        carCompanyDropdown.innerHTML = ''; // Clear previous options
+        const filteredCompanies = allCarCompanies.filter(company =>
+            // Filter by search term (case-insensitive) and exclude already selected companies
+            company.toLowerCase().includes(searchTerm.toLowerCase()) && !selectedCarCompanies.has(company)
+        );
+
+        if (filteredCompanies.length > 0 && searchTerm.length > 0) {
+            // If there are filtered companies and a search term, display the dropdown
+            filteredCompanies.forEach(company => {
+                const li = document.createElement('li');
+                li.textContent = company;
+                li.className = 'dropdown-item'; // For styling
+                li.addEventListener('click', () => {
+                    addCarCompany(company); // Add company when clicked
+                    carCompanySearchInput.value = ''; // Clear search input
+                    carCompanyDropdown.classList.add('hidden'); // Hide dropdown
+                    renderDropdown(); // Re-render to clear search and update options
+                });
+                carCompanyDropdown.appendChild(li);
+            });
+            carCompanyDropdown.classList.remove('hidden'); // Show the dropdown
+        } else {
+            carCompanyDropdown.classList.add('hidden'); // Hide if no results or no search term
+        }
+    };
+
+    /**
+     * Adds a car company to the selected list.
+     * @param {string} company - The name of the car company to add.
+     */
+    const addCarCompany = (company) => {
+        if (!selectedCarCompanies.has(company)) { // Only add if not already present
+            selectedCarCompanies.add(company);
+            renderSelectedBrands(); // Update the visual display
+            updateHiddenInput(); // Update the hidden input field for form submission
+        }
+    };
+
+    /**
+     * Removes a car company from the selected list.
+     * @param {string} company - The name of the car company to remove.
+     */
+    const removeCarCompany = (company) => {
+        selectedCarCompanies.delete(company); // Remove from the Set
+        renderSelectedBrands(); // Update the visual display
+        updateHiddenInput(); // Update the hidden input field
+        renderDropdown(carCompanySearchInput.value); // Re-render dropdown to potentially show removed company
+    };
+
+    /**
+     * Renders the selected car brands as interactive tags.
+     */
+    const renderSelectedBrands = () => {
+        selectedCarBrandsContainer.innerHTML = ''; // Clear existing tags
+        selectedCarCompanies.forEach(company => {
+            const span = document.createElement('span');
+            span.className = 'selected-tag'; // For styling
+            // Use Font Awesome 'times-circle' icon for removal button
+            span.innerHTML = `${company} <button type="button" class="remove-tag-btn" data-company="${company}"><i class="fas fa-times-circle"></i></button>`;
+            selectedCarBrandsContainer.appendChild(span);
+        });
+    };
+
+    /**
+     * Updates the hidden input field with a JSON string of selected car companies.
+     * This ensures the data is sent with the form submission.
+     */
+    const updateHiddenInput = () => {
+        // Convert Set to Array and then to JSON string
+        hiddenCarCompaniesInput.value = JSON.stringify(Array.from(selectedCarCompanies));
+    };
+
+    // Event listener for search input (only if element exists)
+    if (carCompanySearchInput) {
+        carCompanySearchInput.addEventListener('input', (e) => {
+            renderDropdown(e.target.value);
+        });
+    }
+
+    // Hide dropdown when clicking outside of the search input or dropdown itself
+    document.addEventListener('click', (e) => {
+        if (carCompanySearchInput && carCompanyDropdown &&
+            !carCompanySearchInput.contains(e.target) && !carCompanyDropdown.contains(e.target)) {
+            carCompanyDropdown.classList.add('hidden');
+        }
+    });
+
+    // Event listener for removing selected brands (delegated to container)
+    if (selectedCarBrandsContainer) {
+        selectedCarBrandsContainer.addEventListener('click', (e) => {
+            // Check if the clicked element or its parent is the remove button
+            if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
+                const company = e.target.closest('button').dataset.company;
+                if (company) {
+                    removeCarCompany(company);
+                }
+            }
+        });
+    }
+
+    // --- Final Form Submission Logic ---
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Prevent the browser's default form submission
+
+        if (!validateCurrentStep()) {
+            showMessageBox('Please fill in all required fields correctly before submitting.');
+            return;
+        }
+
+        saveFormData(); // Save data from the last step before final submission
+
+        console.log('FINAL MECHANIC REGISTRATION DATA:', allFormData); // Log all data for debugging
+
+        // Attempt to send data to the Google Apps Script web app
+        try {
+            const response = await fetch(GOOGLE_SHEET_WEB_APP_URL, {
+                method: 'POST',
+                mode: 'no-cors', // 'no-cors' is necessary when sending data to Apps Script web apps
+                                 // This means you won't be able to read the response from Apps Script directly
+                                 // in JavaScript due to CORS restrictions, but the request will still go through.
+                headers: {
+                    'Content-Type': 'application/json', // Indicate that the body is JSON
+                },
+                body: JSON.stringify(allFormData), // Send the collected data as a JSON string
+            });
+
+            // Since mode is 'no-cors', we can't check response.ok or parse response.json().
+            // We assume success if the fetch operation itself doesn't throw an error.
+            showMessageBox('Registration successful! Your data has been saved.', () => {
+                // Actions to take after successful submission:
+                localStorage.removeItem('mechanicRegistrationData'); // Clear saved data
+                form.reset(); // Reset all form fields
+                selectedCarCompanies.clear(); // Clear car companies Set
+                renderSelectedBrands(); // Update selected brands display
+                updateHiddenInput(); // Update hidden input
+                showStep(0); // Go back to the first step of the form
+            });
+
+        } catch (error) {
+            // Catch any network errors or issues with the fetch request
+            console.error('Error submitting form to Google Sheet:', error);
+            showMessageBox('Registration failed. Please try again later.');
+        }
+    });
+
+    // --- Initialization on Page Load ---
+    // Load any previously saved form data from localStorage when the page first loads
+    const savedInitialData = localStorage.getItem('mechanicRegistrationData');
+    if (savedInitialData) {
+        allFormData = JSON.parse(savedInitialData);
+    } else {
+        allFormData = {}; // Initialize as an empty object if no data is found
+    }
+
+    // Display the first step of the form when the page loads
+    showStep(0);
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Car Service Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* Use a slightly wider range of weights */
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            /* More modern gradient */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 650px;
+            /* Slightly wider container for a more spacious feel */
+            width: 100%;
+            margin: auto;
+            background: #ffffff;
+            /* Pure white background */
+            padding: 50px;
+            /* Increased padding */
+            border-radius: 16px;
+            /* More rounded corners */
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            /* Softer, larger shadow */
+            box-sizing: border-box;
+            border: 1px solid #e0e0e0;
+            /* Subtle border */
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 32px;
+            /* Larger heading */
+            color: #2c3e50;
+            /* Darker, more professional blue-grey */
+            margin-bottom: 40px;
+            /* More space below heading */
+            font-weight: 600;
+            /* Slightly heavier weight for heading */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            /* More space below label */
+            font-size: 16px;
+            /* Slightly larger label font */
+            font-weight: 500;
+            color: #34495e;
+            /* Darker text color */
+        }
+
+        input:not([type="radio"]):not([type="checkbox"]),
+        select {
+            width: 100%;
+            padding: 14px 18px;
+            /* Increased padding */
+            margin-bottom: 25px;
+            /* More space below inputs */
+            border-radius: 8px;
+            border: 1px solid #dcdcdc;
+            /* Lighter, cleaner border */
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background-color: #f9f9f9;
+            /* Very light grey background */
+        }
+
+        input:focus:not([type="radio"]):not([type="checkbox"]),
+        select:focus {
+            outline: none;
+            border-color: #007bff;
+            /* Primary blue highlight */
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+            /* Subtle blue shadow on focus */
+            background-color: #ffffff;
+            /* White background on focus */
+        }
+
+
+        input[type="tel"] {
+            -moz-appearance: textfield;
+        }
+
+        input[type="tel"]::-webkit-outer-spin-button,
+        input[type="tel"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        select {
+            background-color: #f9f9f9;
+            cursor: pointer;
+            /* Add a custom arrow for select if needed, but default is often fine */
+        }
+
+        /* Location Group Layout */
+        .location-group {
+            margin-bottom: 25px;
+            /* Standard input margin */
+        }
+
+        .location-input-group {
+            display: flex;
+            gap: 10px;
+            /* Space between input and button */
+            align-items: center;
+            /* Vertically align items */
+        }
+
+        .location-input-group input[type="text"] {
+            margin-bottom: 0;
+            /* Remove bottom margin when in flex group */
+            flex-grow: 1;
+            /* Allow input to fill available space */
+        }
+
+        /* Added style for the location instruction text */
+        .location-instruction {
+            font-size: 15px;
+            /* Slightly larger instruction text */
+            color: #dc3545;
+            /* Changed to red */
+            margin-bottom: 15px;
+            /* More space below instruction */
+            text-align: center;
+            font-weight: 400;
+        }
+
+
+        .form-actions {
+            text-align: center;
+            margin-top: 40px;
+            /* More space above buttons */
+            display: flex;
+            /* Use flexbox for layout */
+            justify-content: center;
+            align-items: center;
+            /* Align items vertically in the container */
+            flex-wrap: wrap;
+            /* Allow items to wrap on smaller screens */
+            gap: 20px;
+            /* Increased space between flex items */
+        }
+
+        .form-actions button,
+        .form-actions a.button {
+            padding: 14px 30px;
+            /* Increased padding for larger buttons */
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 18px;
+            /* Larger font size */
+            font-weight: 600;
+            /* Heavier font weight */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 150px;
+            /* Minimum width for buttons */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            /* Subtle button shadow */
+        }
+
+        /* Style for the container holding Call and WhatsApp buttons */
+        .contact-buttons {
+            display: flex;
+            /* Use flexbox to put Call and WhatsApp side-by-side */
+            gap: 15px;
+            /* Space between Call and WhatsApp buttons */
+            flex-wrap: wrap;
+            /* Allow these buttons to wrap if needed */
+            justify-content: center;
+            /* Center the contact buttons within their container */
+            align-items: center;
+            /* Vertically align contact buttons */
+        }
+
+
+        .form-actions button:hover,
+        .form-actions a.button:hover {
+            transform: translateY(-2px);
+            /* Lift effect on hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            /* Slightly larger shadow on hover */
+        }
+
+        .form-actions button:active,
+        .form-actions a.button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            /* Smaller shadow on active */
+        }
+
+
+        /* Specific Button Colors */
+        button[type="submit"] {
+            background-color: #007bff;
+            /* Primary blue */
+            flex-grow: 1;
+            /* Allow submit button to grow and take more space */
+            max-width: 300px;
+            /* Optional: Maximum width for the submit button */
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .call-btn {
+            background-color: #6c757d;
+            /* Muted grey */
+            flex-grow: 1;
+            /* Allow call button to grow */
+            min-width: 120px;
+            /* Adjusted min-width for smaller buttons */
+        }
+
+        .call-btn:hover {
+            background-color: #5a6268;
+        }
+
+
+        .whatsapp-btn {
+            background-color: #28a745;
+            /* Success green */
+            flex-grow: 1;
+            /* Allow whatsapp button to grow */
+            min-width: 120px;
+            /* Adjusted min-width for smaller buttons */
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #218838;
+        }
+
+        .get-location-btn {
+            background-color: #17a2b8;
+            /* Info blue-green */
+            color: white;
+            padding: 14px 18px;
+            /* Match input padding height */
+            white-space: nowrap;
+            font-weight: 500;
+            /* Slightly lighter weight for this button */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            /* Subtle button shadow */
+        }
+
+        .get-location-btn:hover {
+            background-color: #138496;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .get-location-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .get-location-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+
+        .info {
+            margin-top: 30px;
+            font-size: 16px;
+            /* Slightly larger info text */
+            color: #28a745;
+            /* Success color */
+            text-align: center;
+            font-weight: 500;
+            min-height: 20px;
+        }
+
+        .error-message {
+            color: #dc3545;
+            /* Danger red */
+            font-size: 14px;
+            /* Slightly larger error font */
+            margin-top: 5px;
+            margin-bottom: 15px;
+            display: none;
+            font-weight: 400;
+        }
+
+        /* Adjust margin below the location group if error is hidden */
+        .location-group:not(:has(.error-message:not([style*="display: none"]))) {
+            margin-bottom: 25px;
+            /* Normal spacing if no error */
+        }
+
+        /* Adjust margin below the location group if error is visible */
+        .location-group:has(.error-message:not([style*="display: none"])) {
+            margin-bottom: 0;
+            /* Reduces space if error is visible */
+        }
+
+
+        input[readonly] {
+            background-color: #e9ecef;
+            /* Lighter background for readonly */
+            cursor: default;
+            font-style: italic;
+            /* Italicize readonly text */
+        }
+
+        input[readonly]:focus {
+            border-color: #dcdcdc;
+            box-shadow: none;
+            background-color: #e9ecef;
+        }
+
+        /* Style for the new "Other" text inputs */
+        .other-input {
+            display: none;
+            margin-top: -10px;
+            /* Reduce space above other input */
+        }
+
+        /* Style for the checkbox container */
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-top: 30px; /* Added margin-top for space above */
+            margin-bottom: 25px;
+            /* Space below the checkbox */
+            font-size: 15px;
+            color: #34495e;
+            cursor: pointer;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            margin-right: 10px;
+            /* Space between checkbox and label */
+            margin-bottom: 0;
+            /* Remove default bottom margin */
+            cursor: pointer;
+            width: auto;
+            /* Allow checkbox to take its default width */
+        }
+
+        .checkbox-container label {
+            margin-bottom: 0;
+            /* Remove default label bottom margin */
+            cursor: pointer;
+            font-weight: 400;
+            /* Lighter weight for checkbox label */
+            display: inline;
+            /* Make label inline with checkbox */
+        }
+
+        .terms-link {
+            color: #007bff;
+            /* Link color */
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .terms-link:hover {
+            color: #0056b3;
+            /* Darker color on hover */
+            text-decoration: underline;
+        }
+
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+                /* Adjusted padding */
+            }
+
+            h2 {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+
+            label {
+                font-size: 15px;
+            }
+
+            input:not([type="radio"]):not([type="checkbox"]),
+            select {
+                padding: 12px 15px;
+                font-size: 15px;
+                margin-bottom: 20px;
+            }
+
+            .location-input-group {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+
+            .location-input-group input[type="text"] {
+                margin-bottom: 0;
+            }
+
+            .get-location-btn {
+                width: 100%;
+                padding: 12px 15px;
+                font-size: 15px;
+            }
+
+            .form-actions {
+                flex-direction: column;
+                /* Stack buttons vertically on smaller screens */
+                gap: 15px;
+                margin-top: 30px;
+            }
+
+            .form-actions button[type="submit"] {
+                width: 100%;
+                /* Make submit button full width */
+                max-width: unset;
+                /* Remove max-width constraint */
+            }
+
+
+            .form-actions button,
+            .form-actions a.button {
+                padding: 12px 25px;
+                font-size: 16px;
+                min-width: unset;
+                flex-grow: 1;
+            }
+
+            .contact-buttons {
+                flex-direction: row;
+                /* Keep contact buttons in a row */
+                gap: 10px;
+                /* Adjust gap for smaller screens */
+                width: 100%;
+                /* Take full width */
+                justify-content: space-around;
+                /* Distribute space around buttons */
+            }
+
+            .contact-buttons .button {
+                flex-basis: 0; /* Allow flex items to shrink below content size */
+                flex-grow: 1;
+                /* Allow contact buttons to grow */
+                flex-shrink: 1; /* Allow contact buttons to shrink */
+                min-width: unset;
+                /* Remove min-width to allow more flexible sizing */
+                padding: 10px 15px;
+                /* Adjust padding for smaller buttons */
+                font-size: 15px;
+                /* Adjust font size for smaller buttons */
+            }
+
+            .location-instruction {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+
+            .error-message {
+                font-size: 13px;
+            }
+
+            .checkbox-container {
+                font-size: 14px;
+                margin-top: 25px; /* Adjusted margin-top for smaller screens */
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 24px;
+                margin-bottom: 25px;
+            }
+
+            input:not([type="radio"]):not([type="checkbox"]),
+            select {
+                margin-bottom: 15px;
+            }
+
+            .form-actions {
+                gap: 10px;
+                margin-top: 25px;
+            }
+
+            .form-actions button[type="submit"] {
+                width: 100%;
+                /* Ensure full width */
+            }
+
+            .form-actions button,
+            .form-actions a.button {
+                padding: 10px 20px;
+                font-size: 15px;
+            }
+
+            .get-location-btn {
+                padding: 10px 20px;
+                font-size: 15px;
+            }
+
+            .contact-buttons {
+                flex-direction: row;
+                /* Keep contact buttons in a row */
+                gap: 8px;
+                /* Smaller gap on very small screens */
+                width: 100%;
+                /* Take full width */
+                justify-content: space-around;
+                /* Distribute space around buttons */
+            }
+
+            .contact-buttons .button {
+                flex-basis: 0; /* Allow flex items to shrink below content size */
+                flex-grow: 1;
+                /* Allow contact buttons to grow */
+                flex-shrink: 1; /* Allow contact buttons to shrink */
+                min-width: unset;
+                /* Remove min-width */
+                padding: 8px 12px;
+                /* Further adjust padding */
+                font-size: 14px;
+                /* Further adjust font size */
+            }
+
+
+            .checkbox-container {
+                font-size: 13px;
+                margin-top: 20px; /* Adjusted margin-top for very small screens */
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Car Service Booking</h2>
+        <form id="carServiceForm" action="https://formsubmit.co/aabhassolankiforwork@gmail.com" method="POST">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required />
+
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Enter 10-digit phone number" required
+                pattern="[0-9]{10}" title="Please enter a 10-digit phone number" maxlength="10" />
+            <div class="error-message" id="phoneError">Please enter a valid 10-digit phone number.</div>
+
+            <label for="carBrand">Car Brand:</label>
+            <select id="carBrand" name="carBrand" required>
+                <option value="">Select Car Brand</option>
+                <option value="Hyundai">Hyundai</option>
+                <option value="Ford">Ford</option>
+                <option value="Toyota">Toyota</option>
+                <option value="Volkswagen">Volkswagen</option>
+                <option value="Audi">Audi</option>
+                <option value="Renault">Renault</option>
+                <option value="Chevrolet">Chevrolet</option>
+                <option value="Nissan">Nissan</option>
+                <option value="MG">MG</option>
+                <option value="Mahindra">Mahindra</option>
+                <option value="Tata">Tata</option>
+                <option value="Mercedes-Benz">Mercedes-Benz</option>
+                <option value="BMW">BMW</option>
+                <option value="Honda">Honda</option>
+                <option value="Maruti-Suzuki">Maruti-Suzuki</option>
+                <option value="Other">Other</option>
+            </select>
+            <input type="text" id="otherCarBrandInput" name="otherCarBrand" class="other-input"
+                placeholder="Enter Car Brand Name" />
+
+
+            <label for="carModel">Car Model:</label>
+            <select id="carModel" name="carModel" required disabled>
+                <option value="">Select Car Brand First</option>
+                <option value="Other">Other</option>
+            </select>
+            <input type="text" id="otherCarModelInput" name="otherCarModel" class="other-input"
+                placeholder="Enter Car Model Name" />
+
+
+            <label for="fuelType">Fuel Type:</label>
+            <select id="fuelType" name="fuelType" required>
+                <option value="">Select Fuel Type</option>
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+                <option value="CNG">CNG</option>
+                <option value="Electric">Electric</option>
+                <option value="Hybrid">Hybrid</option>
+                <option value="Plug-in Hybrid">Plug-in Hybrid</option>
+            </select>
+
+            <label for="manufacturingYear">Manufacturing Year:</label>
+            <select id="manufacturingYear" name="manufacturingYear" required>
+                <option value="">Select Year</option>
+            </select>
+
+            <div class="location-group">
+                <div class="location-instruction" id="locationInstruction">Please click on "Get Location" button so we can
+                    get your correct location.</div>
+                <label for="location">Location:</label>
+                <div class="location-input-group">
+                    <input type="text" id="location" name="location" placeholder="Location not set" readonly required />
+                    <button type="button" id="getLocationBtn" class="get-location-btn">Get Location</button>
+                </div>
+                <div class="error-message" id="locationError">Could not fetch location. Please enable location services or
+                    enter manually.</div>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the <a href="#" class="terms-link">Terms and Conditions</a></label>
+            </div>
+
+
+            <input type="hidden" name="_subject" value="New Car Service Booking Received!">
+
+            <div class="form-actions">
+                <button type="submit">Submit Booking</button>
+                <div class="contact-buttons">
+                    <a href="tel:+919303931226" class="button call-btn">Call Now</a>
+                    <a href="https://wa.me/+919303931226" class="button whatsapp-btn" target="_blank">WhatsApp</a>
+                </div>
+            </div>
+        </form>
+
+        <div class="info" id="responseMessage"></div>
+    </div>
+
+    <script>
+        // --- DATA (Updated with fuel types) ---
+        const carModels = {
+            'Ford': {
+                'Hatchbacks': [{
+                    model: 'Ford Fiesta (1995–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Ford Focus (1998–2023)',
+                    fuel: ['Petrol', 'Diesel']
+                }],
+                'Sedans': [{
+                    model: 'Ford Escort (1995–2003)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Ford Fusion (2005–2012)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Ford Mondeo (1995–2021)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Ford Taurus (1995–2019)',
+                    fuel: ['Petrol']
+                }],
+                'SUVs/Crossovers': [{
+                    model: 'Ford EcoSport (2003–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Ford Kuga (2008–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Hybrid', 'Plug-in Hybrid']
+                }, {
+                    model: 'Ford Escape (2000–Present)',
+                    fuel: ['Petrol', 'Hybrid', 'Plug-in Hybrid']
+                }, {
+                    model: 'Ford Edge (2007–2023)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Ford Explorer (1995–Present)',
+                    fuel: ['Petrol', 'Hybrid']
+                }, {
+                    model: 'Ford Expedition (1996–Present)',
+                    fuel: ['Petrol']
+                }],
+                'Pickups': [{
+                    model: 'Ford Ranger (1995–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Ford F-150 (1995–Present)',
+                    fuel: ['Petrol', 'Hybrid']
+                }],
+                'Electric Vehicles (EVs)': [{
+                    model: 'Ford Mustang Mach-E (2021–Present)',
+                    fuel: ['Electric']
+                }, {
+                    model: 'Ford F-150 Lightning (2022–Present)',
+                    fuel: ['Electric']
+                }]
+            },
+            'Toyota': {
+                'Hatchbacks': [{
+                    model: 'Toyota Yaris (1999–Present)',
+                    fuel: ['Petrol', 'Hybrid']
+                }, {
+                    model: 'Toyota Auris (2006–2018)',
+                    fuel: ['Petrol', 'Diesel', 'Hybrid']
+                }],
+                'Sedans': [{
+                    model: 'Toyota Corolla (1995–Present)',
+                    fuel: ['Petrol', 'Hybrid']
+                }, {
+                    model: 'Toyota Camry (1995–Present)',
+                    fuel: ['Petrol', 'Hybrid']
+                }, {
+                    model: 'Toyota Avalon (1995–2020)',
+                    fuel: ['Petrol', 'Hybrid']
+                }, {
+                    model: 'Toyota Prius (1997–Present)',
+                    fuel: ['Hybrid', 'Plug-in Hybrid']
+                }],
+                'SUVs/Crossovers': [{
+                    model: 'Toyota RAV4 (1995–Present)',
+                    fuel: ['Petrol', 'Hybrid', 'Plug-in Hybrid']
+                }, {
+                    model: 'Toyota Highlander (2001–Present)',
+                    fuel: ['Petrol', 'Hybrid']
+                }, {
+                    model: 'Toyota Fortuner (2005–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Toyota Land Cruiser (1995–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Toyota Venza (2008–Present)',
+                    fuel: ['Hybrid']
+                }, {
+                    model: 'Toyota C-HR (2016–Present)',
+                    fuel: ['Petrol', 'Hybrid']
+                }],
+                'Pickups': [{
+                    model: 'Toyota Hilux (1995–Present)',
+                    fuel: ['Diesel']
+                }, {
+                    model: 'Toyota Tacoma (1995–Present)',
+                    fuel: ['Petrol']
+                }],
+                'Electric Vehicles (EVs)': [{
+                    model: 'Toyota bZ4X (2022–Present)',
+                    fuel: ['Electric']
+                }, {
+                    model: 'Toyota Mirai (2014–Present, Hydrogen EV)',
+                    fuel: ['Electric']
+                }]
+            },
+            'Volkswagen': {
+                'Hatchbacks': [{
+                    model: 'Volkswagen Polo (1995–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Volkswagen Golf (1997–Present)',
+                    fuel: ['Petrol', 'Diesel', 'CNG', 'Hybrid', 'Electric']
+                }],
+                'Sedans': [{
+                    model: 'Volkswagen Jetta (1995–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Hybrid']
+                }, {
+                    model: 'Volkswagen Passat (1996–2022)',
+                    fuel: ['Petrol', 'Diesel', 'Plug-in Hybrid']
+                }],
+                'SUVs/Crossovers': [{
+                    model: 'Volkswagen Tiguan (2007–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Plug-in Hybrid']
+                }, {
+                    model: 'Volkswagen Taigun (2021–Present)',
+                    fuel: ['Petrol']
+                }, {
+                    model: 'Volkswagen Touareg (2002–Present)',
+                    fuel: ['Diesel', 'Petrol', 'Plug-in Hybrid']
+                }],
+                'Electric Vehicles (EVs)': [{
+                    model: 'Volkswagen ID.3 (2020–Present)',
+                    fuel: ['Electric']
+                }, {
+                    model: 'Volkswagen ID.4 (2021–Present)',
+                    fuel: ['Electric']
+                }]
+            },
+            'Audi': {
+                'Sedans': [{
+                    model: 'Audi A3 (1996–Present)',
+                    fuel: ['Petrol', 'Diesel', 'CNG', 'Hybrid', 'Plug-in Hybrid']
+                }, {
+                    model: 'Audi A4 (1994–Present)',
+                    fuel: ['Petrol', 'Diesel', 'CNG']
+                }, {
+                    model: 'Audi A6 (1994–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Plug-in Hybrid']
+                }, {
+                    model: 'Audi A8 (1994–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Plug-in Hybrid']
+                }],
+                'SUVs/Crossovers': [{
+                    model: 'Audi Q3 (2011–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Plug-in Hybrid']
+                }, {
+                    model: 'Audi Q5 (2008–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Plug-in Hybrid']
+                }, {
+                    model: 'Audi Q7 (2005–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Plug-in Hybrid']
+                }, {
+                    model: 'Audi Q8 (2018–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Plug-in Hybrid']
+                }],
+                'Electric Vehicles (EVs)': [{
+                    model: 'Audi e-tron (2018–Present)',
+                    fuel: ['Electric']
+                }, {
+                    model: 'Audi Q4 e-tron (2021–Present)',
+                    fuel: ['Electric']
+                }]
+            },
+            'Chevrolet': {
+                'Hatchbacks': [{
+                    model: 'Chevrolet Spark (1998–2020)',
+                    fuel: ['Petrol']
+                }],
+                'Sedans': [{
+                    model: 'Chevrolet Aveo (2002–2011)',
+                    fuel: ['Petrol', 'Diesel']
+                }],
+                'SUVs/Crossovers': [{
+                    model: 'Chevrolet Tavera',
+                    fuel: ['Diesel']
+                }]
+            },
+            'Hyundai': {
+                'Hatchbacks': [{
+                    model: 'Hyundai Santro (1998–2022)',
+                    fuel: ['Petrol', 'CNG']
+                }, {
+                    model: 'Hyundai Getz (2002–2010)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Hyundai i10 (2007–2017)',
+                    fuel: ['Petrol', 'CNG']
+                }, {
+                    model: 'Hyundai i20 (2008–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Hyundai Grand i10 (2013–Present)',
+                    fuel: ['Petrol', 'CNG']
+                }, {
+                    model: 'Hyundai Exter (2023–Present)',
+                    fuel: ['Petrol', 'CNG']
+                }],
+                'Sedans': [{
+                    model: 'Hyundai Accent (1995–2014)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Hyundai Elantra (1995–2022)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Hyundai Verna (2006–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Hyundai Sonata (1998–2014, 2021–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Hyundai Aura (2020–Present)',
+                    fuel: ['Petrol', 'CNG']
+                }, {
+                    model: 'Hyundai Stellar (1994–2000)',
+                    fuel: ['Petrol']
+                }],
+                'SUVs/Crossovers': [{
+                    model: 'Hyundai Tucson (2005–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Hyundai Creta (2015–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Hyundai Venue (2019–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Hyundai Alcazar (2021–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Hyundai Santa Fe (2001–2020)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Hyundai Terracan (2001–2007)',
+                    fuel: ['Diesel']
+                }, {
+                    model: 'Hyundai Kona (2017–2024)',
+                    fuel: ['Petrol']
+                }, {
+                    model: 'Hyundai ix35 (2009–2015)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Hyundai Exter (2023–Present)',
+                    fuel: ['Petrol', 'CNG']
+                }],
+                'Electric Vehicles (EVs)': [{
+                    model: 'Hyundai Kona Electric (2019–2024)',
+                    fuel: ['Electric']
+                }, {
+                    model: 'Hyundai Ioniq 5 (2021–Present)',
+                    fuel: ['Electric']
+                }, {
+                    model: 'Hyundai Creta Electric (2025–Present)',
+                    fuel: ['Electric']
+                }],
+                'MPVs/Minivans': [{
+                    model: 'Hyundai Getz Prime (2004–2010)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Hyundai Matrix (2001–2009)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Hyundai Stargazer (2022–Present)',
+                    fuel: ['Petrol']
+                }, {
+                    model: 'Hyundai Trajet (2000–2008)',
+                    fuel: ['Petrol', 'Diesel']
+                }],
+                'Performance Models': [{
+                    model: 'Hyundai i30 N (2017–2023)',
+                    fuel: ['Petrol']
+                }, {
+                    model: 'Hyundai Veloster N (2018–2021)',
+                    fuel: ['Petrol']
+                }, {
+                    model: 'Hyundai i20 N (2020–Present)',
+                    fuel: ['Petrol']
+                }]
+            },
+            'BMW': {
+                'Hatchbacks': [{
+                    model: 'BMW 1 Series (2004–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'BMW i3 (2013–2022)',
+                    fuel: ['Electric']
+                }],
+                'Sedans': [{
+                    model: 'BMW 3 Series (1975–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Plug-in Hybrid']
+                }, {
+                    model: 'BMW 5 Series (1972–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Plug-in Hybrid']
+                }, {
+                    model: 'BMW 7 Series (1977–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Plug-in Hybrid']
+                }, {
+                    model: 'BMW i4 (2021–Present)',
+                    fuel: ['Electric']
+                }],
+                'SUVs/Crossovers': [{
+                    model: 'BMW X1 (2009–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Plug-in Hybrid']
+                }, {
+                    model: 'BMW X3 (2003–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Plug-in Hybrid', 'Electric']
+                }, {
+                    model: 'BMW X5 (1999–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Plug-in Hybrid']
+                }, {
+                    model: 'BMW X7 (2018–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'BMW X6 (2008–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'BMW X4 (2014–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }],
+                'Coupes': [{
+                    model: 'BMW 2 Series Coupe (2014–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'BMW 4 Series Coupe (2013–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'BMW 8 Series Coupe (1990–1999, 2018–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }],
+                'Convertibles': [{
+                    model: 'BMW C-Class Cabriolet (2016–2023)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'BMW E-Class Cabriolet (2010–2023)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'BMW S-Class Cabriolet (2016–2021)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'BMW SL (1954–Present)',
+                    fuel: ['Petrol']
+                }, {
+                    model: 'BMW SLC (1996–2020)',
+                    fuel: ['Petrol', 'Diesel']
+                }],
+                'Electric Vehicles (EVs)': [{
+                    model: 'BMW i3 (2013–2022)',
+                    fuel: ['Electric']
+                }, {
+                    model: 'BMW i4 (2021–Present)',
+                    fuel: ['Electric']
+                }, {
+                    model: 'BMW iX (2021–Present)',
+                    fuel: ['Electric']
+                }, {
+                    model: 'BMW iX3 (2020–Present)',
+                    fuel: ['Electric']
+                }, {
+                    model: 'BMW i7 (2022–Present)',
+                    fuel: ['Electric']
+                }],
+                'Performance Models': [{
+                    model: 'BMW M2 (2015–Present)',
+                    fuel: ['Petrol']
+                }, {
+                    model: 'BMW M3 (1985–Present)',
+                    fuel: ['Petrol']
+                }, {
+                    model: 'BMW M4 (2014–Present)',
+                    fuel: ['Petrol']
+                }, {
+                    model: 'BMW M5 (1984–Present)',
+                    fuel: ['Petrol']
+                }, {
+                    model: 'BMW M8 (2019–Present)',
+                    fuel: ['Petrol']
+                }]
+            },
+            "Mercedes-Benz": {
+                'Sedans': [{
+                    model: 'Mercedes-Benz A-Class (1997–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Plug-in Hybrid']
+                }, {
+                    model: 'Mercedes-Benz C-Class (1995–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Plug-in Hybrid']
+                }, {
+                    model: 'Mercedes-Benz E-Class (1995–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Plug-in Hybrid']
+                }, {
+                    model: 'Mercedes-Benz S-Class (1995–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Plug-in Hybrid']
+                }, {
+                    model: 'Mercedes-Benz CLA (2013–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Plug-in Hybrid']
+                }],
+                'SUVs/Crossovers': [{
+                    model: 'Mercedes-Benz GLA (2014–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Plug-in Hybrid']
+                }, {
+                    model: 'Mercedes-Benz GLB (2019–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Mercedes-Benz GLC (2015–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Plug-in Hybrid']
+                }, {
+                    model: 'Mercedes-Benz GLE (2015–Present)',
+                    fuel: ['Petrol', 'Diesel', 'Plug-in Hybrid']
+                }, {
+                    model: 'Mercedes-Benz GLS (2006–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Mercedes-Benz G-Class (1979–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }],
+                'Coupes': [{
+                    model: 'Mercedes-Benz CLA Coupe (2013–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Mercedes-Benz C-Class Coupe (2015–Present)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Mercedes-Benz E-Class Coupe (2010–2023)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Mercedes-Benz S-Class Coupe (2014–2021)',
+                    fuel: ['Petrol', 'Diesel']
+                }],
+                'Convertibles': [{
+                    model: 'Mercedes-Benz C-Class Cabriolet (2016–2023)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Mercedes-Benz E-Class Cabriolet (2010–2023)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Mercedes-Benz S-Class Cabriolet (2016–2021)',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Mercedes-Benz SL (1954–Present)',
+                    fuel: ['Petrol']
+                }, {
+                    model: 'Mercedes-Benz SLC (1996–2020)',
+                    fuel: ['Petrol', 'Diesel']
+                }],
+                'Electric Vehicles (EVs)': [{
+                    model: 'Mercedes-Benz EQC (2019–Present)',
+                    fuel: ['Electric']
+                }, {
+                    model: 'Mercedes-Benz EQB (2021–Present)',
+                    fuel: ['Electric']
+                }, {
+                    model: 'Mercedes-Benz EQE (2022–Present)',
+                    fuel: ['Electric']
+                }, {
+                    model: 'Mercedes-Benz EQS (2021–Present)',
+                    fuel: ['Electric']
+                }, {
+                    model: 'Mercedes-Benz EQA (2021–Present)',
+                    fuel: ['Electric']
+                }],
+                'Performance Models': [{
+                    model: 'Mercedes-AMG A45 (2013–Present)',
+                    fuel: ['Petrol']
+                }, {
+                    model: 'Mercedes-AMG C63 (2008–Present)',
+                    fuel: ['Petrol']
+                }, {
+                    model: 'Mercedes-AMG E63 (2007–Present)',
+                    fuel: ['Petrol']
+                }, {
+                    model: 'Mercedes-AMG GT (2015–Present)',
+                    fuel: ['Petrol']
+                }, {
+                    model: 'Mercedes-AMG G63 (2012–Present)',
+                    fuel: ['Petrol']
+                }]
+            },
+            'Renault': {
+                'Hatchbacks': [{
+                    model: 'Renault Kwid',
+                    fuel: ['Petrol']
+                }, {
+                    model: 'Renault Triber',
+                    fuel: ['Petrol']
+                }],
+                'SUVs/Crossovers': [{
+                    model: 'Renault Duster',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Renault Kiger',
+                    fuel: ['Petrol']
+                }]
+            },
+            'Nissan': {
+                'Sedans': [{
+                    model: 'Nissan Sunny',
+                    fuel: ['Petrol', 'Diesel']
+                }],
+                'SUVs/Crossovers': [{
+                    model: 'Nissan Kicks',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Nissan Magnite',
+                    fuel: ['Petrol']
+                }, {
+                    model: 'Nissan Terrano',
+                    fuel: ['Petrol', 'Diesel']
+                }]
+            },
+            'MG': {
+                'SUVs/Crossovers': [{
+                    model: 'MG Hector',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'MG Astor',
+                    fuel: ['Petrol']
+                }, {
+                    model: 'MG Gloster',
+                    fuel: ['Diesel']
+                }, {
+                    model: 'MG ZS EV',
+                    fuel: ['Electric']
+                }],
+                'Electric Vehicles (EVs)': [{
+                    model: 'MG ZS EV',
+                    fuel: ['Electric']
+                }, {
+                    model: 'MG Comet EV',
+                    fuel: ['Electric']
+                }]
+            },
+            'Mahindra': {
+                'SUVs/Crossovers': [{
+                    model: 'Mahindra Thar',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Mahindra Scorpio',
+                    fuel: ['Diesel', 'Petrol']
+                }, {
+                    model: 'Mahindra XUV700',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Mahindra XUV300',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Mahindra Bolero',
+                    fuel: ['Diesel']
+                }],
+                'Pickups': [{
+                    model: 'Mahindra Bolero Pik-Up',
+                    fuel: ['Diesel']
+                }],
+                'Electric Vehicles (EVs)': [{
+                    model: 'Mahindra XUV400',
+                    fuel: ['Electric']
+                }]
+            },
+            'Tata': {
+                'Hatchbacks': [{
+                    model: 'Tata Tiago',
+                    fuel: ['Petrol', 'CNG', 'Electric']
+                }, {
+                    model: 'Tata Altroz',
+                    fuel: ['Petrol', 'Diesel', 'CNG']
+                }],
+                'Sedans': [{
+                    model: 'Tata Tigor',
+                    fuel: ['Petrol', 'CNG', 'Electric']
+                }],
+                'SUVs/Crossovers': [{
+                    model: 'Tata Nexon',
+                    fuel: ['Petrol', 'Diesel', 'Electric']
+                }, {
+                    model: 'Tata Punch',
+                    fuel: ['Petrol', 'CNG']
+                }, {
+                    model: 'Tata Harrier',
+                    fuel: ['Diesel']
+                }, {
+                    model: 'Tata Safari',
+                    fuel: ['Diesel']
+                }],
+                'Electric Vehicles (EVs)': [{
+                    model: 'Tata Nexon EV',
+                    fuel: ['Electric']
+                }, {
+                    model: 'Tata Tigor EV',
+                    fuel: ['Electric']
+                }, {
+                    model: 'Tata Tiago EV',
+                    fuel: ['Electric']
+                }]
+            },
+            'Honda': {
+                'Hatchbacks': [{
+                    model: 'Honda Jazz',
+                    fuel: ['Petrol']
+                }, {
+                    model: 'Honda Brio',
+                    fuel: ['Petrol']
+                }],
+                'Sedans': [{
+                    model: 'Honda City',
+                    fuel: ['Petrol', 'Hybrid']
+                }, {
+                    model: 'Honda Amaze',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Honda Civic',
+                    fuel: ['Petrol', 'Diesel']
+                }],
+                'SUVs/Crossovers': [{
+                    model: 'Honda WR-V',
+                    fuel: ['Petrol', 'Diesel']
+                }, {
+                    model: 'Honda CR-V',
+                    fuel: ['Petrol', 'Diesel', 'Hybrid']
+                }, {
+                    model: 'Honda Elevate',
+                    fuel: ['Petrol']
+                }]
+            },
+            'Maruti-Suzuki': {
+                'Hatchbacks': [{
+                    model: 'Maruti Suzuki Alto 800',
+                    fuel: ['Petrol', 'CNG']
+                }, {
+                    model: 'Maruti Suzuki Alto K10',
+                    fuel: ['Petrol', 'CNG']
+                }, {
+                    model: 'Maruti Suzuki Celerio',
+                    fuel: ['Petrol', 'CNG']
+                }, {
+                    model: 'Maruti Suzuki Swift',
+                    fuel: ['Petrol', 'CNG']
+                }, {
+                    model: 'Maruti Suzuki Baleno',
+                    fuel: ['Petrol', 'CNG']
+                }, {
+                    model: 'Maruti Suzuki Ignis',
+                    fuel: ['Petrol']
+                }, {
+                    model: 'Maruti Suzuki WagonR',
+                    fuel: ['Petrol', 'CNG']
+                }],
+                'Sedans': [{
+                    model: 'Maruti Suzuki Dzire',
+                    fuel: ['Petrol', 'CNG']
+                }, {
+                    model: 'Maruti-Suzuki Ciaz',
+                    fuel: ['Petrol', 'Hybrid']
+                }, {
+                    model: 'Maruti-Suzuki SX4',
+                    fuel: ['Petrol', 'Diesel', 'CNG']
+                }, {
+                    model: 'Maruti-Suzuki Swift Dzire',
+                    fuel: ['Petrol', 'Diesel', 'CNG']
+                }, ],
+                'SUVs/Crossovers': [{
+                    model: 'Maruti Suzuki Brezza',
+                    fuel: ['Petrol', 'CNG']
+                }, {
+                    model: 'Maruti Suzuki Grand Vitara',
+                    fuel: ['Petrol', 'Hybrid', 'CNG']
+                }, {
+                    model: 'Maruti Suzuki Fronx',
+                    fuel: ['Petrol', 'CNG']
+                }, {
+                    model: 'Maruti Suzuki Jimny',
+                    fuel: ['Petrol']
+                }],
+                'MPVs': [{
+                    model: 'Maruti Suzuki Ertiga',
+                    fuel: ['Petrol', 'CNG']
+                }, {
+                    model: 'Maruti Suzuki XL6',
+                    fuel: ['Petrol', 'CNG']
+                }]
+            }
+        };
+
+        // --- ELEMENTS ---
+        const carBrandSelect = document.getElementById('carBrand');
+        const otherCarBrandInput = document.getElementById('otherCarBrandInput');
+        const carModelSelect = document.getElementById('carModel');
+        const otherCarModelInput = document.getElementById('otherCarModelInput');
+        const fuelTypeSelect = document.getElementById('fuelType');
+        const yearSelect = document.getElementById('manufacturingYear');
+        const locationInput = document.getElementById('location');
+        const locationError = document.getElementById('locationError');
+        const phoneInput = document.getElementById('phoneNumber');
+        const phoneError = document.getElementById('phoneError');
+        const form = document.getElementById('carServiceForm');
+        const responseMessage = document.getElementById('responseMessage');
+        const nameInput = document.getElementById('fullName');
+        const getLocationBtn = document.getElementById('getLocationBtn');
+        const locationInstruction = document.getElementById('locationInstruction');
+        const termsCheckbox = document.getElementById('terms');
+
+
+        // --- FUNCTIONS ---
+        function populateCarModels() {
+            const brand = carBrandSelect.value;
+            carModelSelect.innerHTML = '<option value="">Select Car Model</option>';
+            // Always add the "Other" option to the model select
+            const otherModelOption = document.createElement('option');
+            otherModelOption.value = 'Other';
+            otherModelOption.textContent = 'Other';
+            carModelSelect.appendChild(otherModelOption);
+
+            // Reset visibility and required state for "Other" inputs
+            otherCarBrandInput.style.display = 'none';
+            otherCarBrandInput.required = false;
+            otherCarModelInput.style.display = 'none';
+            otherCarModelInput.required = false;
+
+            // Reset fuel type
+            resetFuelType();
+
+            if (brand === 'Other') {
+                otherCarBrandInput.style.display = 'block';
+                otherCarBrandInput.required = true;
+                carModelSelect.style.display = 'none'; // Hide the model select if brand is "Other"
+                otherCarModelInput.style.display = 'block'; // Show "Other" model input
+                otherCarModelInput.required = true;
+                fuelTypeSelect.disabled = false; // Enable fuel type for manual selection
+                carModelSelect.disabled = true; // Disable the car model select
+            } else if (brand && carModels[brand]) {
+                const brandData = carModels[brand];
+                for (const category in brandData) {
+                    if (brandData.hasOwnProperty(category) && Array.isArray(brandData[category])) {
+                        const optgroup = document.createElement('optgroup');
+                        optgroup.label = category;
+                        brandData[category].forEach(modelData => {
+                            const option = document.createElement('option');
+                            option.value = modelData.model;
+                            option.textContent = modelData.model;
+                            optgroup.appendChild(option);
+                        });
+                        carModelSelect.appendChild(optgroup);
+                    }
+                }
+                carModelSelect.disabled = false; // Enable model select for specific brands
+                carModelSelect.style.display = 'block'; // Ensure model select is visible
+            } else {
+                // If no brand selected (initial state)
+                carModelSelect.innerHTML = '<option value="">Select Car Brand First</option><option value="Other">Other</option>';
+                carModelSelect.disabled = true;
+                carModelSelect.style.display = 'block'; // Ensure model select is visible
+            }
+        }
+
+        function updateFuelType() {
+            const brand = carBrandSelect.value;
+            const model = carModelSelect.value;
+
+            resetFuelType(); // Reset fuel type before updating
+
+            // Handle "Other" cases for brand or model
+            if (brand === 'Other') {
+                // If brand is "Other", model input is also "Other", enable fuel type
+                fuelTypeSelect.disabled = false;
+                otherCarModelInput.style.display = 'block';
+                otherCarModelInput.required = true;
+                carModelSelect.style.display = 'none';
+                return; // Exit early as "Other" brand implies manual fuel selection
+            }
+
+            // Handle specific brand, but "Other" model
+            if (brand && model === 'Other') {
+                fuelTypeSelect.disabled = false;
+                otherCarModelInput.style.display = 'block';
+                otherCarModelInput.required = true;
+                carModelSelect.style.display = 'none';
+                return; // Exit early as "Other" model implies manual fuel selection
+            }
+
+            // For specific brand and specific model
+            if (brand && model && carModels[brand]) {
+                const brandData = carModels[brand];
+                let foundModel = null;
+                for (const category in brandData) {
+                    if (brandData.hasOwnProperty(category) && Array.isArray(brandData[category])) {
+                        foundModel = brandData[category].find(m => m.model === model);
+                        if (foundModel) break;
+                    }
+                }
+
+                if (foundModel && foundModel.fuel && foundModel.fuel.length > 0) {
+                    // Populate fuel options (optional, as options are static)
+                    // If multiple fuel types, enable select for user choice
+                    fuelTypeSelect.disabled = false;
+                    // Pre-select if only one option exists
+                    if (foundModel.fuel.length === 1) {
+                        fuelTypeSelect.value = foundModel.fuel[0];
+                        fuelTypeSelect.disabled = true; // Keep disabled if auto-selected
+                    }
+                } else {
+                    // Model found but no specific fuel data, allow manual selection
+                    fuelTypeSelect.disabled = false;
+                }
+            } else {
+                // No specific brand or model selected yet, disable fuel type
+                fuelTypeSelect.disabled = true;
+            }
+
+            // Ensure car model select is visible if not "Other" model
+            if (model !== 'Other' && brand !== 'Other') {
+                carModelSelect.style.display = 'block';
+                otherCarModelInput.style.display = 'none';
+                otherCarModelInput.required = false;
+            }
+        }
+
+
+        function resetFuelType() {
+            fuelTypeSelect.value = ""; // Reset to default option
+            fuelTypeSelect.disabled = true; // Disable by default
+        }
+
+
+        function populateYears() {
+            const currentYear = new Date().getFullYear();
+            for (let year = currentYear; year >= 1995; year--) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                yearSelect.appendChild(option);
+            }
+        }
+
+        function getUserLocation() {
+            getLocationBtn.disabled = true;
+            getLocationBtn.textContent = "Fetching...";
+            locationInput.readOnly = true;
+            locationInput.placeholder = "Fetching location...";
+            locationError.style.display = 'none';
+            locationInput.style.backgroundColor = '#f8f9fa';
+            locationInstruction.textContent = "Fetching your location...";
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        locationInput.value = `Lat: ${latitude.toFixed(6)}, Lon: ${longitude.toFixed(6)}`;
+                        locationInput.readOnly = true;
+                        locationInput.style.backgroundColor = '#e9ecef';
+                        locationError.style.display = 'none';
+                        locationInstruction.textContent = "Thank You For Giving Your Location";
+                        locationInstruction.style.color = '#28a745';
+
+                        getLocationBtn.disabled = false;
+                        getLocationBtn.textContent = "Get Location";
+                    },
+                    (error) => {
+                        console.error("Geolocation Error:", error);
+                        locationInput.value = "";
+                        locationInput.placeholder = "Location permission denied or failed. Enter manually.";
+                        locationInput.readOnly = false; // Allow manual input
+                        locationInput.style.backgroundColor = ''; // Reset background
+                        locationError.textContent = "Could not get location. Please enable permissions or enter manually.";
+                        locationError.style.display = 'block';
+                        locationInstruction.textContent = "Please click on \"Get Location\" button so we can get your correct location.";
+                        locationInstruction.style.color = '#dc3545';
+
+                        getLocationBtn.disabled = false;
+                        getLocationBtn.textContent = "Get Location";
+                    },
+                    {
+                        timeout: 10000,
+                        enableHighAccuracy: true
+                    }
+                );
+            } else {
+                console.warn("Geolocation is not supported.");
+                locationInput.value = "";
+                locationInput.placeholder = "Geolocation not supported. Enter manually.";
+                locationInput.readOnly = false; // Allow manual input
+                locationInput.style.backgroundColor = '';
+                locationError.textContent = "Geolocation is not supported by your browser. Please enter manually.";
+                locationError.style.display = 'block';
+                locationInstruction.textContent = "Please click on \"Get Location\" button so we can get your correct location.";
+                locationInstruction.style.color = '#dc3545';
+
+                getLocationBtn.disabled = true;
+                getLocationBtn.textContent = "Not Supported";
+            }
+        }
+
+        function validatePhoneNumber() {
+            if (phoneInput.value.length === 0) {
+                phoneError.style.display = 'none';
+                return true;
+            }
+            if (phoneInput.validity.patternMismatch || phoneInput.value.length !== 10) {
+                phoneError.style.display = 'block';
+                return false;
+            } else {
+                phoneError.style.display = 'none';
+                return true;
+            }
+        }
+
+
+        // --- EVENT LISTENERS ---
+        carBrandSelect.addEventListener('change', populateCarModels);
+        carModelSelect.addEventListener('change', updateFuelType);
+        phoneInput.addEventListener('input', validatePhoneNumber);
+        phoneInput.addEventListener('blur', validatePhoneNumber);
+
+        getLocationBtn.addEventListener('click', getUserLocation);
+
+
+        // Client-side validation and Formspree submission
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Prevent default form submission
+
+            let isValid = true;
+            responseMessage.textContent = ""; // Clear previous messages
+            responseMessage.style.color = '#dc3545'; // Default message color to error
+
+            // Clear all error messages initially before re-validation
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+
+
+            // Validate Name
+            if (!nameInput.value.trim()) {
+                isValid = false;
+                if (!responseMessage.textContent) {
+                    responseMessage.textContent = "Full Name is required.";
+                    nameInput.focus();
+                }
+            }
+
+            // Validate Phone Number
+            if (!phoneInput.value.trim()) {
+                isValid = false;
+                if (!responseMessage.textContent) {
+                    responseMessage.textContent = "Phone Number is required.";
+                    phoneInput.focus();
+                }
+                phoneError.style.display = 'block'; // Show error for empty phone
+                phoneError.textContent = "Phone Number is required.";
+            } else if (!validatePhoneNumber()) {
+                isValid = false;
+                if (!responseMessage.textContent) {
+                    responseMessage.textContent = "Please fix the phone number error.";
+                    phoneInput.focus();
+                }
+                // validatePhoneNumber() already shows the error message
+            }
+
+            // Validate Car Brand and Model
+            const selectedBrand = carBrandSelect.value;
+            const selectedModel = carModelSelect.value;
+            const otherBrandValue = otherCarBrandInput.value.trim();
+            const otherModelValue = otherCarModelInput.value.trim();
+
+            if (!selectedBrand) {
+                isValid = false;
+                if (!responseMessage.textContent) {
+                    responseMessage.textContent = "Please select a Car Brand.";
+                    carBrandSelect.focus();
+                }
+            } else if (selectedBrand === 'Other') {
+                if (!otherBrandValue) {
+                    isValid = false;
+                    if (!responseMessage.textContent) {
+                        responseMessage.textContent = "Please enter the Car Brand name.";
+                        otherCarBrandInput.focus();
+                    }
+                }
+                if (!otherModelValue) {
+                    isValid = false;
+                    if (!responseMessage.textContent) {
+                        responseMessage.textContent = "Please enter the Car Model name.";
+                        otherCarModelInput.focus();
+                    }
+                }
+            } else { // A specific brand is selected
+                if (selectedModel === 'Other') {
+                    if (!otherModelValue) {
+                        isValid = false;
+                        if (!responseMessage.textContent) {
+                            responseMessage.textContent = "Please enter the Car Model name.";
+                            otherCarModelInput.focus();
+                        }
+                    }
+                } else if (!selectedModel) {
+                    isValid = false;
+                    if (!responseMessage.textContent) {
+                        responseMessage.textContent = "Please select a Car Model.";
+                        carModelSelect.focus();
+                    }
+                }
+            }
+
+            // Validate Fuel Type
+            if (!fuelTypeSelect.value) {
+                isValid = false;
+                if (!responseMessage.textContent) {
+                    responseMessage.textContent = "Please select a Fuel Type.";
+                    fuelTypeSelect.focus();
+                }
+            }
+
+            // Validate Manufacturing Year
+            if (!yearSelect.value) {
+                isValid = false;
+                if (!responseMessage.textContent) {
+                    responseMessage.textContent = "Please select a Manufacturing Year.";
+                    yearSelect.focus();
+                }
+            }
+
+            // Validate Location
+            const currentLocationValue = locationInput.value.trim();
+            // Check if it looks like a valid coordinate, or if it was manually entered
+            const isLocationManuallyEntered = locationInput.readOnly === false && currentLocationValue !== "" && !currentLocationValue.startsWith("Lat:");
+
+            if (currentLocationValue === "" || locationError.style.display === 'block') { // Check if input is empty OR if the "fetch failed" error is already visible
+                isValid = false;
+                if (!responseMessage.textContent) {
+                    if (locationInput.placeholder.includes("Geolocation not supported")) {
+                        responseMessage.textContent = "Location is required. Geolocation not supported, please enter manually.";
+                    } else if (locationInput.placeholder.includes("permission denied or failed")) {
+                        responseMessage.textContent = "Location is required. Please allow access or enter manually.";
+                    } else {
+                        responseMessage.textContent = "Location is required. Please get location or enter manually.";
+                    }
+                }
+                locationError.style.display = 'block'; // Ensure location error is visible
+                // Update error text if it's just empty and not a permission issue
+                if (currentLocationValue === "" && !locationInput.placeholder.includes("permission denied or failed") && !locationInput.placeholder.includes("Geolocation not supported")) {
+                     locationError.textContent = "Location is required. Please get location or enter manually.";
+                }
+            } else {
+                locationError.style.display = 'none'; // Hide error if location is valid
+            }
+
+
+            // Validate Terms and Conditions Checkbox
+            if (!termsCheckbox.checked) {
+                isValid = false;
+                if (!responseMessage.textContent) {
+                    responseMessage.textContent = "You must agree to the Terms and Conditions.";
+                }
+            }
+
+
+            if (!isValid) {
+                return; // Stop submission if validation failed
+            } else {
+                responseMessage.textContent = "Submitting...";
+                responseMessage.style.color = '#007bff';
+
+                const formData = new FormData(form);
+
+                // Set the final brand and model values for submission
+                const finalCarBrand = selectedBrand === 'Other' ? otherBrandValue : selectedBrand;
+                const finalCarModel = selectedModel === 'Other' || selectedBrand === 'Other' ? otherModelValue : selectedModel;
+
+                formData.set('carBrand', finalCarBrand);
+                formData.set('carModel', finalCarModel);
+                formData.set('termsAccepted', termsCheckbox.checked ? 'Yes' : 'No');
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: form.method,
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        responseMessage.textContent = 'Thank you for your booking! We will contact you shortly.';
+                        responseMessage.style.color = '#28a745';
+                        form.reset(); // Reset the form on successful submission
+
+                        // --- Show Browser Notification ---
+                        if ('Notification' in window) {
+                            Notification.requestPermission().then(permission => {
+                                if (permission === 'granted') {
+                                    new Notification('Booking Submitted', {
+                                        body: 'We will contact you shortly.'
+                                    });
+                                }
+                            });
+                        }
+                        // ---------------------------------
+
+                        // Manually reset elements not covered by form.reset() or populated by initial calls
+                        locationInput.value = "";
+                        locationInput.placeholder = "Location not set";
+                        locationInput.readOnly = true;
+                        locationInput.style.backgroundColor = '#f8f9fa';
+                        getLocationBtn.disabled = false;
+                        getLocationBtn.textContent = "Get Location";
+                        locationInstruction.textContent = "Please click on \"Get Location\" button so we can get your correct location.";
+                        locationInstruction.style.color = '#dc3545';
+
+                        phoneError.style.display = 'none';
+                        locationError.style.display = 'none';
+
+                        otherCarBrandInput.style.display = 'none';
+                        otherCarBrandInput.required = false;
+                        otherCarBrandInput.value = ''; // Clear value
+                        otherCarModelInput.style.display = 'none';
+                        otherCarModelInput.required = false;
+                        otherCarModelInput.value = ''; // Clear value
+
+                        // Re-initialize dropdowns after reset
+                        populateCarModels();
+                        resetFuelType();
+
+                    } else {
+                        const data = await response.json();
+                        if (Object.hasOwn(data, 'errors')) {
+                            responseMessage.textContent = data["errors"].map(error => error["message"]).join(", ");
+                        } else {
+                            responseMessage.textContent = 'Oops! There was a problem submitting your form.';
+                        }
+                        responseMessage.style.color = '#dc3545';
+                    }
+                } catch (error) {
+                    responseMessage.textContent = 'Oops! There was a network problem. Please try again.';
+                    responseMessage.style.color = '#dc3545';
+                    console.error('Fetch error:', error);
+                }
+            }
+        });
+
+
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            populateYears();
+            // Initialize the location input state
+            locationInput.value = "";
+            locationInput.placeholder = "Location not set";
+            locationInput.readOnly = true;
+            locationInput.style.backgroundColor = '#f8f9fa';
+            getLocationBtn.disabled = false;
+            getLocationBtn.textContent = "Get Location";
+            locationInstruction.textContent = "Please click on \"Get Location\" button so we can get your correct location.";
+            locationInstruction.style.color = '#dc3545';
+
+            // Initialize car brand/model display and fuel type
+            populateCarModels();
+            resetFuelType(); // Ensure fuel type is disabled initially
+        });
+    </script>
+</body>
+
+</html>
