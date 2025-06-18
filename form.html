@@ -1544,7 +1544,7 @@
                     (position) => {
                         const latitude = position.coords.latitude;
                         const longitude = position.coords.longitude;
-                        locationInput.value = `Lat: ${latitude.toFixed(6)}, Lon: ${longitude.toFixed(6)}`;
+                        locationInput.value = ` ${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
                         locationInput.readOnly = true;
                         locationInput.style.backgroundColor = '#e9ecef';
                         locationError.style.display = 'none';
