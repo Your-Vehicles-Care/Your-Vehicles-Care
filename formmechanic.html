@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title data-translate="mechanicRegisterTitle">Mechanic Registration - Fix My Car</title>
+    <title data-translate="mechanicRegisterTitle">Mechanic Registration - Your Vehicles Care</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -467,10 +467,35 @@ p.text-red-600 {
 .hidden {
     display: none !important;
 }
+
+/* Logo specific styles */
+.logo-container {
+    text-align: center;
+    margin-bottom: 20px; /* Adjust spacing as needed */
+}
+
+.logo-container img {
+    max-width: 290px; /* Adjust logo size */
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    padding-bottom: 10px; /* Space between logo and slogan */
+}
+
+.company-slogan {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: #6b7280; /* Match existing text colors */
+    font-weight: 500;
+}
 </style>
 </head>
 <body>
     <div class="container">
+        <div class="logo-container">
+           <a href="index.html"> <img src="yvc.png" alt="Your Vehicles Care Logo"></a>
+            <p class="company-slogan">Professional On-Demand Vehicle Services</p>
+        </div>
         <header class="text-center mb-8">
             <h1 data-translate="mechanicRegisterHeading">Mechanic Registration</h1>
             <p class="text-xl" id="formSubheading"></p>
