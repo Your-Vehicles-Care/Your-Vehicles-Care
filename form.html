@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Car Service Form</title>
+    <title>Car Service Form - Your Vehicles Care</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+    <!-- Removed Font Awesome and Tailwind CSS links as per request to revert theme -->
     <style>
         /* General Styles */
         body {
@@ -41,6 +42,29 @@
             box-sizing: border-box;
             border: 1px solid #e0e0e0;
             /* Subtle border */
+            position: relative; /* Needed for absolute positioning of the logo text */
+            overflow: hidden; /* Ensure nothing leaks out */
+        }
+
+        /* Logo styles */
+        .logo-container {
+            text-align: center;
+            margin-bottom: 30px; /* Space between logo and form title */
+        }
+
+        .logo-container img {
+            max-width: 150px; /* Adjust as needed */
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            border-radius: 8px; /* Slightly rounded corners for the logo itself */
+        }
+
+        .company-slogan {
+            font-family: 'Roboto', sans-serif; /* Using Roboto as a simple sans-serif font */
+            font-size: 0.85rem;
+            color: #6b7280; /* A soft gray for the slogan */
+            margin-top: 10px;
         }
 
         h2 {
@@ -540,10 +564,9 @@
             }
 
             .contact-buttons .button {
-                flex-basis: 0; /* Allow flex items to shrink below content size */
+                flex-basis: 0;
                 flex-grow: 1;
-                /* Allow contact buttons to grow */
-                flex-shrink: 1; /* Allow contact buttons to shrink */
+                flex-shrink: 1;
                 min-width: unset;
                 /* Remove min-width */
                 padding: 8px 12px;
@@ -565,6 +588,10 @@
 <body>
 
     <div class="container">
+        <div class="logo-container">
+            <img src="yvc.png" alt="Your Vehicles Care Logo">
+            <p class="company-slogan">Professional On-Demand Vehicle Services</p>
+        </div>
         <h2>Car Service Booking</h2>
         <form id="carServiceForm" action="https://formsubmit.co/aabhassolankiforwork@gmail.com" method="POST">
             <label for="fullName">Full Name:</label>
@@ -638,7 +665,7 @@
 
             <div class="checkbox-container">
                 <input type="checkbox" id="terms" name="terms" required>
-                <label for="terms">I agree to the <a href="terms.html" class="terms-link">Terms and Conditions</a></label>
+                <label for="terms">I agree to the <a href="#" class="terms-link" target="_blank">Terms and Conditions</a></label>
             </div>
 
 
