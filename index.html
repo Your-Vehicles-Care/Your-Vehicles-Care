@@ -50,6 +50,7 @@
             /* Gray 300 */
             --darker-blue: #005f99;
             /* Added a darker blue variable */
+            --new-highlight-color: #f1b200; /* New color for specific text */
 
             /* Theme Variables (set to light values as it's the only theme) */
             --bg-color: var(--background-light);
@@ -506,6 +507,7 @@
             line-height: 1.2;
             max-width: 100%;
             /* Ensure heading doesn't cause overflow */
+            color: var(--new-highlight-color); /* Applied new color here */
         }
 
         /* Adjust some Tailwind classes for new colors */
@@ -1425,8 +1427,8 @@
         data-aos="fade-up">
         <div class="container mx-auto max-w-6xl">
             <div class="max-w-3xl mx-auto mb-8 md:mb-10 relative z-20">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight --text-color red"
-                    data-translate="heroHeading">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight"
+                    data-translate="heroHeading" style="color: #f1b200;">
                     Expert On-Demand Vehicle
                     Solutions, Delivered to You</h2>
                 <p class="text-lg md:text-xl mb-8 md:mb-10 opacity-90" data-translate="heroSubheading">Reliable roadside
@@ -1916,7 +1918,7 @@
     <!-- New Join Us Section -->
     <section id="join-us" class="py-16 md:py-20 px-4 text-center bg-blue-600 text-white" data-aos="fade-up">
         <div class="container mx-auto max-w-4xl">
-            <h2 class="section-title" data-translate="joinUsHeading" style="color: white;">Join Our Expert Mechanic Team!</h2>
+            <h2 class="section-title" data-translate="joinUsHeading" style="color: #f1b200;">Join Our Expert Mechanic Team!</h2>
             <p class="text-lg md:text-xl mb-8 md:mb-10 opacity-90" data-translate="joinUsSubheading">
                 Are you a skilled and dedicated mechanic looking for new opportunities? Partner with 'Your Vehicles Care' and provide on-demand vehicle services in your area.
             </p>
@@ -1933,7 +1935,7 @@
         style="background-color: var(--button-call-bg);">
         <div class="container mx-auto max-w-4xl">
             <h2 class="text-3xl md:text-4xl font-bold mb-6 md:mb-8" data-translate="contactHeading"
-                style="color: var(--sticky-button-text);">Need Immediate Assistance?</h2>
+                style="color: #f1b200;">Need Immediate Assistance?</h2>
             <p class="text-lg md:text-xl opacity-90 mb-6 md:mb-8" data-translate="contactSubheading">Our team is
                 available 24/7 to respond
                 to
