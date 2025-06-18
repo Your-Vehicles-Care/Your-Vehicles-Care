@@ -683,7 +683,7 @@
         }
 
         .service-card[data-service-type="car-towing"] {
-            background-image: url('minor2.jpeg');
+            background-image: url('tow.png');
         }
 
         .service-card[data-service-type="brake-repair"] {
@@ -1358,9 +1358,10 @@
 <body class="bg-gray-100">
     <header class="text-white py-3 shadow-lg">
         <div class="container mx-auto flex items-center justify-between px-4">
-            <div class="site-title-container">
-                <span class="text-2xl font-bold tracking-tight" data-translate="siteTitle">Your Vehicles Care</span>
-            </div>
+            <!-- Logo -->
+            <a href="#" class="flex items-center">
+                <img src="yvc.png" alt="Your Vehicles Care Logo" class="h-12 w-auto"> <!-- Adjust h-12 to your desired height -->
+            </a>
 
             <nav class="hidden md:flex flex-wrap">
                 <a href="#hero" class="hover:text-blue-400 transition duration-300 mx-1 md:mx-2"
@@ -1706,7 +1707,7 @@
                 Customers</h2>
             <div class="flex flex-col md:flex-row items-center gap-8 md:gap-10">
                 <div class="w-full md:w-1/2" data-aos="fade-right">
-                    <img src="images\satisfoed2.jpg" alt="Mechanic repairing a car with a satisfied customer looking on"
+                    <img src="satisfoed2.jpg" alt="Mechanic repairing a car with a satisfied customer looking on"
                         class="rounded-xl shadow-lg w-full h-auto object-cover">
                 </div>
                 <div class="w-full md:w-1/2 text-left" data-aos="fade-left">
@@ -1919,9 +1920,8 @@
             <p class="text-lg md:text-xl mb-8 md:mb-10 opacity-90" data-translate="joinUsSubheading">
                 Are you a skilled and dedicated mechanic looking for new opportunities? Partner with 'Your Vehicles Care' and provide on-demand vehicle services in your area.
             </p>
-            <a href="https://aabhas-rising.github.io/MOS-Form-/"
-                class="bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-semibold py-3 px-8 rounded-full transition duration-300 ease-in-out shadow-xl hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 text-lg inline-block"
-                data-translate="joinUsButton">
+            <a href="formmechanic.html"
+                class="bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-semibold py-3 px-8 rounded-full transition duration-300 ease-in-out shadow-xl hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 text-lg inline-block">
                 Apply to Join
             </a>
         </div>
@@ -1969,8 +1969,7 @@
             </div>
 
             <a href="https://aabhas-rising.github.io/MOS-Form-/"
-                class="bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-semibold py-3 px-8 rounded-full transition duration-300 ease-in-out shadow-xl hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 text-base md:text-lg inline-block"
-                data-translate="contactRequestBtn">
+                class="bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-semibold py-3 px-8 rounded-full transition duration-300 ease-in-out shadow-xl hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 text-base md:text-lg inline-block">
                 Request a Service Online
             </a>
         </div>
@@ -2529,10 +2528,10 @@
         // Array of background image URLs for the hero section slider
         // These images should ideally be 16:9 aspect ratio for the slider.
         const heroImages = [
-            'images/hro1r.jpeg', // Example 16:9 placeholder
-            'images/hro2.jpg', // Example 16:9 placeholder
-            'images/hro3.jpg',
-            'image/hro4.jpg',// Example 16:9 placeholder
+            'minor.jpeg', // Example 16:9 placeholder
+            'hro2.jpg', // Example 16:9 placeholder
+            'hro3.jpg',
+            'hro4.jpg', // Example 16:9 placeholder
             // Add more 16:9 image URLs here for the slider.
             // If you need a different *default* hero image for mobile (e.g., 3:4),
             // you can set it using a CSS media query on the #hero section's background-image property.
