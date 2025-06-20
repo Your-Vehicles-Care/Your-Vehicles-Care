@@ -659,7 +659,7 @@
         <div class="popup-content">
             <h3>Booking Submitted!</h3>
             <p>Thank you for your booking! We will contact you shortly.</p>
-           <a herf="index.html"> <button id="closePopup">Close</button></a>
+            <button id="closePopup">Close</button>
         </div>
     </div>
 
@@ -1592,7 +1592,12 @@
         phoneInput.addEventListener('input', validatePhoneNumber);
         phoneInput.addEventListener('blur', validatePhoneNumber);
         getLocationBtn.addEventListener('click', getUserLocation);
-        closePopupButton.addEventListener('click', hideSuccessPopup); // Listener for closing the popup
+        
+        // Modified listener for closing the popup to redirect to index.html
+        closePopupButton.addEventListener('click', () => {
+            hideSuccessPopup();
+            window.location.href = 'index.html'; // Redirect to index.html
+        });
 
 
         // Client-side validation and Form submission to Node.js backend
