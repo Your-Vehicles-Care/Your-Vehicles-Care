@@ -702,7 +702,8 @@ p.text-red-600 {
                         <div id="selectedToolsDisplay" class="selected-items-container">
                             <span class="text-sm text-gray-500" data-translate="noToolsSelected">No tools selected yet.</span>
                         </div>
-                        <input type="hidden" id="hiddenToolsOwned" name="hiddenToolsOwned"> <!-- Hidden input for form submission -->
+                        <!-- hiddenToolsOwned will be populated by JS from the selectedTools Set -->
+                        <input type="hidden" id="hiddenToolsOwned" name="selectedTools">
                     </div>
                 </div>
 
@@ -795,6 +796,12 @@ p.text-red-600 {
                     </div>
                     <!-- Removed Customer Service Orientation and Problem-Solving Skills -->
 
+                    <!-- Added Language Fluency input -->
+                    <div class="mb-4">
+                        <label for="languageFluency" data-translate="languageFluency">Language Fluency (e.g., Hindi, English, Marathi):</label>
+                        <textarea id="languageFluency" name="languageFluency" rows="2" placeholder="List languages you are fluent in, separated by commas"></textarea>
+                    </div>
+
                 </div>
 
                 <div>
@@ -826,6 +833,7 @@ p.text-red-600 {
                         <div id="selectedCarBrands">
                             <!-- Selected brands will appear here -->
                         </div>
+                        <!-- hiddenCarCompanies will be populated by JS from the selectedCarCompanies Set -->
                         <input type="hidden" id="hiddenCarCompanies" name="selectedCarCompanies">
                     </div>
                 </div>
@@ -924,7 +932,7 @@ p.text-red-600 {
 
     // **IMPORTANT**: Replace this with your deployed Google Apps Script Web App URL
     // This URL will be generated after you complete Part 3.
-    const GOOGLE_SHEET_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyUlTSpyVoYK8v1Lb67mdC7e7HEn3k5ACd5Cj2yQn-hPz3nO6qIuFqg1FvD123/exec'; // Placeholder URL
+    const GOOGLE_SHEET_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbywx7o_bMFYXM6dWY39YFAWbjJBcz5s3BN5JZwfMypv0HMxztqoSqDRXX64hexPmdhb/exec'; // <--- REPLACE THIS PLACEHOLDER URL
 
     // --- Helper Functions ---
 
