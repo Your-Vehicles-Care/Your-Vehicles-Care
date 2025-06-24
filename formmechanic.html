@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
-    
+
     <style>/* CSS Variables for consistent color palette */
 :root {
     --primary-light: #87cefa; /* Sky Blue */
@@ -152,7 +152,8 @@ input[type="email"],
 input[type="tel"],
 input[type="date"],
 input[type="number"],
-textarea {
+textarea,
+select { /* Include select here */
     width: 100%;
     padding: 0.5rem 1rem; /* px-4 py-2 */
     border: 1px solid var(--border-color); /* border border-gray-300 */
@@ -166,7 +167,8 @@ input[type="email"]:focus,
 input[type="tel"]:focus,
 input[type="date"]:focus,
 input[type="number"]:focus,
-textarea:focus {
+textarea:focus,
+select:focus { /* Include select here */
     border-color: var(--ring-color); /* focus:ring-2 focus:ring-blue-500 */
     box-shadow: 0 0 0 2px var(--ring-color);
 }
@@ -488,12 +490,75 @@ p.text-red-600 {
     color: #6b7280; /* Match existing text colors */
     font-weight: 500;
 }
+
+/* New style for manual location input */
+.location-input-group {
+    display: flex;
+    gap: 0.5rem; /* Space between input and button */
+    align-items: center;
+}
+
+.get-location-btn {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+.get-location-btn:hover {
+    background-color: #3f90e0;
+}
+
+.error-message {
+    color: var(--red-600);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: none; /* Hidden by default */
+}
+
+/* Styles for selected items display */
+.selected-items-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    background-color: var(--gray-50);
+    min-height: 2.5rem;
+    align-items: center;
+}
+
+.selected-item-tag {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--blue-200);
+    color: var(--blue-800);
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.125rem 0.625rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+}
+
+.selected-item-tag .remove-item-btn {
+    margin-left: 0.25rem;
+    color: var(--blue-800);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+    line-height: 1;
+}
 </style>
 </head>
 <body>
     <div class="container">
         <div class="logo-container">
-           <a href="index.html"> <img src="yvc.png" alt="Your Vehicles Care"></a>
+           <a href="index.html"> <img src="https://placehold.co/290xauto/f8f8f8/42a5f5?text=YOUR+VEHICLES+CARE" alt="Your Vehicles Care"></a>
             <p class="company-slogan">Professional On-Demand Vehicle Services</p>
         </div>
         <header class="text-center mb-8">
@@ -534,6 +599,17 @@ p.text-red-600 {
                             <input type="text" id="zipCode" name="zipCode" required placeholder="452001">
                         </div>
                     </div>
+                    <!-- New Location Section -->
+                    <div class="location-group">
+                        <div class="location-instruction" id="locationInstruction">Please click on "Get Location" button so we can
+                            get your correct location, or enter manually.</div>
+                        <label for="location">Location:</label>
+                        <div class="location-input-group">
+                            <input type="text" id="location" name="location" placeholder="Location not set" required />
+                            <button type="button" id="getLocationBtn" class="get-location-btn">Get Location</button>
+                        </div>
+                        <div class="error-message" id="locationError"></div>
+                    </div>
                 </div>
                 <button type="button" class="btn-primary next-step-btn" data-translate="nextStep">Proceed to Next Step</button>
             </div>
@@ -542,43 +618,25 @@ p.text-red-600 {
                 <div>
                     <h2 data-translate="contactVerification">Contact Information & Verification</h2>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <label for="email" data-translate="emailAddress">Email Address:</label>
-                            <input type="email" id="email" name="email" required placeholder="mechanic@example.com">
-                        </div>
-                        <div>
-                            <label for="mobileNumber" data-translate="mobileNumber">Phone Number (Mobile):</label>
-                            <input type="tel" id="mobileNumber" name="mobileNumber" required pattern="[0-9]{10}" title="Please enter a 10-digit phone number" placeholder="e.g., 9876543210">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <label for="altContactNumber" data-translate="altContactNumber">Alternative Contact Number (Optional):</label>
-                            <input type="tel" id="altContactNumber" name="altContactNumber" pattern="[0-9]{10}" title="Please enter a 10-digit phone number" placeholder="Optional">
-                        </div>
-                        <div>
-                            <label for="emergencyContactName" data-translate="emergencyContactName">Emergency Contact Person:</label>
-                            <input type="text" id="emergencyContactName" name="emergencyContactName" required placeholder="Name">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <label for="emergencyContactNumber" data-translate="emergencyContactNumber">Emergency Contact Number:</label>
-                            <input type="tel" id="emergencyContactNumber" name="emergencyContactNumber" required pattern="[0-9]{10}" title="Please enter a 10-digit phone number" placeholder="e.g., 9876543210">
-                        </div>
-                        <div>
-                            <label for="aadhaarPan" data-translate="aadhaarPan">Aadhar/PAN Card Number (for verification):</label>
-                            <input type="text" id="aadhaarPan" name="aadhaarPan" placeholder="Will be verified offline">
-                        </div>
-                    </div>
-
                     <div class="mb-4">
-                        <label for="idProofUpload" data-translate="uploadIdProof">Upload Photo/ID Proof (Aadhar, Driving License, PAN):</label>
-                        <input type="file" id="idProofUpload" name="idProofUpload" accept="image/*,.pdf">
-                        <p class="text-sm mt-1" data-translate="idProofNote">Note: File upload requires backend processing and secure storage.</p>
+                        <label for="mobileNumber" data-translate="mobileNumber">Phone Number (Mobile):</label>
+                        <input type="tel" id="mobileNumber" name="mobileNumber" required pattern="[0-9]{10}" title="Please enter a 10-digit phone number" placeholder="e.g., 9876543210">
+                    </div>
+                    <div class="mb-4">
+                        <label for="altContactNumber" data-translate="altContactNumber">Alternative Contact Number (Optional):</label>
+                        <input type="tel" id="altContactNumber" name="altContactNumber" pattern="[0-9]{10}" title="Please enter a 10-digit phone number" placeholder="Optional">
+                    </div>
+
+                    <!-- Driving License moved here from Professional & Legal Details -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="drivingLicenseNumber" data-translate="drivingLicenseNumber">Driving License Number:</label>
+                            <input type="text" id="drivingLicenseNumber" name="drivingLicenseNumber" required>
+                        </div>
+                        <div>
+                            <label for="drivingLicenseExpiry" data-translate="drivingLicenseExpiry">Driving License Expiry Date:</label>
+                            <input type="date" id="drivingLicenseExpiry" name="drivingLicenseExpiry" required>
+                        </div>
                     </div>
                 </div>
                 <button type="button" class="btn-primary next-step-btn" data-translate="nextStep">Proceed to Next Step</button>
@@ -628,9 +686,23 @@ p.text-red-600 {
                         </div>
                     </div>
 
+                    <!-- Tools & Equipment Owned: Changed to checkboxes with display -->
                     <div class="mb-4">
-                        <label for="toolsOwned" data-translate="toolsEquipment">Tools & Equipment Owned:</label>
-                        <textarea id="toolsOwned" name="toolsOwned" rows="3" placeholder="e.g., Jump starter, Tire inflator, Diagnostic scanner, Basic toolkit"></textarea>
+                        <label class="block" data-translate="toolsEquipment">Tools & Equipment Owned (Multi-select):</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                            <label class="inline-flex items-center"><input type="checkbox" name="toolsOwned" value="Jump Starter" class="form-checkbox"><span class="ml-2">Jump Starter</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="toolsOwned" value="Diagnostic Scanner" class="form-checkbox"><span class="ml-2">Diagnostic Scanner</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="toolsOwned" value="Basic Tools" class="form-checkbox"><span class="ml-2">Basic Tools (Wrenches, screwdrivers, pliers)</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="toolsOwned" value="Advanced Tools" class="form-checkbox"><span class="ml-2">Advanced Tools (Specialty diagnostic tools, lifting equipment)</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="toolsOwned" value="Welding Equipment" class="form-checkbox"><span class="ml-2">Welding Equipment</span></label>
+                            <label class="inline-flex items-center"><input type="checkbox" name="toolsOwned" value="Tire Changer & Balancer" class="form-checkbox"><span class="ml-2">Tire Changer & Balancer</span></label>
+                        </div>
+                        <div class="mb-2"></div> <!-- Small separator -->
+                        <label class="block" data-translate="selectedTools">Selected Tools:</label>
+                        <div id="selectedToolsDisplay" class="selected-items-container">
+                            <span class="text-sm text-gray-500" data-translate="noToolsSelected">No tools selected yet.</span>
+                        </div>
+                        <input type="hidden" id="hiddenToolsOwned" name="hiddenToolsOwned"> <!-- Hidden input for form submission -->
                     </div>
                 </div>
 
@@ -639,10 +711,19 @@ p.text-red-600 {
 
                     <div class="mb-4">
                         <label class="block" data-translate="daysOfWeek">Days of the week:</label>
-                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
-                            <label class="inline-flex items-center"><input type="checkbox" name="availableDays" value="Mon-Fri" class="form-checkbox"><span class="ml-2">Mon-Fri</span></label>
-                            <label class="inline-flex items-center"><input type="checkbox" name="availableDays" value="Weekends only" class="form-checkbox"><span class="ml-2" data-translate="weekendsOnly">Weekends only</span></label>
-                            <label class="inline-flex items-center"><input type="checkbox" name="availableDays" value="All days" class="form-checkbox"><span class="ml-2" data-translate="allDays">All days</span></label>
+                        <div class="radio-group">
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="availableDays" value="Mon-Fri" class="form-radio" required>
+                                <span class="ml-2">Mon-Fri</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="availableDays" value="Weekends only" class="form-radio">
+                                <span class="ml-2" data-translate="weekendsOnly">Weekends only</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="availableDays" value="All days" class="form-radio">
+                                <span class="ml-2" data-translate="allDays">All days</span>
+                            </label>
                         </div>
                     </div>
 
@@ -673,46 +754,19 @@ p.text-red-600 {
                 <div>
                     <h2 data-translate="professionalLegalDetails">Professional & Legal Details</h2>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <label for="drivingLicenseNumber" data-translate="drivingLicenseNumber">Driving License Number:</label>
-                            <input type="text" id="drivingLicenseNumber" name="drivingLicenseNumber">
-                        </div>
-                        <div>
-                            <label for="drivingLicenseExpiry" data-translate="drivingLicenseExpiry">Driving License Expiry Date:</label>
-                            <input type="date" id="drivingLicenseExpiry" name="drivingLicenseExpiry">
-                        </div>
-                    </div>
-
                     <div class="mb-4">
                         <label for="serviceVehicle" data-translate="serviceVehicle">Vehicle Owned for Service:</label>
                         <input type="text" id="serviceVehicle" name="serviceVehicle" placeholder="e.g., Motorcycle, Scooter, Car, Van">
                     </div>
 
+                    <!-- UPI ID Details -->
                     <div class="mb-4">
-                        <label class="block" data-translate="bankAccountDetails">Bank Account Details (for payment processing):</label>
-                        <p class="text-sm text-red-600 mb-2" data-translate="bankAccountSecurityNote">Note: This sensitive information should be handled with extreme care and security (ideally via a separate secure portal or after initial verification).</p>
-                        <input type="text" id="bankAccountHolder" name="bankAccountHolder" placeholder="Account Holder Name" class="mb-2">
-                        <input type="text" id="bankAccountNumber" name="bankAccountNumber" placeholder="Account Number" class="mb-2">
-                        <input type="text" id="ifscCode" name="ifscCode" placeholder="IFSC Code">
+                        <label for="upiId" data-translate="upiId">UPI ID:</label>
+                        <input type="text" id="upiId" name="upiId" placeholder="Enter your UPI ID (e.g., yourname@bank)" required />
                     </div>
-
                     <div class="mb-4">
-                        <label class="block" data-translate="policeVerification">Police Verification Status/Consent:</label>
-                        <div class="flex items-center">
-                            <label class="inline-flex items-center mr-4">
-                                <input type="radio" name="policeVerification" value="Undergone" class="form-radio">
-                                <span class="ml-2" data-translate="undergone">Undergone</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="radio" name="policeVerification" value="Consent to undergo" class="form-radio">
-                                <span class="ml-2" data-translate="consentToUndergo">Consent to undergo</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="radio" name="policeVerification" value="Not undergone" class="form-radio">
-                                <span class="ml-2" data-translate="notUndergone">Not undergone</span>
-                            </label>
-                        </div>
+                        <label for="upiName" data-translate="upiName">Name for UPI ID:</label>
+                        <input type="text" id="upiName" name="upiName" placeholder="Name associated with your UPI ID" required />
                     </div>
 
                     <div class="mb-4">
@@ -728,29 +782,19 @@ p.text-red-600 {
                 <div>
                     <h2 data-translate="skillsAssessment">Skills & Soft Skills Assessment</h2>
 
+                    <!-- Communication Skills changed to dropdown -->
                     <div class="mb-4">
                         <label for="communicationSkills" data-translate="communicationSkills">Communication Skills (Self-assessment):</label>
-                        <input type="text" id="communicationSkills" name="communicationSkills" placeholder="e.g., Excellent, Good, Fair">
+                        <select id="communicationSkills" name="communicationSkills" required>
+                            <option value="">Select Level</option>
+                            <option value="Excellent">Excellent</option>
+                            <option value="Good">Good</option>
+                            <option value="Fair">Fair</option>
+                            <option value="Low">Low</option>
+                        </select>
                     </div>
-                    <div class="mb-4">
-                        <label for="problemSolvingSkills" data-translate="problemSolvingSkills">Problem-Solving Skills (Self-assessment):</label>
-                        <input type="text" id="problemSolvingSkills" name="problemSolvingSkills" placeholder="e.g., Excellent, Good, Fair">
-                    </div>
-                    <div class="mb-4">
-                        <label for="customerServiceOrientation" data-translate="customerServiceOrientation">Customer Service Orientation (Self-assessment):</label>
-                        <input type="text" id="customerServiceOrientation" name="customerServiceOrientation" placeholder="e.g., Excellent, Good, Fair">
-                    </div>
+                    <!-- Removed Customer Service Orientation and Problem-Solving Skills -->
 
-                    <div class="mb-4">
-                        <label class="block" data-translate="languageFluency">Language Fluency (Multi-select):</label>
-                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
-                            <label class="inline-flex items-center"><input type="checkbox" name="languageFluency" value="English" class="form-checkbox"><span class="ml-2">English</span></label>
-                            <label class="inline-flex items-center"><input type="checkbox" name="languageFluency" value="Hindi" class="form-checkbox"><span class="ml-2">Hindi</span></label>
-                            <label class="inline-flex items-center"><input type="checkbox" name="languageFluency" value="Marathi" class="form-checkbox"><span class="ml-2">Marathi</span></label>
-                            <label class="inline-flex items-center"><input type="checkbox" name="languageFluency" value="Gujarati" class="form-checkbox"><span class="ml-2">Gujarati</span></label>
-                            <label class="inline-flex items-center"><input type="checkbox" name="languageFluency" value="Bengali" class="form-checkbox"><span class="ml-2">Bengali</span></label>
-                            </div>
-                    </div>
                 </div>
 
                 <div>
@@ -766,50 +810,22 @@ p.text-red-600 {
                 </div>
 
                 <div>
-                    <h2 data-translate="servicesOffered">Services Offered</h2>
-                    <p class="mb-4" data-translate="selectServices">Select all services you provide:</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" name="service" value="Oil Change" class="form-checkbox">
-                            <span class="ml-2" data-translate="oilChange">Oil Change</span>
-                        </label>
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" name="service" value="Tire Rotation" class="form-checkbox">
-                            <span class="ml-2" data-translate="tireRotation">Tire Rotation</span>
-                        </label>
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" name="service" value="Brake Inspection" class="form-checkbox">
-                            <span class="ml-2" data-translate="brakeInspection">Brake Inspection</span>
-                        </label>
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" name="service" value="Engine Diagnostics" class="form-checkbox">
-                            <span class="ml-2" data-translate="engineDiagnostics">Engine Diagnostics</span>
-                        </label>
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" name="service" value="Battery Replacement" class="form-checkbox">
-                            <span class="ml-2" data-translate="batteryReplacement">Battery Replacement</span>
-                        </label>
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" name="service" value="AC Repair" class="form-checkbox">
-                            <span class="ml-2" data-translate="acRepairService">AC Repair</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div>
                     <h2 data-translate="carCompaniesServiced">Car Companies Serviced</h2>
                     <div class="mb-4">
                         <label for="carCompanySearch" class="block" data-translate="searchCarCompanies">Search and Add Car Companies:</label>
                         <div class="relative">
                             <input type="text" id="carCompanySearch" placeholder="Type to search e.g., Maruti, Honda">
                             <ul id="carCompanyDropdown" class="hidden">
-                                </ul>
+                                <!-- Options will be dynamically loaded here -->
+                            </ul>
                         </div>
+                        <button type="button" id="selectAllCarBrandsBtn" class="btn-secondary mt-2">Select All Car Brands</button>
                     </div>
                     <div class="mb-4">
                         <label class="block" data-translate="selectedCompanies">Selected Companies:</label>
                         <div id="selectedCarBrands">
-                            </div>
+                            <!-- Selected brands will appear here -->
+                        </div>
                         <input type="hidden" id="hiddenCarCompanies" name="selectedCarCompanies">
                     </div>
                 </div>
@@ -855,35 +871,60 @@ p.text-red-600 {
     const progressText = document.getElementById('progressText');
     const formSubheading = document.getElementById('formSubheading');
 
-    // Car Company Selection Elements (from original page 5)
+    // Car Company Selection Elements
     const carCompanySearchInput = document.getElementById('carCompanySearch');
     const carCompanyDropdown = document.getElementById('carCompanyDropdown');
     const selectedCarBrandsContainer = document.getElementById('selectedCarBrands');
     const hiddenCarCompaniesInput = document.getElementById('hiddenCarCompanies');
+    const selectAllCarBrandsBtn = document.getElementById('selectAllCarBrandsBtn');
 
     // Custom Message Box Elements
     const messageBox = document.getElementById('messageBox');
     const messageBoxText = document.getElementById('messageBoxText');
     const messageBoxCloseButton = document.getElementById('messageBoxClose');
 
+    // Modified Elements for the updates
+    const locationInput = document.getElementById('location');
+    const getLocationBtn = document.getElementById('getLocationBtn');
+    const locationInstruction = document.getElementById('locationInstruction');
+    const locationError = document.getElementById('locationError');
+    const toolsOwnedCheckboxes = document.querySelectorAll('input[name="toolsOwned"]');
+    const selectedToolsDisplay = document.getElementById('selectedToolsDisplay');
+    const hiddenToolsOwnedInput = document.getElementById('hiddenToolsOwned');
+    const availableDaysRadios = document.querySelectorAll('input[name="availableDays"]');
+
+
     // Form State Variables
     let currentStep = 0; // Start at the first step (index 0)
     const totalSteps = formSteps.length;
     let allFormData = {}; // Object to store all form data
 
-    // Car Company Data (from original page 5)
-    const allCarCompanies = [
-        'Maruti Suzuki', 'Hyundai', 'Tata Motors', 'Mahindra', 'Honda', 'Toyota', 'Kia',
-        'MG Motor', 'Renault', 'Skoda', 'Volkswagen', 'Nissan', 'Ford', 'Jeep',
-        'Citroen', 'Audi', 'BMW', 'Mercedes-Benz', 'Volvo', 'Land Rover', 'Porsche',
-        'Ferrari', 'Lamborghini', 'Rolls-Royce', 'Bentley', 'Aston Martin', 'Maserati',
-        'Jaguar', 'Lexus', 'Mini', 'Datsun', 'Fiat', 'Mitsubishi', 'Chevrolet'
-    ].sort();
+    // Car Company Data (Prioritizing common Indian brands at the top)
+    const indianCarBrands = ['Maruti Suzuki', 'Tata Motors', 'Mahindra'];
+    const otherCarBrands = [
+        'Hyundai', 'Honda', 'Toyota', 'Kia', 'MG Motor', 'Skoda', 'Volkswagen',
+        'Renault', 'Nissan', 'Jeep', 'Audi', 'BMW', 'Mercedes-Benz', 'Volvo',
+        'Land Rover', 'Porsche', 'Ferrari', 'Lamborghini', 'Rolls-Royce',
+        'Bentley', 'Aston Martin', 'Maserati', 'Jaguar', 'Lexus', 'Mini',
+        'Datsun', 'Fiat', 'Mitsubishi', 'Chevrolet', 'Ford'
+    ];
+
+    const allCarCompanies = [...indianCarBrands, ...otherCarBrands].sort((a, b) => {
+        // Custom sort to prioritize Indian brands, then alphabetical
+        const isAIndian = indianCarBrands.includes(a);
+        const isBIndian = indianCarBrands.includes(b);
+
+        if (isAIndian && !isBIndian) return -1;
+        if (!isAIndian && isBIndian) return 1;
+        return a.localeCompare(b); // Alphabetical for same-priority items
+    });
+
     let selectedCarCompanies = new Set(); // Use a Set for efficient tracking of unique selected companies
+    let selectedTools = new Set(); // Set to store selected tools
 
     // **IMPORTANT**: Replace this with your deployed Google Apps Script Web App URL
     // This URL will be generated after you complete Part 3.
-    const GOOGLE_SHEET_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyUlTSpyVoYK8v1Lb67mdC7e7HEn3k5ACdcoDCo8ycTM-oJQxZ2NnuyGmB2fRh2qh9f/exec'; 
+    const GOOGLE_SHEET_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyUlTSpyVoYK8v1Lb67mdC7e7HEn3k5ACd5Cj2yQn-hPz3nO6qIuFqg1FvD123/exec'; // Placeholder URL
 
     // --- Helper Functions ---
 
@@ -912,7 +953,6 @@ p.text-red-600 {
      */
     function updateProgress() {
         // Calculate progress percentage. For 5 steps, 0% at step 1, 100% at step 5.
-        // (currentStep / (totalSteps - 1)) * 100 ensures 0% for first step, 100% for last.
         const progressPercentage = (currentStep / (totalSteps - 1)) * 100;
         progressBar.style.width = `${progressPercentage}%`;
         progressText.textContent = `Step ${currentStep + 1} of ${totalSteps}`;
@@ -984,6 +1024,11 @@ p.text-red-600 {
         if (currentStep === 4) {
             stepData.selectedCarCompanies = Array.from(selectedCarCompanies); // Convert Set to Array for storage
         }
+        // Special handling for selectedTools from Step 3 (index 2)
+        if (currentStep === 2) {
+            stepData.selectedTools = Array.from(selectedTools); // Convert Set to Array for storage
+        }
+
 
         // Merge the current step's data into the overall form data object
         Object.assign(allFormData, stepData);
@@ -1028,6 +1073,23 @@ p.text-red-600 {
                 selectedCarCompanies = new Set(allFormData.selectedCarCompanies); // Restore Set from Array
                 renderSelectedBrands(); // Re-render the display of selected brands
             }
+
+            // Special handling for selectedTools on Step 3 (index 2)
+            if (currentStep === 2 && allFormData.selectedTools) {
+                selectedTools = new Set(allFormData.selectedTools); // Restore Set from Array
+                renderSelectedTools(); // Re-render the display of selected tools
+                // Check the checkboxes based on loaded 'selectedTools'
+                toolsOwnedCheckboxes.forEach(checkbox => {
+                    checkbox.checked = selectedTools.has(checkbox.value);
+                });
+            }
+
+            // Restore location input state if it was set
+            if (currentStep === 0 && allFormData.location) {
+                locationInput.value = allFormData.location;
+                locationInstruction.textContent = "Thank You For Giving Your Location";
+                locationInstruction.style.color = '#28a745';
+            }
         }
     }
 
@@ -1037,26 +1099,68 @@ p.text-red-600 {
      */
     function validateCurrentStep() {
         const currentFormStepElement = formSteps[currentStep];
-        // Select all elements that have the 'required' attribute
-        const requiredInputs = currentFormStepElement.querySelectorAll('[required]');
         let isValid = true;
+        let errorMessage = '';
 
-        requiredInputs.forEach(input => {
-            // checkValidity() is a native HTML5 validation method
+        // Validate all required inputs using native HTML5 validation
+        const requiredInputs = currentFormStepElement.querySelectorAll('[required]');
+        for (const input of requiredInputs) {
             if (!input.checkValidity()) {
                 isValid = false;
-                // The browser will typically show a default validation message.
-                // You could add custom visual feedback here if needed (e.g., add a red border).
+                errorMessage = 'Please fill in all required fields correctly.';
+                break; // Stop at the first invalid required field
             }
-        });
+        }
 
-        // Custom validation for terms & conditions checkboxes on the final step
-        if (currentStep === 4) { // Assuming Step 5 is index 4
+        // Specific validation for Step 1 (Location)
+        if (currentStep === 0 && isValid) {
+            const currentLocationValue = locationInput.value.trim();
+            if (currentLocationValue === "") {
+                isValid = false;
+                errorMessage = "Location is required. Please get location or enter manually.";
+                locationError.textContent = errorMessage;
+                locationError.style.display = 'block';
+            } else {
+                locationError.style.display = 'none'; // Hide error if valid
+            }
+        }
+
+        // Specific validation for Step 3 (Tools & Equipment, Available Days)
+        if (currentStep === 2 && isValid) {
+            // Validate Available Days radio group
+            const isAvailableDaysSelected = Array.from(availableDaysRadios).some(radio => radio.checked);
+            if (!isAvailableDaysSelected) {
+                isValid = false;
+                errorMessage = 'Please select your preferred working days.';
+            }
+
+            // Validate Tools & Equipment Owned (at least one must be selected)
+            if (selectedTools.size === 0 && isValid) { // Only check if isValid is still true
+                isValid = false;
+                errorMessage = 'Please select at least one Tool & Equipment Owned.';
+            }
+        }
+
+        // Specific validation for Step 5 (Car Companies, Terms & Conditions)
+        if (currentStep === 4 && isValid) {
+            // Validate Car Companies Serviced (at least one must be selected)
+            if (selectedCarCompanies.size === 0) {
+                isValid = false;
+                errorMessage = 'Please select at least one Car Company Serviced.';
+            }
+
+            // Validate terms & conditions checkboxes
             const agreeTerms = document.getElementById('agreeTerms');
             const confirmAccuracy = document.getElementById('confirmAccuracy');
             if (!agreeTerms.checked || !confirmAccuracy.checked) {
                 isValid = false;
+                errorMessage = 'Please agree to the Terms & Conditions and confirm accuracy.';
             }
+        }
+
+        // If validation failed, display the message box with the collected error
+        if (!isValid) {
+            showMessageBox(errorMessage);
         }
 
         return isValid;
@@ -1066,17 +1170,13 @@ p.text-red-600 {
      * Attempts to move to the next step. Performs validation first.
      */
     function nextStep() {
-        if (!validateCurrentStep()) {
-            // If validation fails, show a custom message box.
-            showMessageBox('Please fill in all required fields correctly before proceeding.');
-            return; // Stop execution if validation fails
-        }
+        if (validateCurrentStep()) { // Only proceed if validation passes
+            saveFormData(); // Save data before moving to the next step
 
-        saveFormData(); // Save data before moving to the next step
-
-        // Move to the next step if not on the last step
-        if (currentStep < totalSteps - 1) {
-            showStep(currentStep + 1);
+            // Move to the next step if not on the last step
+            if (currentStep < totalSteps - 1) {
+                showStep(currentStep + 1);
+            }
         }
     }
 
@@ -1091,6 +1191,69 @@ p.text-red-600 {
         }
     }
 
+    /**
+     * Handles getting the user's current geolocation.
+     */
+    function getUserLocation() {
+        getLocationBtn.disabled = true;
+        getLocationBtn.textContent = "Fetching...";
+        locationInput.placeholder = "Fetching location...";
+        locationError.style.display = 'none';
+        locationInstruction.textContent = "Fetching your location...";
+        locationInstruction.style.color = ''; // Reset color
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    locationInput.value = `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
+                    locationError.style.display = 'none';
+                    locationInstruction.textContent = "Thank You For Giving Your Location";
+                    locationInstruction.style.color = '#28a745'; // Green for success
+
+                    getLocationBtn.disabled = false;
+                    getLocationBtn.textContent = "Get Location";
+                },
+                (error) => {
+                    console.error("Geolocation Error:", error);
+                    locationInput.value = "";
+                    locationInput.placeholder = "Location permission denied or failed. Enter manually.";
+                    let errorMessage = "Could not get location. Please enable permissions or enter manually.";
+                    if (error.code === error.PERMISSION_DENIED) {
+                        errorMessage = "Location permission denied. Please enable location services in your browser settings or enter manually.";
+                    } else if (error.code === error.POSITION_UNAVAILABLE) {
+                        errorMessage = "Location information is unavailable. Please try again or enter manually.";
+                    } else if (error.code === error.TIMEOUT) {
+                        errorMessage = "Fetching location timed out. Please try again or enter manually.";
+                    }
+                    locationError.textContent = errorMessage;
+                    locationError.style.display = 'block';
+                    locationInstruction.textContent = "Please click on \"Get Location\" button so we can get your correct location, or enter manually.";
+                    locationInstruction.style.color = '#dc3545'; // Red for error
+
+                    getLocationBtn.disabled = false;
+                    getLocationBtn.textContent = "Get Location";
+                },
+                {
+                    timeout: 10000,
+                    enableHighAccuracy: true
+                }
+            );
+        } else {
+            console.warn("Geolocation is not supported.");
+            locationInput.value = "";
+            locationInput.placeholder = "Geolocation not supported. Enter manually.";
+            locationError.textContent = "Geolocation is not supported by your browser. Please enter manually.";
+            locationError.style.display = 'block';
+            locationInstruction.textContent = "Please click on \"Get Location\" button so we can get your correct location, or enter manually.";
+            locationInstruction.style.color = '#dc3545'; // Red for error
+
+            getLocationBtn.disabled = true;
+            getLocationBtn.textContent = "Not Supported";
+        }
+    }
+
     // --- Event Listeners for Navigation Buttons ---
     nextButtons.forEach(button => {
         button.addEventListener('click', nextStep);
@@ -1100,21 +1263,40 @@ p.text-red-600 {
         button.addEventListener('click', prevStep);
     });
 
-    // --- Car Company Search and Selection Logic (Specific to Step 5) ---
+    // Event listener for Get Location button
+    if (getLocationBtn) {
+        getLocationBtn.addEventListener('click', getUserLocation);
+    }
+
+    // --- Car Company Search and Selection Logic ---
 
     /**
      * Renders the dropdown list of car companies based on search term and selected companies.
+     * Includes "Select All Car Brands" as an option.
      * @param {string} searchTerm - The text entered in the search input.
      */
     const renderDropdown = (searchTerm = '') => {
         carCompanyDropdown.innerHTML = ''; // Clear previous options
         const filteredCompanies = allCarCompanies.filter(company =>
-            // Filter by search term (case-insensitive) and exclude already selected companies
             company.toLowerCase().includes(searchTerm.toLowerCase()) && !selectedCarCompanies.has(company)
         );
 
-        if (filteredCompanies.length > 0 && searchTerm.length > 0) {
-            // If there are filtered companies and a search term, display the dropdown
+        if (filteredCompanies.length > 0 || searchTerm.length > 0) {
+            // Add "Select All Car Brands" option if not all are selected and search term isn't filtering it out
+            if (selectedCarCompanies.size < allCarCompanies.length &&
+                ("select all car brands".includes(searchTerm.toLowerCase()) || searchTerm === '')) {
+                const liAll = document.createElement('li');
+                liAll.textContent = "Select All Car Brands";
+                liAll.className = 'dropdown-item';
+                liAll.addEventListener('click', () => {
+                    addAllCarCompanies();
+                    carCompanySearchInput.value = '';
+                    carCompanyDropdown.classList.add('hidden');
+                    renderDropdown();
+                });
+                carCompanyDropdown.appendChild(liAll);
+            }
+
             filteredCompanies.forEach(company => {
                 const li = document.createElement('li');
                 li.textContent = company;
@@ -1127,7 +1309,13 @@ p.text-red-600 {
                 });
                 carCompanyDropdown.appendChild(li);
             });
-            carCompanyDropdown.classList.remove('hidden'); // Show the dropdown
+
+            if (carCompanyDropdown.children.length > 0) {
+                carCompanyDropdown.classList.remove('hidden'); // Show the dropdown if there are options
+            } else {
+                carCompanyDropdown.classList.add('hidden'); // Hide if no results
+            }
+
         } else {
             carCompanyDropdown.classList.add('hidden'); // Hide if no results or no search term
         }
@@ -1146,6 +1334,17 @@ p.text-red-600 {
     };
 
     /**
+     * Adds all car companies to the selected list.
+     */
+    const addAllCarCompanies = () => {
+        allCarCompanies.forEach(company => selectedCarCompanies.add(company));
+        renderSelectedBrands();
+        updateHiddenInput();
+        carCompanyDropdown.classList.add('hidden'); // Hide dropdown after selecting all
+    };
+
+
+    /**
      * Removes a car company from the selected list.
      * @param {string} company - The name of the car company to remove.
      */
@@ -1161,13 +1360,16 @@ p.text-red-600 {
      */
     const renderSelectedBrands = () => {
         selectedCarBrandsContainer.innerHTML = ''; // Clear existing tags
-        selectedCarCompanies.forEach(company => {
-            const span = document.createElement('span');
-            span.className = 'selected-tag'; // For styling
-            // Use Font Awesome 'times-circle' icon for removal button
-            span.innerHTML = `${company} <button type="button" class="remove-tag-btn" data-company="${company}"><i class="fas fa-times-circle"></i></button>`;
-            selectedCarBrandsContainer.appendChild(span);
-        });
+        if (selectedCarCompanies.size === 0) {
+            selectedCarBrandsContainer.innerHTML = '<span class="text-sm text-gray-500" data-translate="noCompaniesSelected">No companies selected yet.</span>';
+        } else {
+            selectedCarCompanies.forEach(company => {
+                const span = document.createElement('span');
+                span.className = 'selected-tag'; // For styling
+                span.innerHTML = `${company} <button type="button" class="remove-tag-btn" data-company="${company}"><i class="fas fa-times-circle"></i></button>`;
+                selectedCarBrandsContainer.appendChild(span);
+            });
+        }
     };
 
     /**
@@ -1179,14 +1381,19 @@ p.text-red-600 {
         hiddenCarCompaniesInput.value = JSON.stringify(Array.from(selectedCarCompanies));
     };
 
-    // Event listener for search input (only if element exists)
+    // Event listener for car company search input
     if (carCompanySearchInput) {
         carCompanySearchInput.addEventListener('input', (e) => {
             renderDropdown(e.target.value);
         });
     }
 
-    // Hide dropdown when clicking outside of the search input or dropdown itself
+    // Event listener for "Select All Car Brands" button
+    if (selectAllCarBrandsBtn) {
+        selectAllCarBrandsBtn.addEventListener('click', addAllCarCompanies);
+    }
+
+    // Hide car company dropdown when clicking outside of the search input or dropdown itself
     document.addEventListener('click', (e) => {
         if (carCompanySearchInput && carCompanyDropdown &&
             !carCompanySearchInput.contains(e.target) && !carCompanyDropdown.contains(e.target)) {
@@ -1194,10 +1401,9 @@ p.text-red-600 {
         }
     });
 
-    // Event listener for removing selected brands (delegated to container)
+    // Event listener for removing selected car brands (delegated to container)
     if (selectedCarBrandsContainer) {
         selectedCarBrandsContainer.addEventListener('click', (e) => {
-            // Check if the clicked element or its parent is the remove button
             if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
                 const company = e.target.closest('button').dataset.company;
                 if (company) {
@@ -1207,12 +1413,70 @@ p.text-red-600 {
         });
     }
 
+    // --- Tools & Equipment Owned Logic ---
+    /**
+     * Renders the selected tools as interactive tags.
+     */
+    const renderSelectedTools = () => {
+        selectedToolsDisplay.innerHTML = ''; // Clear existing tags
+        if (selectedTools.size === 0) {
+            selectedToolsDisplay.innerHTML = '<span class="text-sm text-gray-500" data-translate="noToolsSelected">No tools selected yet.</span>';
+        } else {
+            selectedTools.forEach(tool => {
+                const span = document.createElement('span');
+                span.className = 'selected-item-tag';
+                span.innerHTML = `${tool} <button type="button" class="remove-item-btn" data-tool="${tool}"><i class="fas fa-times-circle"></i></button>`;
+                selectedToolsDisplay.appendChild(span);
+            });
+        }
+        updateHiddenToolsInput(); // Update hidden input whenever display changes
+    };
+
+    /**
+     * Updates the hidden input field with a JSON string of selected tools.
+     */
+    const updateHiddenToolsInput = () => {
+        hiddenToolsOwnedInput.value = JSON.stringify(Array.from(selectedTools));
+    };
+
+
+    // Event listener for Tools & Equipment checkboxes
+    toolsOwnedCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                selectedTools.add(e.target.value);
+            } else {
+                selectedTools.delete(e.target.value);
+            }
+            renderSelectedTools();
+        });
+    });
+
+    // Event listener for removing selected tools (delegated to container)
+    if (selectedToolsDisplay) {
+        selectedToolsDisplay.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
+                const tool = e.target.closest('button').dataset.tool;
+                if (tool) {
+                    selectedTools.delete(tool);
+                    // Uncheck the corresponding checkbox
+                    const checkbox = document.querySelector(`input[name="toolsOwned"][value="${tool}"]`);
+                    if (checkbox) {
+                        checkbox.checked = false;
+                    }
+                    renderSelectedTools();
+                }
+            }
+        });
+    }
+
+
     // --- Final Form Submission Logic ---
     form.addEventListener('submit', async (event) => {
         event.preventDefault(); // Prevent the browser's default form submission
 
         if (!validateCurrentStep()) {
-            showMessageBox('Please fill in all required fields correctly before submitting.');
+            // showMessageBox is already called inside validateCurrentStep
             return;
         }
 
@@ -1241,8 +1505,21 @@ p.text-red-600 {
                 form.reset(); // Reset all form fields
                 selectedCarCompanies.clear(); // Clear car companies Set
                 renderSelectedBrands(); // Update selected brands display
+                selectedTools.clear(); // Clear selected tools Set
+                renderSelectedTools(); // Update selected tools display
                 updateHiddenInput(); // Update hidden input
+                updateHiddenToolsInput(); // Update hidden tools input
                 showStep(0); // Go back to the first step of the form
+                 // Reset location input state
+                locationInput.value = "";
+                locationInput.placeholder = "Location not set";
+                locationInstruction.textContent = "Please click on \"Get Location\" button so we can get your correct location, or enter manually.";
+                locationInstruction.style.color = '#dc3545'; // Reset to error color
+
+                // Uncheck all tools checkboxes
+                toolsOwnedCheckboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
             });
 
         } catch (error) {
@@ -1263,8 +1540,9 @@ p.text-red-600 {
 
     // Display the first step of the form when the page loads
     showStep(0);
+    renderSelectedTools(); // Render selected tools on initial load
+    renderSelectedBrands(); // Render selected car brands on initial load
 });
-
     </script>
 </body>
 </html>
