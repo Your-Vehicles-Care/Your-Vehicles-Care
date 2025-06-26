@@ -6,1512 +6,396 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Terms and Conditions - Your Vehicles Care</title>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap"
-        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
-
-
     <style>
-        @import "tailwindcss";
-
-        /* Apply box-sizing to all elements for consistent padding/border handling */
-        *,
-        *:before,
-        *:after {
-            box-sizing: border-box;
-        }
-
-        /* Define CSS variables for a consistent color palette (Default White Theme) */
+        /* ==========================================================================
+           1. CSS Variables & Theming (From index.html)
+           ========================================================================== */
         :root {
-            --primary-light: #87cefa;
-            /* Light Sky Blue */
-            --primary-dark: #0077cc;
-            /* Deeper Blue for contrast */
-            --secondary-light: #ffa500;
-            /* Orange */
-            --secondary-dark: #ff8c00;
-            /* Darker Orange */
-            --background-light: #f0f8ff;
-            /* Alice Blue */
-            --text-light: #333;
-            /* Dark Grey */
-            --surface-light: #ffffff;
-            /* White */
-            --card-bg-light: #ffffff;
-            --border-light: #d1d5db;
-            /* Gray 300 */
-            --darker-blue: #005f99;
-            /* Added a darker blue variable */
-
-            /* Theme Variables (set to light values as it's the only theme) */
-            --bg-color: var(--background-light);
-            --text-color: var(--text-light);
-            --surface-color: var(--surface-light);
-            --card-bg-color: var(--card-bg-light);
-            --border-color: var(--border-light);
-            --header-text-color: white;
-            /* Header text color */
-            --header-hover-color: var(--primary-light);
-            /* Header hover color */
-            --button-primary-bg: var(--primary-dark);
-            --button-primary-hover-bg: var(--darker-blue);
-            --button-primary-text: white;
-            --button-secondary-bg: var(--secondary-light);
-            --button-secondary-hover-bg: var(--secondary-dark);
-            --button-secondary-text: #1a202c;
-            /* Dark text for yellow buttons */
-            --button-border-color: transparent;
-            --button-whatsapp-bg: #25D366;
-            --button-whatsapp-hover-bg: #128C7E;
-            --button-call-bg: #023E8A;
-            --button-call-hover-bg: #001f4d;
-            --table-header-bg: var(--primary-dark);
-            --table-header-text: white;
-            --table-row-bg-odd: white;
-            --table-row-bg-even: #f3f4f6;
-            /* Tailwind gray-50 */
-            --table-border-color: #e5e7eb;
-            /* Tailwind gray-200 */
-            --footer-bg: #1a202c;
-            /* Dark footer */
-            --footer-text: #d1d5db;
-            /* Light gray text */
-            --footer-heading: white;
-            /* White headings */
-            --footer-link-hover: white;
-            /* White link hover */
-
-            /* Sticky Buttons Variables */
-            --sticky-button-bg: #0077cc;
-            /* Blue */
-            --sticky-button-hover-bg: #005f99;
-            /* Darker Blue */
-            --sticky-button-text: white;
-            --sticky-whatsapp-bg: #25D366;
-            --sticky-whatsapp-hover-bg: #128C7E;
-            --sticky-whatsapp-text: white;
-            --sticky-call-bg: #023E8A;
-            --sticky-call-hover-bg: #001f4d;
-            --sticky-call-text: white;
+            --background: #ffffff;
+            --foreground: #020817;
+            --card: #ffffff;
+            --card-foreground: #020817;
+            --primary: #1e40af; 
+            --primary-foreground: #f9fafb; 
+            --primary-light: #3b82f6; 
+            --muted: #f3f4f6;
+            --muted-foreground: #6b7280;
+            --accent: #eef2ff;
+            --accent-foreground: #3730a3;
+            --destructive: #dc2626;
+            --border: #e5e7eb;
+            --ring: #3b82f6;
+            --radius: 0.75rem;
+            --highlight: #f59e0b;
+            --header-background: rgba(2, 8, 23, 0.8);
+            --header-background-scrolled: rgba(2, 8, 23, 0.85);
+            --header-text: #ffffff;
+            --footer-background: #0f172a;
+            --footer-text: #94a3b8;
         }
 
-        /* For WebKit browsers (Chrome, Safari, newer Edge) - Hide scrollbar */
-        body::-webkit-scrollbar {
-            display: none;
+        .dark {
+            --background: #020817;
+            --foreground: #f8fafc;
+            --card: #0f172a;
+            --card-foreground: #f8fafc;
+            --primary: #60a5fa;
+            --primary-foreground: #020817;
+            --primary-light: #93c5fd;
+            --muted: #1e293b;
+            --muted-foreground: #94a3b8;
+            --accent: #312e81;
+            --accent-foreground: #e0e7ff;
+            --destructive: #ef4444;
+            --border: #1e293b;
+            --ring: #60a5fa;
+            --header-background: rgba(2, 8, 23, 0.6);
+            --header-background-scrolled: rgba(2, 8, 23, 0.85);
+            --footer-background: #020817;
+            --secondary: #1e293b; 
         }
 
-        /* Apply base styles to body using theme variables */
+        /* ==========================================================================
+           2. General Body & Typography Styles (From index.html)
+           ========================================================================== */
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
+            background-color: var(--background);
+            color: var(--foreground);
+            font-family: 'Inter', sans-serif;
             overflow-x: hidden;
-            /* Prevent horizontal scrollbar */
-            width: 100%;
-            /* Ensure body doesn't exceed 100% width */
-            /* Needed for absolute/fixed positioning children if any */
-            /* Added min-height to ensure background is visible */
-            min-height: calc(100vh - 60px - 150px); /* Estimate header at 60px, footer at 150px */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Apply heading font to all heading levels using theme variables */
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
+        h1, h2, h3, h4, h5, h6 {
             font-family: 'Poppins', sans-serif;
-            color: var(--text-color);
+            color: var(--card-foreground);
+            font-weight: 700;
         }
 
-        /* Custom gradient background class */
-        .gradient-background {
-            background: linear-gradient(46deg, var(--primary-dark) 0%, var(--primary-light) 100%);
-        }
-
-        /* Sticky Header */
+        /* ==========================================================================
+           3. Header & Navigation (From index.html)
+           ========================================================================== */
         header {
             position: sticky;
             top: 0;
             z-index: 50;
-            /* Add gradient background to header */
-            background: linear-gradient(90deg, #000000 0%, #0077cc 100%);
-            /* Black to Blue gradient */
-            /* Adjust padding for a thinner header on desktop */
-            padding-top: 0.5rem;
-            /* Reduced from 0.75rem */
-            padding-bottom: 0.5rem;
-            /* Reduced from 0.75rem */
-            width: 100%;
-            /* Ensure header doesn't exceed 100% width */
+            background-color: var(--header-background);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            color: var(--header-text);
+            border-bottom: 1px solid transparent;
         }
 
-        /* Header scrolled state */
         header.scrolled {
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+             background-color: var(--header-background-scrolled);
+             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .dark header.scrolled {
+             border-bottom: 1px solid var(--border);
         }
 
+        header nav a {
+            position: relative;
+            color: var(--header-text);
+            padding: 8px 4px;
+            transition: color 0.3s ease;
+        }
+        
+        header nav a:hover {
+            color: var(--primary-light);
+        }
 
-        /* Navbar Styling */
-        header .container {
-            margin-left: auto;
-            margin-right: auto;
-            padding-left: 1rem;
-            padding-right: 1rem;
-            display: flex;
-            /* Use flexbox */
-            justify-content: space-between;
-            /* Space between title and nav/language */
-            align-items: center;
+        header nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--primary-light);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        header nav a:hover::after, header nav a.active::after {
             width: 100%;
-            /* Ensure container is within header width */
         }
 
-        /* Give the title space to the right */
-        header .site-title-container {
-            margin-right: 2rem;
-            /* Increase space to the right of the title */
-        }
-
-
-        nav {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            font-size: 0.9rem;
-            flex-wrap: wrap;
-            flex-grow: 1;
-            /* Allow nav to grow and push to the right */
-            justify-content: flex-end;
-            /* Align items to the right */
-        }
-
-        nav a {
-            color: white;
-            padding: 0.3rem 0;
-            transition: color 0.3s ease, transform 0.2s ease;
-            text-decoration: none;
-        }
-
-        nav a:hover {
-            color: var(--header-hover-color);
-            transform: translateY(-2px);
-        }
-
-        /* Mobile Menu Button (Hamburger) */
-        .mobile-menu-button {
-            display: none;
-            /* Hidden by default on desktop */
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 100;
-            /* Increased z-index */
-        }
-
-        /* Mobile Navigation Slider Window */
+        /* Mobile Navigation */
         .mobile-nav-slider {
             position: fixed;
             top: 0;
-            right: -250px;
-            /* Start off-screen */
-            width: 250px;
-            max-width: 100%;
-            /* Ensure slider doesn't exceed screen width */
-            height: 100%;
-            /* Apply blue to black gradient background */
-            background: linear-gradient(90deg, #0077cc 0%, #000000 100%);
-            /* Blue to Black gradient */
-            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
-            transition: right 0.3s ease-in-out;
-            z-index: 55;
-            /* Below the button, above content */
-            padding: 2rem 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background-color: var(--card);
+            z-index: 200;
+            transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: -5px 0 20px rgba(0,0,0,0.1);
         }
-
         .mobile-nav-slider.open {
             right: 0;
-            /* Slide in */
         }
-
-        .mobile-nav-slider a {
-            color: white;
-            font-size: 1.1rem;
-            text-decoration: none;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            transition: color 0.3s ease;
-        }
-
-        .mobile-nav-slider a:last-child {
-            border-bottom: none;
-        }
-
-        .mobile-nav-slider a:hover {
-            color: var(--header-hover-color);
-        }
-
-        /* Overlay for mobile menu */
         .mobile-nav-overlay {
-            display: none;
-            /* Hidden by default */
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 52;
-            /* Below the slider */
-            cursor: pointer;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 199;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
         }
-
         .mobile-nav-overlay.visible {
-            display: block;
-        }
-
-
-        /* Custom style for visually hidden radio button but selectable label */
-        .car-option input[type="radio"] {
-            position: absolute;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .car-option label {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            border: 2px solid transparent;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            background-color: var(--card-bg-color);
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            margin-bottom: 0.75rem;
-            color: var(--text-color);
-        }
-
-        .car-option input[type="radio"]:checked+label {
-            border-color: var(--primary-dark);
-            background-color: var(--background-light);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-
-        .car-option label:hover:not(:has(input[type="radio"]:checked)) {
-            border-color: var(--primary-light);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-
-        .car-image {
-            width: 80px;
-            height: auto;
-            border-radius: 0.375rem;
-            flex-shrink: 0;
-        }
-
-        .car-details {
-            flex-grow: 1;
-        }
-
-        /* Styling for fuel type radio buttons */
-        .fuel-type-option input[type="radio"] {
-            position: absolute;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .fuel-type-option label {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 9999px;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-            background-color: var(--surface-color);
-            color: var(--text-color);
-        }
-
-        .fuel-type-option input[type="radio"]:checked+label {
-            background-color: var(--secondary-dark);
-            color: white;
-            border-color: var(--secondary-dark);
-        }
-
-        .fuel-type-option label:hover:not(:has(input[type="radio"]:checked)) {
-            background-color: var(--border-color);
-        }
-
-
-        /* Custom Styles for sections */
-        .section-title {
-            font-size: 2.25rem;
-            /* Default size */
-            font-weight: 700;
-            margin-bottom: 3rem;
-            color: var(--text-color);
-            text-align: center;
-            max-width: 100%;
-            /* Ensure title doesn't cause overflow */
-        }
-
-        .section-subtitle {
-            font-size: 1.5rem;
-            /* Default size */
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--primary-dark);
-            max-width: 100%;
-            /* Ensure subtitle doesn't cause overflow */
-        }
-
-        .info-card {
-            background-color: var(--card-bg-color);
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            padding: 2rem;
-            /* Default padding */
-            margin-bottom: 2.5rem;
-            color: var(--text-color);
-            transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
-            width: 100%;
-            /* Ensure info card is responsive */
-            max-width: 100%;
-            /* Ensure info card doesn't cause overflow */
-        }
-
-        .info-highlight {
-            background-color: var(--bg-color);
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            /* Default padding */
-            text-align: center;
-            transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
-            width: 100%;
-            /* Ensure info highlight is responsive */
-            max-width: 100%;
-            /* Ensure info highlight doesn't cause overflow */
-        }
-
-        .info-highlight .value {
-            font-size: 2.25rem;
-            /* Default size */
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .info-highlight .label {
-            font-size: 1rem;
-            /* Default size */
-            color: var(--text-color);
-        }
-
-        .social-icons a {
-            color: var(--text-color);
-            transition: color 0.3s ease-in-out;
-        }
-
-        .social-icons a:hover {
-            color: var(--primary-dark);
-        }
-
-
-        /* In-section Call/WhatsApp Buttons */
-        .section-contact-buttons {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1.5rem;
-            margin-top: 2.5rem;
-            flex-wrap: wrap;
-            width: 100%;
-            /* Ensure button container is responsive */
-            max-width: 100%;
-            /* Ensure button container doesn't cause overflow */
-        }
-
-        .section-contact-buttons a {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            border-radius: 9999px;
-            font-weight: 600;
-            transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-            border: 2px solid;
-            text-decoration: none;
-        }
-
-        .section-contact-buttons a:hover {
-            transform: translateY(-2px);
-        }
-
-        .section-contact-buttons a:active {
-            transform: scale(0.95);
-        }
-
-
-        .section-contact-buttons .call-btn {
-            color: var(--button-primary-text);
-            border-color: var(--button-primary-bg);
-            background-color: var(--button-primary-bg);
-        }
-
-        .section-contact-buttons .call-btn:hover {
-            background-color: var(--button-primary-hover-bg);
-            border-color: var(--button-primary-hover-bg);
-            color: var(--button-primary-text);
-        }
-
-        .section-contact-buttons .whatsapp-btn {
-            color: var(--button-whatsapp-bg);
-            border-color: var(--button-whatsapp-bg);
-            background-color: transparent;
-        }
-
-        .section-contact-buttons .whatsapp-btn:hover {
-            background-color: var(--button-whatsapp-bg);
-            color: white;
-        }
-
-
-        /* Update Hero Heading Font Size */
-        #hero h2 {
-            font-size: 3.5rem;
-            /* Default size */
-            line-height: 1.2;
-            max-width: 100%;
-            /* Ensure heading doesn't cause overflow */
-        }
-
-        /* Adjust some Tailwind classes for new colors */
-        .bg-blue-600 {
-            background-color: var(--button-primary-bg);
-        }
-
-        .hover\:bg-blue-700:hover {
-            background-color: var(--button-primary-hover-bg);
-        }
-
-        .focus\:ring-blue-500:focus {
-            --tw-ring-color: var(--primary-light);
-        }
-
-        .bg-yellow-500 {
-            background-color: var(--button-secondary-bg);
-        }
-
-        .hover\:bg-yellow-600:hover {
-            background-color: var(--button-secondary-hover-bg);
-        }
-
-        .focus\:ring-yellow-400:focus {
-            --tw-ring-color: var(--secondary-light);
-        }
-
-        .text-blue-700 {
-            color: var(--primary-dark);
-        }
-
-        .text-green-600 {
-            color: var(--secondary-dark);
-        }
-
-        .text-yellow-800 {
-            color: var(--secondary-dark);
-        }
-
-        .border-yellow-200 {
-            border-color: var(--secondary-light);
-        }
-
-        .bg-yellow-50 {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
-
-
-        /* Style for the language selector - Desktop position */
-        /* Removed language selector styles */
-
-
-        /* Style for the language selector - Mobile position */
-        /* Removed language selector styles */
-
-
-        /* Style for service cards with background images */
-        .service-card {
-            background-color: var(--card-bg-color);
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            padding: 2rem;
-            margin-bottom: 2.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            position: relative;
-            overflow: hidden;
-            /* Default background image - replaced with placeholder */
-            background-image: url('images/batteryreplace.jpg');
-            /* Default Placeholder */
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-            width: 100%;
-            /* Ensure service card is responsive */
-            max-width: 100%;
-            /* Ensure service card doesn't cause overflow */
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.4);
-            /* Dark overlay for text readability */
-            z-index: 1;
-        }
-
-        .service-card>* {
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Specific background images for each service (replaced with placeholders) */
-        #services .grid>div:nth-child(1) {
-            /* Jump Start */
-            background-image: url('images/jumpstart.jpg');
-        }
-
-        #services .grid>div:nth-child(2) {
-            /* Flat Tire */
-            background-image: url('https://placehold.co/600x400/0077cc/ffffff?text=Flat+Tire');
-        }
-
-        #services .grid>div:nth-child(3) {
-            /* Fuel Delivery */
-            background-image: url("https://placehold.co/600x400/023E8A/ffffff?text=Fuel+Delivery");
-        }
-
-        #services .grid>div:nth-child(4) {
-            /* Diagnostics */
-            background-image: url('https://placehold.co/600x400/0077cc/ffffff?text=Diagnostics');
-        }
-
-        #services .grid>div:nth-child(5) {
-            /* Battery */
-            background-image: url('https://placehold.co/600x400/005f99/ffffff?text=Battery');
-        }
-
-        #services .grid>div:nth-child(6) {
-            /* Minor Repairs */
-            background-image: url('images/minor2.jpeg');
-        }
-
-        .service-card .p-3 svg {
-            /* Tailwind class for icon background */
-            color: white;
-        }
-
-        .service-card h3 {
-            /* Tailwind class for service title */
-            color: white;
-        }
-
-        /* Style for the Hero section background image and overlay */
-        #hero {
-            position: relative;
-            padding-top: 6rem;
-            padding-bottom: 6rem;
-            color: white;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
-            overflow: hidden;
-            background-size: cover;
-            background-position: center;
-            transition: background-image 1s ease-in-out;
-            /* Default hero background if slider images fail or during loading */
-            /* You can add a mobile-specific default background here if needed */
-            /* For example: */
-            /* background-image: url('path/to/your/default-hero-desktop-image.jpg'); */
-            width: 100%;
-            /* Ensure hero section is responsive */
-            max-width: 100%;
-            /* Ensure hero section doesn't cause overflow */
-        }
-
-        /* Example of a mobile-specific default hero background (optional) */
-        /* This image will be shown as the background of the #hero section on mobile BEFORE the slider loads/updates. */
-        /* The slider itself will still use the 16:9 images from the heroImages array in the script. */
-        /*
-        @media (max-width: 768px) {
-             #hero {
-                 background-image: url('path/to/your/default-hero-mobile-image-3x4.jpg'); // Example 3:4 aspect ratio image
-             }
-        }
-        */
-
-
-        #hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1;
-        }
-
-        #hero>* {
-            position: relative;
-            z-index: 2;
-        }
-
-
-        /* Swiper Slider Styles (Replacing Generic Slider Styles) */
-        .swiper-container {
-            width: 100%;
-            max-width: 800px;
-            /* Adjust max-width as needed */
-            margin: 2rem auto;
-            overflow: hidden;
-            padding: 0 15px;
-            /* Add padding to see partial slides */
-            max-width: 100%;
-            /* Ensure swiper container doesn't cause overflow */
-        }
-
-        .swiper-slide {
-            /* Swiper handles flex and width */
-            text-align: center;
-            font-size: 18px;
-            background: #fff;
-            /* Default background, will be covered by image */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 0.75rem;
-            overflow: hidden;
-            /* Ensure image respects border-radius */
-            cursor: grab;
-            /* Indicate it's draggable */
-            width: 100%;
-            /* Ensure slide takes full width */
-        }
-
-        .swiper-slide:active {
-            cursor: grabbing;
-            /* Indicate it's being dragged */
-        }
-
-
-        .swiper-slide img {
-            display: block;
-            width: 100%;
-            height: auto;
-            /* Maintain aspect ratio */
-            object-fit: cover;
-            /* Cover the slide area */
-            border-radius: 0.75rem;
-            /* Match container border-radius */
-        }
-
-        /* Swiper Navigation (Arrows) */
-
-
-        /* Adjust arrow position */
-
-
-        /* Swiper Pagination (Dots) */
-        .swiper-pagination-bullet {
-            background-color: rgba(255, 255, 255, 0.5);
-            /* Inactive dot color */
             opacity: 1;
-            /* Ensure inactive dots are visible */
-            transition: background-color 0.3s ease;
+            visibility: visible;
         }
 
-        .swiper-pagination-bullet-active {
-            background-color: white;
-            /* Active dot color */
+        /* ==========================================================================
+           4. Terms Page Specific Styles
+           ========================================================================== */
+        .theme-toggle {
+            background: var(--muted);
+            color: var(--muted-foreground);
+            border: 1px solid var(--border);
         }
 
-
-        /* Customer Reviews Section */
-        .customer-reviews {
-            margin-top: 4rem;
-            text-align: center;
-            width: 100%;
-            /* Ensure reviews section is responsive */
-            max-width: 100%;
-            /* Ensure reviews section doesn't cause overflow */
+        .terms-container {
+            max-width: 800px; /* Optimal reading width */
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: var(--card);
+            border-radius: var(--radius);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
         }
-
-        .customer-review-card {
-            background-color: var(--card-bg-color);
-            border-radius: 0.75rem;
-            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            text-align: left;
-            color: var(--text-color);
-            transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
-            width: 100%;
-            /* Ensure review card is responsive */
-            max-width: 100%;
-            /* Ensure review card doesn't cause overflow */
-        }
-
-        .customer-review-card .rating {
-            color: #ffc107;
-            margin-bottom: 0.5rem;
-        }
-
-        .customer-review-card .review-text {
-            font-style: italic;
-            color: var(--text-color);
+        
+        .terms-container h1 {
+            font-size: 2.25rem; /* text-4xl */
             margin-bottom: 1rem;
+            text-align: center;
         }
-
-        .customer-review-card .reviewer-name {
-            font-weight: 600;
-            color: var(--text-color);
+        
+        .terms-container h2 {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
         }
-
-
-        /* Table styles using theme variables */
-        .info-card table {
-            width: 100%;
+        
+        .terms-container p, .terms-container li {
+            line-height: 1.8;
+            color: var(--muted-foreground);
         }
-
-        .info-card thead {
-            background-color: var(--table-header-bg);
-            color: var(--table-header-text);
-        }
-
-        .info-card th,
-        .info-card td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid var(--table-border-color);
-        }
-
-        .info-card tbody tr:nth-child(odd) {
-            background-color: var(--table-row-bg-odd);
-        }
-
-        .info-card tbody tr:nth-child(even) {
-            background-color: var(--table-row-bg-even);
-        }
-
-        .info-card tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-        .info-card .text-green-600 {
-            /* This class is used for charges in the table */
-            color: var(--secondary-dark);
-        }
-
-        .info-card .bg-yellow-50 {
-            /* This class is used for the note below the table */
-            background-color: var(--bg-color);
-            border-color: var(--border-color);
-            color: var(--text-color);
-        }
-
-
-        /* Footer styles using theme variables */
-        footer {
-            background-color: var(--footer-bg);
-            color: var(--footer-text);
-            transition: background-color 0.5s ease, color 0.5s ease;
-            width: 100%;
-            /* Ensure footer is responsive */
-            max-width: 100%;
-            /* Ensure footer doesn't cause overflow */
-        }
-
-        footer h3 {
-            color: var(--footer-heading);
-        }
-
-        footer a {
-            color: var(--footer-text);
-            transition: color 0.3s ease;
-        }
-
-        footer a:hover {
-            color: var(--footer-link-hover);
-        }
-
-        /* Sticky Buttons Container */
-        .sticky-buttons-left {
-            position: fixed;
-            bottom: 20px;
-            /* Adjust vertical position */
-            left: 20px;
-            /* Position on the left */
+        
+        .terms-container ol {
+            list-style-type: decimal;
+            margin-left: 1.5rem;
             display: flex;
             flex-direction: column;
-            /* Stack buttons vertically */
-            gap: 10px;
-            /* Space between buttons */
-            z-index: 1000;
-            /* Ensure buttons are on top */
+            gap: 1rem;
+        }
+        
+        .terms-container strong {
+            font-weight: 600;
+            color: var(--card-foreground);
+        }
+        
+        .terms-container a {
+            color: var(--primary);
+            text-decoration: underline;
+            text-decoration-color: var(--primary-light);
+        }
+        .terms-container a:hover {
+            text-decoration-color: var(--primary);
         }
 
-        /* Style for individual sticky buttons */
-        .sticky-buttons-left a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            /* Fixed width for round buttons */
-            height: 50px;
-            /* Fixed height for round buttons */
-            border-radius: 50%;
-            /* Make them round */
-            color: white;
-            font-size: 1.5rem;
-            /* Icon size */
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            text-decoration: none;
-            /* Remove underline */
-        }
-
-        .sticky-buttons-left a:hover {
-            transform: scale(1.1);
-            /* Slightly enlarge on hover */
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
-        }
-
-        /* Specific colors for WhatsApp and Call buttons */
-        .sticky-buttons-left .whatsapp-btn {
-            background-color: var(--sticky-whatsapp-bg);
-        }
-
-        .sticky-buttons-left .whatsapp-btn:hover {
-            background-color: var(--sticky-whatsapp-hover-bg);
-        }
-
-        .sticky-buttons-left .call-btn {
-            background-color: var(--sticky-call-bg);
-        }
-
-        .sticky-buttons-left .call-btn:hover {
-            background-color: var(--sticky-call-hover-bg);
-        }
-
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-
-            /* General container padding for mobile */
-            .container {
-                /* User's main container class, ensure it has padding */
-                padding-left: 15px;
-                padding-right: 15px;
-                width: 100%;
-                /* Ensure container is responsive */
-                max-width: 100%;
-                /* Ensure container doesn't cause overflow */
-                overflow-x: hidden;
-
-            }
-
-            /* Ensure header's inner container also respects this if it's different */
-            header .container {
-                padding-left: 15px;
-                padding-right: 15px;
-                /* Adjust header padding for mobile to decrease height (slimmer navbar) */
-                padding-top: 0.1rem;
-                /* Further reduced padding */
-                padding-bottom: 0.1rem;
-                /* Further reduced padding */
-                /* Arrange title and button in a row */
-                flex-direction: row;
-                justify-content: space-between;
-                /* Distribute items */
-                align-items: center;
-                width: 100%;
-                /* Ensure header container is responsive */
-                max-width: 100%;
-                /* Ensure header container doesn't cause overflow */
-            }
-
-            /* Hide desktop navigation on mobile */
-            nav,
-            .language-selector-desktop {
-                display: none;
-            }
-
-            /* Show mobile menu button on mobile */
-            .mobile-menu-button {
-                display: block;
-                /* Ensure button is aligned and spaced correctly */
-                /* No margin needed here, its container is on the right */
-                order: 3;
-                /* Place hamburger on the right */
-            }
-
-            /* Center the site title on mobile */
-            header .container .site-title-container {
-                flex-grow: 1;
-                /* Allow title container to take available space */
-                text-align: center;
-                /* Center the text inside */
-                /* Remove margin that might affect centering */
-                margin-bottom: 0;
-                order: 2;
-                /* Place title in the middle */
-            }
-
-            /* Position mobile language selector */
-            /* Removed mobile language selector styles */
-
-
-            #hero h2 {
-                font-size: 2.2rem;
-                /* Smaller hero heading */
-            }
-
-            #hero p {
-                font-size: 1rem;
-                /* Smaller hero paragraph */
-            }
-
-            /* Reduce size of hero buttons on mobile */
-            #hero .flex-col button,
-            #hero .flex-col a {
-                padding: 0.8rem 1.5rem;
-                /* Reduced padding */
-                font-size: 0.95rem;
-                /* Reduced font size */
-                width: 100%;
-                /* Ensure buttons are responsive */
-                max-width: 100%;
-                /* Ensure buttons doesn't cause overflow */
-            }
-
-
-            .section-title {
-                font-size: 1.8rem;
-                /* Smaller section titles */
-                margin-bottom: 2rem;
-                max-width: 100%;
-                /* Ensure title doesn't cause overflow */
-            }
-
-            .section-subtitle {
-                font-size: 1.3rem;
-                /* Smaller section subtitles */
-                max-width: 100%;
-                /* Ensure subtitle doesn't cause overflow */
-            }
-
-            /* Sticky buttons adjustments for mobile */
-            .sticky-buttons-left {
-                bottom: 15px;
-                /* Slightly less space from bottom */
-                left: 15px;
-                /* Slightly less space from left */
-                gap: 8px;
-                /* Smaller gap */
-            }
-
-            .sticky-buttons-left a {
-                width: 45px;
-                /* Smaller button size */
-                height: 45px;
-                /* Smaller button size */
-                font-size: 1.3rem;
-                /* Smaller icon size */
-            }
-
-
-            /* Swiper adjustments for mobile */
-            .swiper-container {
-                padding: 0 10px;
-                /* Less padding on smaller screens */
-                max-width: 100%;
-                /* Ensure swiper container doesn't cause overflow */
-            }
-
-            /* Swiper Navigation (Arrows) adjustments for mobile */
-            .swiper-button-next,
-            .swiper-button-prev {
-                padding: 0px;
-                /* Smaller padding */
-                font-size: 0px;
-                /* Smaller icon */
-            }
-
-            /* Adjust arrow position for mobile */
-            .swiper-button-next {
-                right: 0px;
-            }
-
-            .swiper-button-prev {
-                left: 0px;
-            }
-
-
-            .section-contact-buttons {
-                gap: 0.8rem;
-                width: 100%;
-                /* Ensure button container is responsive */
-                max-width: 100%;
-                /* Ensure button container doesn't cause overflow */
-            }
-
-            .section-contact-buttons a {
-                padding: 8px 12px;
-                font-size: 0.85rem;
-            }
-
-            .section-contact-buttons a i {
-                font-size: 1.1rem;
-            }
-
-            .info-card {
-                padding: 1.5rem;
-                /* Reduced padding for info cards */
-                width: 100%;
-                /* Ensure info card is responsive */
-                max-width: 100%;
-                /* Ensure info card doesn't cause overflow */
-            }
-
-            .info-card th,
-            .info-card td {
-                padding: 8px 10px;
-                font-size: 0.85rem;
-                /* Slightly larger than user's original 0.8rem */
-            }
-
-            .info-highlight {
-                padding: 1rem;
-                /* Reduced padding */
-                width: 100%;
-                /* Ensure info highlight is responsive */
-                max-width: 100%;
-                /* Ensure info highlight doesn't cause overflow */
-            }
-
-            .info-highlight .value {
-                font-size: 1.75rem;
-            }
-
-            .info-highlight .label {
-                font-size: 0.85rem;
-            }
-
-            /* Ensure footer content is well-spaced */
-            footer .grid>div {
-                margin-bottom: 1.5rem;
-                /* Add some bottom margin to footer columns on mobile */
-            }
-
-            footer .grid>div:last-child {
-                margin-bottom: 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-
-            /* For very small mobile screens */
-            #hero h2 {
-                font-size: 1.8rem;
-            }
-
-            #hero p {
-                font-size: 0.9rem;
-            }
-
-            /* Apply View Services button styles to Request Service button on small screens */
-            #hero .flex-col button,
-            #hero .flex-col a {
-                width: 45%;
-                font-size: 0.9rem;
-                padding-top: 0.65rem;
-                padding-bottom: 0.65rem;
-                /* Ensure both buttons have the same styling */
-                background-color: var(--button-secondary-bg);
-                /* Yellow background */
-                color: var(--button-secondary-text);
-                /* Dark text */
-                border: none;
-                /* Remove border */
-                box-shadow: #000000;
-                transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            }
-
-            /* Hover styles for both buttons */
-            #hero .flex-col button:hover,
-            #hero .flex-col a:hover {
-                background-color: var(--button-secondary-hover-bg);
-                /* Darker yellow on hover */
-                color: var(--button-secondary-text);
-                /* Keep dark text */
-                transform: translateY(-2px);
-                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-            }
-
-            /* Active styles for both buttons */
-            #hero .flex-col button:active,
-            #hero .flex-col a:active {
-                transform: scale(0.95);
-            }
-
-
-            #hero .section-contact-buttons a {
-                /* In-hero contact buttons */
-                padding: 6px 10px;
-                font-size: 0.8rem;
-            }
-
-            #hero .section-contact-buttons a i {
-                font-size: 1rem;
-            }
-
-
-            .section-title {
-                font-size: 1.6rem;
-            }
-
-            .service-card {
-                padding: 1.5rem;
-                /* Reduce padding for service cards */
-            }
-
-            .service-card h3 {
-                font-size: 1.2rem;
-                /* Smaller headings in service cards */
-            }
-
-            .service-card p {
-                font-size: 0.85rem;
-                /* Smaller text in service cards */
-            }
-
-            .service-card a {
-                /* Button in service card */
-                padding: 0.5rem 1rem;
-                font-size: 0.85rem;
-            }
-
-
-            /* Sticky buttons adjustments for very small mobile */
-            .sticky-buttons-left {
-                bottom: 10px;
-                /* Even less space from bottom */
-                left: 10px;
-                /* Even less space from left */
-                gap: 6px;
-                /* Even smaller gap */
-            }
-
-            .sticky-buttons-left a {
-                width: 40px;
-                /* Even smaller button size */
-                height: 40px;
-                /* Even smaller button size */
-                font-size: 1.2rem;
-                /* Even smaller icon size */
-            }
-
-
-            .customer-review-card {
-                padding: 1rem;
-            }
-
-            .customer-review-card .review-text,
-            .customer-review-card .reviewer-name {
-                font-size: 0.8rem;
-            }
-        }
-
-        /* Added CSS rule to ensure the Terms section is displayed */
-        #terms {
-            display: block !important;
-            visibility: visible !important;
-        }
     </style>
 </head>
 
-<body class="bg-gray-100">
-    <header class="text-white py-3 shadow-lg">
+<body>
+    <!-- Header -->
+    <header class="py-2">
         <div class="container mx-auto flex items-center justify-between px-4">
-            <!-- Logo -->
-            <a href="index.html" class="flex items-center">
-                <img src="yvc.png" alt="Your Vehicles Care" class="h-12 w-auto"> <!-- Adjust h-12 to your desired height -->
+            <a href="index.html" class="flex items-center flex-shrink-0" aria-label="Your Vehicles Care Home">
+                <img src="https://i.ibb.co/L5Qx6Xb/yvc.png" alt="Your Vehicles Care Logo" class="h-14 w-auto"> 
             </a>
 
-            <nav class="hidden md:flex flex-wrap">
-                <a href="index.html#hero" class="hover:text-blue-400 transition duration-300 mx-1 md:mx-2">Home</a>
-                <a href="index.html#services" class="hover:text-blue-400 transition duration-300 mx-1 md:mx-2">Services</a>
-                <a href="index.html#contact" class="hover:text-blue-400 transition duration-300 mx-1 md:mx-2">Contact</a>
-                <a href="#terms" class="hover:text-blue-400 transition duration-300 mx-1 md:mx-2">Terms</a>
+            <nav id="desktop-nav" class="hidden lg:flex items-center gap-x-3 xl:gap-x-6 text-sm font-semibold" aria-label="Main Navigation">
+                <a href="index.html#hero" class="nav-link">Home</a>
+                <a href="index.html#services" class="nav-link">Services</a>
+                <a href="index.html#faq" class="nav-link">FAQ</a>
+                <a href="formmechanic.html" class="nav-link">Join Us</a>
+                <a href="terms.html" class="nav-link active">Terms</a>
             </nav>
 
-            <div class="flex items-center mobile-menu-container">
-                <button class="mobile-menu-button focus:outline-none" aria-label="Toggle Mobile Menu">
+            <div class="flex items-center gap-x-2">
+                <button id="theme-toggle" class="theme-toggle h-10 w-10 rounded-full flex items-center justify-center text-xl" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="lg:hidden mobile-menu-button h-10 w-10 rounded-full flex items-center justify-center text-2xl" aria-label="Toggle Mobile Menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
     </header>
-
-    <div class="mobile-nav-slider">
-        <a href="index.html#hero">Home</a>
-        <a href="index.html#services">Services</a>
-        <a href="index.html#contact">Contact</a>
-        <a href="#terms">Terms</a>
-    </div>
-
+    
+    <!-- Mobile Navigation -->
     <div class="mobile-nav-overlay"></div>
-
-
-    <section id="terms" class="py-12 md:py-16 px-4">
-        <div class="container mx-auto max-w-4xl">
-            <h2 class="text-2xl md:text-3xl font-semibold mb-6 md:mb-8 text-center" data-aos="fade-up">Terms and Conditions - Your Vehicles Care </h2>
-            <div class="bg-white rounded-lg shadow-md p-6 md:p-8 text-sm md:text-base leading-relaxed"
-                data-aos="fade-up" data-aos-delay="100"
-                style="background-color: var(--card-bg-color); color: var(--text-color);">
-                <ol class="list-decimal list-outside space-y-4 pl-5">
-                    <li><strong>Service Agreement:</strong> Engagement of our services signifies your explicit agreement
-                        to adhere to these terms and conditions governing our professional relationship.</li>
-                    <li><strong>Payment Terms:</strong> Full payment for all rendered services and supplied parts is
-                        strictly required immediately upon completion of the work. We facilitate transactions via secure
-                        major credit cards and digital payment platforms. Cash payments may also be accepted upon prior
-                        arrangement.</li>
-                    <li><strong>Limitation of Liability:</strong> Your Vehicles Care shall not be held responsible for any
-                        pre-existing mechanical issues, wear and tear, or damage not directly caused by our service
-                        procedures. Our liability is strictly limited to the direct cost of the specific services and
-                        parts provided during the current service instance.</li>
-                    <li><strong>Designated Service Area:</strong> Our mobile services are available within a predefined
-                        operational territory. Requests for services outside this area may incur additional travel fees
-                        or
-                        may not be feasible depending on logistics and resource availability. Confirmation of service
-                        area
-                        coverage is advised during the booking process.</li>
-                    <li><strong>Service Estimates vs. Final Cost:</strong> All initial service charges provided are
-                        professional estimates based on the reported issue and standard labor times. The final cost may
-                        be
-                        subject to adjustment if unforeseen complications arise, additional necessary repairs are
-                        identified during the service, or required parts deviate from the initial assessment. Any
-                        significant deviation will be communicated to the client prior to proceeding.</li>
-                    <li><strong>Cancellation Policy:</strong> Clients may cancel a service request. However, if a
-                        certified mechanic has already been dispatched to the location at the time of cancellation, a
-                        standard dispatch fee may be applied to cover initial operational costs.</li>
-                    <li><strong>Service Warranty:</strong> We stand behind the quality of our workmanship and parts.
-                        Specific services and installed parts may be covered by a limited warranty. Details regarding
-                        warranty periods and coverage for your specific service will be provided upon request or
-                        completion of the job.</li>
-                    <li><strong>Client Safety and Access:</strong> It is the client's responsibility to ensure the
-                        vehicle
-                        is situated in a safe, accessible, and legally permissible location for our mechanic to perform
-                        the
-                        required services without obstruction or hazard. Our mechanics reserve the right to decline
-                        service
-                        if the location is deemed unsafe.</li>
-                    <li><strong>Data Privacy and Usage:</strong> All personal and vehicle data collected during the
-                        service
-                        request and provision process are handled with strict confidentiality and processed in full
-                        accordance with applicable data protection regulations and our detailed privacy policy,
-                        available
-                        on our website.</li>
-                    <li><strong>Amendments to Terms:</strong> Your Vehicles Care reserves the sole right to review, update, and
-                        modify these terms and conditions at any time without prior notice. The most current version
-                        will
-                        always be available on our official communication channels.</li>
-                </ol>
-                <p class="mt-6 md:mt-8 text-center text-xs md:text-sm"
-                    style="color: var(--text-color); opacity: 0.8;"> By proceeding with a service request, you
-                    acknowledge that you have read, understood, and agreed to
-                    these terms and conditions.
-                </p>
-            </div>
+    <div class="mobile-nav-slider p-6 flex flex-col">
+        <div class="flex justify-between items-center mb-8">
+            <h3 class="text-xl font-bold text-gray-800 dark:text-gray-200">Menu</h3>
+            <button class="mobile-menu-close text-2xl text-gray-500 hover:text-red-500 transition-colors" aria-label="Close Menu">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
-    </section>
-
-
-    <footer class="py-10 md:py-12 px-4">
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-                <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4">Your Vehicles Care</h3>
-                <p class="text-xs md:text-sm">Providing professional and reliable
-                    on-demand
-                    vehicle
-                    repair and assistance services
-                    directly to your location.</p>
-                <p class="text-xs md:text-sm mt-3 md:mt-4">© <span
-                        id='current-year'></span> Your Vehicles Care.
-                    All
-                    rights reserved.</p>
-            </div>
-            <div>
-                <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4">Quick Links</h3>
-                <ul class="space-y-2 text-xs md:text-sm">
-                    <li><a href="index.html#hero" class="hover:text-white transition duration-300">Home</a>
-                    </li>
-                    <li><a href="index.html#services" class="hover:text-white transition duration-300">Services</a></li>
-                    <li><a href="index.html#inspection" class="hover:text-white transition duration-300">Inspection Charges</a></li>
-                    <li><a href="index.html#team" class="hover:text-white transition duration-300">Our
-                            Team</a></li>
-                    <li><a href="https://aabhas-rising.github.io/MOS-Form-/"
-                            class="hover:text-white transition duration-300">Contact
-                            Us</a>
-                    </li>
-                    <li><a href="#terms" class="hover:text-white transition duration-300">Terms
-                            & Conditions</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4">Get In Touch
-                </h3>
-                <p class="text-xs md:text-sm mb-2">Phone: 9303931226</p>
-                <p class="text-xs md:text-sm mb-3 md:mb-4">Email:
-                    yourvehiclescare@gmail.com</p>
-                <div class="flex space-x-4 social-icons">
-                    <a href="#" class="hover:text-white transition duration-300" aria-label="Facebook">
-                        <i class="fab fa-facebook-f text-lg md:text-xl"></i>
-                    </a>
-                    <a href="#" class="hover:text-white transition duration-300" aria-label="Twitter">
-                        <i class="fab fa-twitter text-lg md:text-xl"></i>
-                    </a>
-                    <a href="#" class="hover:text-white transition duration-300" aria-label="Instagram">
-                        <i class="fab fa-instagram text-lg md:text-xl"></i>
-                    </a>
-                    <a href="#" class="hover: text-white transition duration-300" aria-label="Youtube">
-                        <i class="fab fa-youtube text-lg md:text-xl"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <div class="sticky-buttons-left">
-        <a href="https://wa.me/919303931226" target="_blank" class="whatsapp-btn" aria-label="WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="tel:+919303931226" class="call-btn" aria-label="Call Us">
-            <i class="fas fa-phone-alt"></i>
-        </a>
+        <nav class="flex flex-col gap-y-4 text-lg font-semibold text-gray-700 dark:text-gray-300">
+             <a href="index.html#hero" class="nav-link">Home</a>
+             <a href="index.html#services" class="nav-link">Services</a>
+             <a href="index.html#faq" class="nav-link">FAQ</a>
+             <a href="formmechanic.html" class="nav-link">Join Us</a>
+             <a href="terms.html" class="nav-link active">Terms</a>
+        </nav>
     </div>
 
+    <main class="py-16 md:py-24 px-4 bg-muted">
+        <div class="terms-container">
+            <h1>Terms and Conditions of Service</h1>
+            <p class="text-center mb-8">This document outlines the terms and conditions governing the professional relationship between Your Vehicles Care ("we," "us," "our") and our clients ("you," "your"). Engagement of our services signifies your explicit agreement to adhere to these terms.</p>
 
-    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+            <ol>
+                <li>
+                    <strong>Service Agreement:</strong> Engagement of our services, whether verbal, written, or digital, constitutes a binding agreement to these terms and conditions.
+                </li>
+                <li>
+                    <strong>Payment Terms:</strong> Full payment for all rendered services and supplied parts is strictly required immediately upon completion of the work. We facilitate transactions via secure major credit cards and digital payment platforms. Cash payments may be accepted but must be arranged and confirmed at the time of booking. An itemized digital invoice will be provided for all services rendered.
+                </li>
+                <li>
+                    <strong>Service Estimates vs. Final Cost:</strong> All initial service charges are professional estimates based on the reported issue, standard labor times, and typical parts costs. The final cost may be subject to adjustment if unforeseen complications or additional faults are discovered, the price of required parts deviates significantly, or additional labor is required. Any significant deviation (e.g., more than 15% variance) will be communicated to you for approval before any additional work is performed.
+                </li>
+                <li>
+                    <strong>Diagnostic Services:</strong> In cases where the primary service is diagnostic, the quoted fee covers the mechanic's time, expertise, and use of specialized equipment to identify the problem(s). This diagnostic fee is payable in full upon completion of the diagnostic work, regardless of whether you choose to proceed with the recommended repairs.
+                </li>
+                <li>
+                    <strong>Client-Supplied Parts:</strong> We may agree to install parts supplied by you. However, our service warranty will cover only the workmanship of the installation. We provide no warranty whatsoever on the client-supplied part itself and assume no liability for damages caused by its failure. If a client-supplied part is incorrect or faulty, you will still be liable for the labor costs incurred up to that point.
+                </li>
+                <li>
+                    <strong>Cancellation Policy:</strong> You may cancel a service request at any time. However, if a mechanic has already been dispatched to your location at the time of cancellation, a standard dispatch fee will be applied to cover fuel and operational costs.
+                </li>
+                <li>
+                    <strong>Service Warranty & Exclusions:</strong> We provide a limited warranty on our workmanship and the new parts we supply. This warranty covers the specific repair performed and the specific part(s) installed by us. It is void if the vehicle has been subjected to misuse, negligence, accident, modification, or if further repairs related to our service have been attempted by a third party. To make a warranty claim, you must contact us immediately.
+                </li>
+                <li>
+                    <strong>Limitation of Liability:</strong> Our total liability for any claim arising from our services is strictly limited to the direct cost of the specific services and parts provided. We are not liable for any pre-existing issues, wear and tear, or indirect or consequential damages, such as loss of use of the vehicle, loss of earnings, or towing charges.
+                </li>
+                <li>
+                    <strong>Client Responsibilities, Safety, and Access:</strong> It is your responsibility to provide accurate vehicle information and ensure the vehicle is in a safe, accessible, and legally permissible location for our mechanic to work. The work area must be on level, solid ground. Our mechanics reserve the right to decline service if the location is deemed unsafe or the client is hostile, and a dispatch fee may still apply.
+                </li>
+                <li>
+                    <strong>Designated Service Area:</strong> Our mobile services are available within a predefined operational territory. Requests outside this area may incur additional fees or may not be feasible.
+                </li>
+                <li>
+                    <strong>Disposal of Parts:</strong> All parts replaced during service will be disposed of by us in an environmentally responsible manner, unless you specifically request to keep the old parts at the time of service.
+                </li>
+                <li>
+                    <strong>Data Privacy and Usage:</strong> All personal and vehicle data collected are handled with strict confidentiality in accordance with applicable data protection regulations.
+                </li>
+                <li>
+                    <strong>Governing Law:</strong> These terms are governed by the laws of Madhya Pradesh, India. In the event of a dispute, both parties agree to first attempt to resolve the issue amicably.
+                </li>
+                <li>
+                    <strong>Amendments to Terms:</strong> Your Vehicles Care reserves the right to review, update, and modify these terms and conditions at any time. The version of the terms in effect at the time of your booking will apply to that service.
+                </li>
+            </ol>
+        </div>
+    </main>
+    
+
     <script>
-        // --- INITIALIZATION ---
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize AOS (Animate On Scroll)
-            AOS.init({
-                duration: 800, // Animation duration in milliseconds
-                once: true, // Whether animation should happen only once - while scrolling down
-                mirror: false, // Whether elements should animate out while scrolling past them
-            });
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- THEME & NAV JAVASCRIPT ---
+        const ThemeManager = {
+            init() {
+                this.themeToggle = document.getElementById('theme-toggle');
+                if (!this.themeToggle) return;
+                this.themeIcon = this.themeToggle.querySelector('i');
+                this.htmlEl = document.documentElement;
+                
+                const savedTheme = localStorage.getItem('theme') || 'dark';
+                this.applyTheme(savedTheme);
 
-            // Set current year in footer
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-
-            // Smooth scrolling for navigation links (only for links within this page, like #terms if needed)
-            // For links back to index.html, standard browser navigation will occur.
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    // Only prevent default for internal links on this page
-                    if (this.getAttribute('href').startsWith('#')) {
-                        e.preventDefault();
-                        const targetId = this.getAttribute('href');
-                        const targetElement = document.querySelector(targetId);
-
-                        if (targetElement) {
-                            targetElement.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start' // Align the top of the element with the top of the viewport
-                            });
-                        }
-                    }
-
-                    // Close mobile menu after clicking a link
-                    const mobileNavSlider = document.querySelector('.mobile-nav-slider');
-                    const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
-                    if (mobileNavSlider && mobileNavSlider.classList.contains('open')) {
-                        mobileNavSlider.classList.remove('open');
-                        mobileNavOverlay.classList.remove('visible');
-                    }
-                });
-            });
-
-
-            // Mobile Menu Toggle Logic
-            const mobileMenuButton = document.querySelector('.mobile-menu-container .mobile-menu-button');
-            const mobileNavSlider = document.querySelector('.mobile-nav-slider');
-            const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
-
-            if (mobileMenuButton && mobileNavSlider && mobileNavOverlay) {
-                mobileMenuButton.addEventListener('click', () => {
-                    mobileNavSlider.classList.toggle('open');
-                    mobileNavOverlay.classList.toggle('visible');
-                });
-
-                // Close mobile menu when clicking overlay
-                mobileNavOverlay.addEventListener('click', () => {
-                    mobileNavSlider.classList.remove('open');
-                    mobileNavOverlay.classList.remove('visible');
-                });
-
-                // Close mobile menu on swipe left (basic implementation)
-                let touchstartX = 0;
-                let touchendX = 0;
-
-                function checkGesture() {
-                    // If menu is open and swipe left (towards left)
-                    if (mobileNavSlider.classList.contains('open') && touchendX < touchstartX) {
-                        mobileNavSlider.classList.remove('open');
-                        mobileNavOverlay.classList.remove('visible');
-                    }
-                }
-
-                document.addEventListener('touchstart', e => {
-                    touchstartX = e.changedTouches[0].screenX;
-                });
-
-                document.addEventListener('touchend', e => {
-                    touchendX = e.changedTouches[0].screenX;
-                    checkGesture();
-                });
+                this.themeToggle.addEventListener('click', () => this.toggleTheme());
+            },
+            applyTheme(theme) {
+                this.htmlEl.classList.remove('light', 'dark');
+                this.htmlEl.classList.add(theme);
+                this.themeIcon.className = `fas fa-${theme === 'dark' ? 'moon' : 'sun'}`;
+            },
+            toggleTheme() {
+                const newTheme = this.htmlEl.classList.contains('dark') ? 'light' : 'dark';
+                localStorage.setItem('theme', newTheme);
+                this.applyTheme(newTheme);
             }
-        });
+        };
+
+        const MobileMenu = {
+            init() {
+                this.menuButton = document.querySelector('.mobile-menu-button');
+                this.navSlider = document.querySelector('.mobile-nav-slider');
+                this.overlay = document.querySelector('.mobile-nav-overlay');
+                this.closeButton = document.querySelector('.mobile-menu-close');
+                this.navLinks = document.querySelectorAll('.mobile-nav-slider .nav-link');
+                
+                if (!this.menuButton) return;
+
+                this.menuButton.addEventListener('click', () => this.open());
+                this.closeButton.addEventListener('click', () => this.close());
+                this.overlay.addEventListener('click', () => this.close());
+                this.navLinks.forEach(link => {
+                    // Only close for internal links, external links should just navigate
+                    if(link.getAttribute('href').startsWith('#') || link.getAttribute('href').startsWith('terms.html')) {
+                         link.addEventListener('click', () => this.close());
+                    }
+                });
+            },
+            open() { this.navSlider.classList.add('open'); this.overlay.classList.add('visible'); },
+            close() { this.navSlider.classList.remove('open'); this.overlay.classList.remove('visible'); }
+        };
+
+        const NavScroller = {
+            init() {
+                this.header = document.querySelector('header');
+                if(!this.header) return;
+                window.addEventListener('scroll', () => this.handleHeaderStyle());
+                this.handleHeaderStyle();
+            },
+            handleHeaderStyle() {
+                this.header.classList.toggle('scrolled', window.scrollY > 50);
+            }
+        };
+        
+        ThemeManager.init();
+        MobileMenu.init();
+        NavScroller.init();
+        AOS.init({ duration: 800, once: true, offset: 50 });
+    });
     </script>
 </body>
-
 </html>
