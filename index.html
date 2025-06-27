@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="max-w-full overflow-x-hidden">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8" />
@@ -75,7 +75,6 @@
             background-color: var(--background);
             color: var(--foreground);
             font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -125,9 +124,11 @@
            4. Header & Navigation
            ========================================================================== */
         header {
+            position: -webkit-sticky; /* Fallback for Safari */
             position: sticky;
             top: 0;
             z-index: 50;
+            width: 100%;
             background-color: var(--header-background);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
@@ -678,7 +679,7 @@
     </style>
 </head>
 
-<body class="max-w-full overflow-x-hidden">
+<body>
     <!-- Preloader -->
     <div id="preloader">
         <div class="spinner"></div>
@@ -688,16 +689,16 @@
     <header class="py-2">
         <div class="container mx-auto flex items-center justify-between px-4">
             <a href="index.html" class="flex items-center flex-shrink-0" aria-label="Your Vehicles Care Home">
-                <img src="https://i.ibb.co/L5Qx6Xb/yvc.png" alt="Your Vehicles Care Logo" class="h-14 w-auto"> 
+                <img src="yvc.png" alt="Your Vehicles Care Logo" class="h-14 w-auto"> 
             </a>
 
             <nav id="desktop-nav" class="hidden lg:flex items-center gap-x-3 xl:gap-x-6 text-sm font-semibold" aria-label="Main Navigation">
                 <a href="#hero" class="active nav-link">Home</a>
                 <a href="#services" class="nav-link">Services</a>
                 <a href="#testimonials" class="nav-link">Reviews</a>
-                <a href="#map" class="nav-link">Service Area</a>
                 <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#contact" class="nav-link">Contact</a>
+                <a href="formmechanic.html" class="nav-link">Join Us</a>
+                <a href="terms.html" class="nav-link">Terms</a>
             </nav>
 
             <div class="flex items-center gap-x-2">
@@ -725,9 +726,9 @@
             <a href="#hero" class="nav-link">Home</a>
             <a href="#services" class="nav-link">Services</a>
             <a href="#testimonials" class="nav-link">Reviews</a>
-            <a href="#map" class="nav-link">Service Area</a>
             <a href="#faq" class="nav-link">FAQ</a>
-            <a href="#contact" class="nav-link">Contact</a>
+            <a href="formmechanic.html" class="nav-link">Join Us</a>
+            <a href="terms.html" class="nav-link">Terms</a>
         </nav>
     </div>
 
@@ -737,10 +738,10 @@
         <section id="hero" class="relative text-white text-center flex items-center justify-center">
             <div class="swiper-container absolute inset-0 z-0" id="hero-slider-main">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide" style="background-image: url('https://i.ibb.co/3k5fVwS/hro1.jpg');"></div>
-                    <div class="swiper-slide" style="background-image: url('https://i.ibb.co/b34XpTf/hro2.jpg');"></div>
-                    <div class="swiper-slide" style="background-image: url('https://i.ibb.co/L5Sg1zR/hro3.jpg');"></div>
-                    <div class="swiper-slide" style="background-image: url('https://i.ibb.co/yQJ4k7J/hro4.jpg');"></div>
+                    <div class="swiper-slide" style="background-image: url('hro1.jpg');"></div>
+                    <div class="swiper-slide" style="background-image: url('hro2.jpg');"></div>
+                    <div class="swiper-slide" style="background-image: url('hro3.jpg');"></div>
+                    <div class="swiper-slide" style="background-image: url('hro4.jpg');"></div>
                 </div>
             </div>
             
@@ -1008,6 +1009,7 @@
                     <li><a href="#hero" class="nav-link">Home</a></li>
                     <li><a href="#services" class="nav-link">Services</a></li>
                     <li><a href="#inspection" class="nav-link">Pricing</a></li>
+                    <li><a href="formmechanic.html" class="nav-link">Join Us</a></li>
                     <li><a href="terms.html">Terms & Conditions</a></li>
                 </ul>
             </div>
@@ -1073,14 +1075,14 @@
     
         const DATA = {
             services: [
-                { id: 'S01', icon: 'fa-bolt', title: 'Jump Start', description: 'Rapid assistance for dead batteries.', bg: 'https://i.ibb.co/1nCChH7/service-1.jpg' },
-                { id: 'S02', icon: 'fa-car-burst', title: 'Flat Tire Change', description: 'Professional and safe tire replacement.', bg: 'https://i.ibb.co/4Zk4gMc/service-2.jpg' },
-                { id: 'S03', icon: 'fa-gas-pump', title: 'Emergency Fuel Delivery', description: 'We deliver fuel directly to you.', bg: 'https://i.ibb.co/6yF4w7V/service-3.jpg' },
-                { id: 'S04', icon: 'fa-microchip', title: 'Engine Diagnostics', description: 'Accurate problem diagnosis on the spot.', bg: 'https://i.ibb.co/P9HqJ8M/service-4.jpg' },
-                { id: 'S05', icon: 'fa-car-battery', title: 'Battery Replacement', description: 'High-quality battery installation.', bg: 'https://i.ibb.co/zXn2HdB/service-5.jpg' },
-                { id: 'S06', icon: 'fa-tools', title: 'Minor Repairs', description: 'On-site fixes for common issues.', bg: 'https://i.ibb.co/QcYn2X1/service-6.jpg' },
-                { id: 'S07', icon: 'fa-truck-pickup', title: 'Car Towing', description: 'Reliable towing to your chosen location.', bg: 'https://i.ibb.co/mX729CV/service-7.jpg' },
-                { id: 'S08', icon: 'fa-compact-disc', title: 'Brake Repair', description: 'Brake system inspection and repair.', bg: 'https://i.ibb.co/L95S7xQ/service-8.jpg' },
+                { id: 'S01', icon: 'fa-bolt', title: 'Jump Start', description: 'Rapid assistance for dead batteries.', bg: 'jumpstart.jpg' },
+                { id: 'S02', icon: 'fa-car-burst', title: 'Flat Tire Change', description: 'Professional and safe tire replacement.', bg: 'flattire.jpg' },
+                { id: 'S03', icon: 'fa-gas-pump', title: 'Emergency Fuel Delivery', description: 'We deliver fuel directly to you.', bg: 'fuel.png' },
+                { id: 'S04', icon: 'fa-microchip', title: 'Engine Diagnostics', description: 'Accurate problem diagnosis on the spot.', bg: 'diagnostic.jpg' },
+                { id: 'S05', icon: 'fa-car-battery', title: 'Battery Replacement', description: 'High-quality battery installation.', bg: 'batteryreplace.jpg' },
+                { id: 'S06', icon: 'fa-tools', title: 'Minor Repairs', description: 'On-site fixes for common issues.', bg: 'hro2.jpg' },
+                { id: 'S07', icon: 'fa-truck-pickup', title: 'Car Towing', description: 'Reliable towing to your chosen location.', bg: 'tow.png' },
+                { id: 'S08', icon: 'fa-compact-disc', title: 'Brake Repair', description: 'Brake system inspection and repair.', bg: 'brakes.png' },
             ],
             faqs: [
                 { id: 'F01', question: 'What areas do you service?', answer: 'We currently serve the greater metropolitan area and surrounding suburbs. Please use the service area checker on our site to confirm if we can reach your specific location.' },
@@ -1255,9 +1257,12 @@
                 });
             },
             smoothScroll(e) {
+                // Allow normal navigation for external links
+                const href = e.currentTarget.getAttribute('href');
+                if (!href.startsWith('#')) return;
+
                 e.preventDefault();
-                const targetId = e.currentTarget.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
+                const targetElement = document.querySelector(href);
                 if (targetElement) {
                     const offset = -60;
                     const bodyRect = document.body.getBoundingClientRect().top;
@@ -1497,7 +1502,7 @@
             }
         };
 
-        const ChatWidgetManager = {
+                        const ChatWidgetManager = {
             init() {
                 this.bubble = document.getElementById('chat-bubble');
                 this.window = document.getElementById('chat-window');
@@ -1514,7 +1519,7 @@
                     if (e.key === 'Enter') this.sendMessage();
                 });
                 
-                this.addMessage('bot', "Hello! How can I help you today? You can ask about services, pricing, or operating hours.");
+                this.addMessage('bot', "Hello! How can I help you today? Aap service, price, ya timing ke baare mein pooch sakte hain.");
             },
             open() { 
                 this.window.classList.add('open');
@@ -1540,6 +1545,7 @@
                 
                 setTimeout(() => this.generateBotResponse(message), 1000);
             },
+            // UPDATED: Smarter chatbot logic with more data and Hinglish responses
             generateBotResponse(userMessage) {
                 const typingIndicator = document.createElement('div');
                 typingIndicator.className = 'chat-message typing p-3';
@@ -1553,72 +1559,125 @@
 
                     const responses = {
                         greetings: {
-                            keywords: ['hello', 'hi', 'hey'],
-                            answer: "Hello there! How can I assist you today?"
-                        },
-                        status: {
-                            keywords: ['how are you'],
-                            answer: "I'm just a bot, but I'm ready to help! What can I do for you?"
+                            keywords: ['hello', 'hi', 'hey', 'namaste', 'start', 'kya haal'],
+                            answer: "Hello! Main aapki kaise help kar sakta hoon?"
                         },
                         services: {
-                            keywords: ['service', 'repair', 'fix'],
-                            answer: "We offer a wide range of services including jump starts, tire changes, diagnostics, brake repairs, and more. You can see a full list in our 'Services' section above. Do you have a specific issue?"
+                            keywords: ['service', 'repair', 'fix', 'help with', 'what do you do', 'kya kaam karte ho', 'service kya hai'],
+                            answer: "Hum mobile mechanic service provide karte hain jaise jump start, tire change, engine diagnostics, brake repair, aur bhi bahut kuch. Aapko kya issue aa raha hai?"
                         },
                         pricing: {
-                            keywords: ['price', 'cost', 'charge', 'rate'],
-                            answer: "Our initial on-site inspection charge starts at ₹500 for up to 5km. The final cost for a repair depends on the specific issue, parts, and labor. We provide a full quote before starting any work."
+                            keywords: ['price', 'cost', 'charge', 'rate', 'quote', 'how much', 'fees', 'kitna paisa', 'kharcha'],
+                            answer: "Hamara on-site inspection charge ₹500 se start hota hai 5km tak ke liye. Final cost aapki gaadi ke issue, parts, aur labor par depend karta hai. Hum kaam shuru karne se pehle aapko complete quote denge."
                         },
                         hours: {
-                            keywords: ['hour', 'open', 'available', 'time'],
-                            answer: "We are available 24/7 for all emergency roadside assistance and mobile mechanic services."
+                            keywords: ['hour', 'open', 'available', 'time', 'timing', 'when can you come', 'kab tak', 'kitne baje tak'],
+                            answer: "Hum 24/7 available hain emergency roadside assistance ke liye. Aap humein kabhi bhi call kar sakte hain, din ho ya raat."
                         },
                         booking: {
-                            keywords: ['book', 'appointment'],
-                            answer: "You can book a service by clicking the 'Book Service Now' button on the homepage or any of the 'Book Service' links. You can also call us directly."
+                            keywords: ['book', 'appointment', 'schedule', 'get a mechanic', 'mechanic bulana hai'],
+                            answer: "Aap 'Book Service Now' button par click karke service book kar sakte hain. Emergency ke liye, aap humein direct 9303931226 par call karein."
                         },
                         payment: {
-                            keywords: ['payment', 'pay', 'cash', 'upi', 'card'],
-                            answer: "We accept cash, all major credit/debit cards, and UPI payments for your convenience."
+                            keywords: ['payment', 'pay', 'cash', 'upi', 'card', 'gpay', 'phonepe', 'paisa kaise'],
+                            answer: "Hum cash, sabhi major credit/debit cards, aur UPI (jaise GPay, PhonePe) accept karte hain. Service complete hone par payment karna hota hai."
                         },
                         contact: {
-                            keywords: ['contact', 'phone', 'email', 'number'],
-                            answer: "You can call us 24/7 at 9303931226 or email us at yourvehiclescare@gmail.com. All our contact details are in the 'Contact' section at the bottom of the page."
+                            keywords: ['contact', 'phone', 'email', 'number', 'call you', 'number kya hai'],
+                            answer: "Hamara 24/7 support number hai 9303931226. Aap humein yourvehiclescare@gmail.com par email bhi kar sakte hain."
                         },
                         location: {
-                            keywords: ['location', 'area', 'where'],
-                            answer: "We service a wide area around Madhya Pradesh. You can use the map and pincode checker in the 'Service Area' section to see if we cover your specific location."
+                            keywords: ['location', 'area', 'where', 'city', 'pincode', 'jagah'],
+                            answer: "Hum Madhya Pradesh mein kai jagah service dete hain. Aap 'Service Area' section mein apna 6-digit pincode daal kar check kar sakte hain."
                         },
-                        pincode: {
-                            keywords: ['pincode', 'pin code'],
-                            answer: "Please use the pincode checker in our 'Service Area' section to confirm if we service your location."
-                        },
+                        // Specific service questions with Hinglish
                         towing: {
-                            keywords: ['towing', 'tow'],
-                            answer: "Yes, we offer reliable and safe car towing services. You can book it through the 'Book Service' form or by calling us."
+                            keywords: ['towing', 'tow', 'gaadi uthana'],
+                            answer: "Yes, hum safe car towing service bhi provide karte hain jab gaadi on-the-spot theek nahi ho sakti."
                         },
                         battery: {
-                            keywords: ['battery', 'jump start', 'jumpstart'],
-                            answer: "We provide both jump start services for dead batteries and on-the-spot battery replacement. Let us know what you need!"
+                            keywords: ['battery', 'jump start', 'jumpstart', 'car not starting', 'gaadi start nahi ho rahi'],
+                            answer: "Agar aapki gaadi start nahi ho rahi hai, toh battery ka issue ho sakta hai. Hum jump start service aur on-the-spot battery replacement dono provide karte hain."
                         },
                         tire: {
-                            keywords: ['tire', 'tyre', 'flat', 'puncture'],
-                            answer: "We can definitely help with flat tires! We offer professional and safe tire changes and puncture repairs."
+                            keywords: ['tire', 'tyre', 'flat', 'puncture', 'tyre puncture'],
+                            answer: "Haanji, hum flat tire ke liye bilkul help kar sakte hain. Hum aapki spare tyre se change kar denge ya puncture repair bhi karte hain."
                         },
-                        join: {
-                            keywords: ['join', 'apply', 'mechanic', 'career'],
-                            answer: "That's great! If you're a skilled mechanic, you can apply to join our team by filling out the 'Mechanic Registration' form. Click on the 'Apply to Join' button in the 'Join Our Team' section."
+                        overheating: {
+                            keywords: ['overheating', 'hot', 'engine temperature', 'smoke from engine', 'engine garam'],
+                            answer: "Agar aapki gaadi overheat ho rahi hai, toh please gaadi side me laga kar band kar dein. Hum mechanic bhej kar issue check karwa sakte hain, jaise coolant ya radiator ka problem."
                         },
+                        brakes: {
+                            keywords: ['brake', 'brakes', 'noise', 'squeaking', 'grinding', 'awaaz'],
+                            answer: "Brakes mein problem hai toh please gaadi na chalayein. Agar grinding ya ajeeb awaaz aa rahi hai, toh hum aakar aapke brake pads, discs, aur fluid check kar sakte hain."
+                        },
+                        check_engine_light: {
+                            keywords: ['check engine', 'engine light', 'dashboard light', 'warning light'],
+                            answer: "Check engine light kai reasons se aa sakti hai. Hamare mechanics diagnostic scanner se error code read karke exact problem bata denge."
+                        },
+                        oil_change: {
+                            keywords: ['oil change', 'engine oil'],
+                            answer: "Yes, hum on-site engine oil aur filter change services provide karte hain. Isse aapko garage jaane ki zarurat nahi padti."
+                        },
+                        ac_service: {
+                            keywords: ['ac not working', 'air conditioning', 'cooling issue', 'ac thanda nahi'],
+                            answer: "Agar aapka AC a se kaam nahi kar raha, hamare mechanics system check karke gas leakage, refrigerant levels, aur compressor ka issue diagnose kar sakte hain."
+                        },
+                        inspection: {
+                            keywords: ['inspection', 'check up', 'health check'],
+                            answer: "Hum gaadi ka complete health check-up karte hain. Isme engine, brakes, tires, aur fluids jaise zaroori parts check kiye jaate hain. Lambe safar se pehle yeh bahut accha rehta hai."
+                        },
+                        fluid_leak: {
+                            keywords: ['leak', 'leaking fluid', 'puddle under car', 'tel tapak raha'],
+                            answer: "Gaadi se fluid leak hona serious ho sakta hai. Agar ho sake toh fluid ka color (green, red, black) note kar lijiye. Hum mechanic bhej kar leak ka source pata kar lenge."
+                        },
+                        // Brand and warranty questions
+                        brands: {
+                            keywords: ['maruti', 'hyundai', 'tata', 'mahindra', 'honda', 'toyota', 'kia', 'ford', 'car brand', 'which cars', 'konsi gaadi'],
+                            answer: "Hamare certified mechanics sabhi popular brands jaise Maruti Suzuki, Hyundai, Tata, Mahindra, aur bhi kai gaadiyon mein experienced hain."
+                        },
+                        warranty: {
+                            keywords: ['warranty', 'guarantee'],
+                            answer: "Yes, hum apne kaam aur naye parts par limited warranty dete hain. Details aapko 'Terms & Conditions' page par ya final invoice me mil jayengi."
+                        },
+                        // Trust and safety questions
+                        safety: {
+                            keywords: ['safe', 'certified', 'trusted', 'qualification', 'real mechanic', 'bharosa'],
+                            answer: "Bilkul. Customer safety hamari priority hai. Hamare sabhi mechanics certified aur verified professionals hain."
+                        },
+                        membership: {
+                            keywords: ['membership', 'subscription', 'package', 'annual plan'],
+                            answer: "Hum jald hi annual membership plans launch karne wale hain! Isse aapko services aur roadside assistance par kaafi discounts milenge. Website par nazar rakhein."
+                        },
+                        cancellation_policy: {
+                            keywords: ['cancel', 'cancellation'],
+                            answer: "Aap service kabhi bhi cancel kar sakte hain. Lekin agar mechanic aapki location ke liye nikal chuka hai, toh ek standard dispatch fee lag sakti hai. Details ke liye Terms & Conditions padhein."
+                        },
+                        // Conversational fillers
+                        smalltalk: {
+                            keywords: ['who are you', 'your name', 'robot', 'what is this', 'kya hai ye'],
+                            answer: "Main Your Vehicles Care ka automated assistant hoon, aapke sawalon ka jawab dene ke liye! Zyada complex issues ke liye, main aapko hamari team se connect karwa sakta hoon."
+                        },
+                        how_long: {
+                            keywords: ['how long', 'duration', 'time will it take', 'eta', 'kitna time lagega', 'kab aayenge'],
+                            answer: "Mechanic ko pahunchne mein aam taur par 30-60 minute lagte hain, jo aapki location aur traffic par depend karta hai. Repair ka time issue par depend karega."
+                        },
+                        frustration: {
+                            keywords: ['not working', 'useless', 'bad service', 'stupid bot', 'bekar'],
+                            answer: "Main maafi chahta hoon agar main aapki theek se madad nahi kar pa raha hoon. Main abhi seekh raha hoon. Turant help ke liye, please hamare 24/7 support line 9303931226 par call karein."
+                        },
+                        // Generic conversation
                         thanks: {
-                            keywords: ['thank you', 'thanks'],
-                            answer: "You're welcome! Is there anything else I can help you with?"
+                            keywords: ['thank you', 'thanks', 'ok thanks', 'great', 'awesome', 'theek hai', 'dhanyawaad', 'shukriya'],
+                            answer: "You're welcome! Aur koi jaankari chahiye aapko?"
                         },
                         bye: {
-                            keywords: ['bye', 'goodbye'],
-                            answer: "Goodbye! Have a great day and drive safe!"
+                            keywords: ['bye', 'goodbye', 'ok bye', 'that is all', 'no thanks', 'thats it', 'nahi'],
+                            answer: "Thank you for contacting us. Have a great day and drive safe!"
                         }
                     };
 
-                    let response = "I'm sorry, I'm not sure how to answer that. For complex queries, please call us at 9303931226 or use the contact information at the bottom of the page.";
+                    let response = "Mujhe samajh nahi aaya. Zyada jaankari ke liye, please humein 24/7 is number par call karein: 9303931226.";
                     
                     for (const key in responses) {
                         if (responses[key].keywords.some(keyword => msg.includes(keyword))) {
@@ -1631,6 +1690,8 @@
                 }, 1500);
             }
         };
+
+
 
         function initialize() {
             renderServices();
